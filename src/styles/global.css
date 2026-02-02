@@ -31,3 +31,7 @@
 }
 
 @import "tailwindcss";
+
+@theme {
+    --font-family-sans: 'Bai Jamjuree', ui-sans-serif, system-ui, sans-serif;
+}
