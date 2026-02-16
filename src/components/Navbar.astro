@@ -106,36 +106,39 @@ import logoText from "/content/logos/logotexto.webp?url";
 <script>
   const wrapper = document.getElementById('selectedWrapper');
   const dropdown = document.getElementById('languageDropdown');
-  const currentFlag = document.getElementById('currentFlag') as HTMLImageElement;
+  const currentFlag = document.getElementById('currentFlag');
   
   // Abrir/cerrar menú
   wrapper?.addEventListener('click', (e) => {
     e.stopPropagation();
     dropdown?.classList.toggle('hidden');
-
-    //Ocultar tooltip al abrir menú
-    const tooltip = wrapper?.querySelector('span');
-    if (tooltip) {
-      if (dropdown?.classList.contains('hidden')) {
-        tooltip.style.opacity = ''; 
-      } else {
-        tooltip.style.opacity = '0';
-      }
-    }
   });
 
   // Cambiar idioma
   document.querySelectorAll('.flag-option').forEach(option => {
     option.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
+      
       // Actualizar bandera
       const flagSrc = option.getAttribute('data-flag');
-      if (currentFlag && flagSrc) {
+      if (currentFlag && flagSrc && currentFlag instanceof HTMLImageElement) {
         currentFlag.src = flagSrc;
-        currentFlag.alt = option.querySelector('span')?.textContent || '';
+        const spanText = option.querySelector('span')?.textContent || '';
+        currentFlag.alt = spanText;
       }
+      
       // Cerrar menú
       dropdown?.classList.add('hidden');
     });
+  });
+
+  // Cerrar al hacer click fuera
+  document.addEventListener('click', (e) => {
+    if (wrapper && dropdown && 
+        !wrapper.contains(e.target as Node) && 
+        !dropdown.contains(e.target as Node)) {
+      dropdown.classList.add('hidden');
+    }
   });
 </script>
