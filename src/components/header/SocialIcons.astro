@@ -1,0 +1,19 @@
+---
+import { socialLinks } from '../../data/socialLinks';
+---
+
+<div class="social-container flex items-center space-x-2.5">
+  {socialLinks.map(link => (
+    <a 
+      href={link.url}
+      target="_blank" 
+      class="social-icon transition relative group px-1 py-2 hover:bg-[rgb(219,218,218)] rounded"
+      title={link.nombre}
+    >
+      <span set:html={link.svg} />
+      <span class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-2 bg-[rgb(0,179,160)] text-white text-[16px] rounded-2xl opacity-0 group-hover:opacity-100 transition text-center pointer-events-none w-40 leading-tight z-30" style="font-family: 'PrimeIcons', sans-serif; word-wrap: break-word;">
+        {link.tooltip}
+      </span>
+    </a>
+  ))}
+</div>
