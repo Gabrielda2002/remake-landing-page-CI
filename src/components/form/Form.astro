@@ -1,0 +1,106 @@
+---
+import SelectDepartment from "./SelectDepartment.astro";
+import SelectEps from "./SelectEps.astro";
+import SelectMunicipality from "./SelectMunicipality.astro";
+---
+
+<div class="justify-center w-full max-w-5xl mx-auto h-auto m-10 bs-[rgb(rgb(255, 255, 255)]">
+  <h4 class="text-[rgb(0,121,196)] text-[36px] text-left mb-3">CONTÁCTENOS</h4>
+  <p class="text-[rgb(86, 86, 88)] text[18px] text-left mb-10">¿Quieres participar en un estudio clínico?</p>
+
+  <form class="grid grid-cols-2 gap-4 max-w-7xl mx-auto p-6 shadow-lg rounded-lg">
+
+    <div class="flex flex-col">
+      <label for="nombres" class="text-[rgb(0,179,160)] mb-2">Nombres</label>
+      <input type="text" 
+      id="names" 
+      name="nombres"
+      required
+      pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ ]+" 
+      class="w-full border border-[rgb(168,182,201)] p-2 rounded focus:outline-none focus:border-[rgb(0,179,160)]">
+    </div>
+
+    <div class="flex flex-col">
+      <label for="apellidos" class="text-[rgb(0,179,160)] mb-2">Apellidos</label>
+      <input type="text" class="w-full border border-[rgb(168,182,201)] p-2 rounded focus:outline-none focus:border-[rgb(0,179,160)]" id="last_names" name="apellidos" required>
+    </div>
+
+    <div class="flex flex-col">
+      <label for="identification_type" class="text-[rgb(0,179,160)] mb-2">Tipo de identificación</label>
+      <select 
+        class="w-full border p-2 border-[rgb(168,182,201)] rounded h-10.5 focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400" id="identification_type" name="tipo_identificacion" required>
+        <option value="" disabled selected>Tipo de identificación</option>
+        <option value="cc" class="text-black">CC</option>
+        <option value="ce" class="text-black">CE</option>
+        <option value="pas" class="text-black">PAS</option>
+      </select>
+    </div>
+
+    <div class="flex flex-col">
+      <label for="numero_identificacion" class="text-[rgb(0,179,160)] mb-2">Número de identificación</label>
+      <input type="number" class="w-full border p-2 rounded border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]" id="identification_number" name="numero_identificacion" required>
+    </div>
+
+    
+    <div class="flex flex-col">
+      <label for="departamento" class="text-[rgb(0,179,160)] mb-2">Seleccione un departamento</label>
+      <select  class="w-full border p-2 border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400" id="department" name="departamento" required>
+        <option value="">Seleccione</option>
+        <option value="departamento">Departamento</option>
+      </select>
+    </div>
+  
+    <div class="flex flex-col">
+        <label for="municipio" class="text-[rgb(0,179,160)] mb-2">Seleccione un municipio</label>
+        <select  class="w-full border border-[rgb(168,182,201)] p-2 rounded focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400" id="municipality" name="municipio" required>
+          <option value="">Seleccione</option>
+          <option value="municipio">Municipio</option>
+        </select>
+    </div>
+
+    <div class="flex flex-col">
+      <label for="telefono" class="text-[rgb(0,179,160)] mb-2">Número de teléfono</label>
+      <input type="tel" class="w-full border p-2 rounded border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]" id="phone" name="telefono" required>
+    </div>
+
+    <div class="flex flex-col">
+      <label for="email" class="text-[rgb(0,179,160)] mb-2">Correo electrónico</label>
+      <input type="email" class="w-full border p-2 rounded border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]" id="email" name="email" required>
+    </div>
+
+    <div class="flex flex-col">
+      <SelectEps />
+    </div>
+
+    <div class="flex flex-col">
+      <label for="edad" class="text-[rgb(0,179,160)] mb-2">Edad</label>
+      <input type="number" class="w-full border p-2 rounded border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]" id="age" name="edad" min="0" max="120" required>
+    </div>
+
+    <div class="flex flex-col">
+      <label for="municipio" class="text-[rgb(0,179,160)] mb-2">Nacionalidad</label>
+      <select class="w-full border p-2 rounded h-10.5 border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400" id="nationality" name="nacionalidad" required>
+        <option value="" disabled selected hidden>Nacionalidad</option>
+        <option value="nacionalidad">Colombiano</option>
+      </select>
+    </div>
+
+    <div class="flex flex-col">
+      <label for="fecha_nacimiento" class="text-[rgb(0,179,160)] mb-2">Fecha de nacimiento</label>
+      <input type="date" class="w-full border p-2 rounded h-10.5 border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]" id="date_birth " name="fecha_nacimiento" required>
+    </div>
+
+    <div class="col-span-2 flex justify-center">
+      <button class="text-[16px] px-6 py-2 bg-[rgb(0,179,160)] rounded-lg border text-white w-auto">
+        Enviar
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+  import { initLocationSelector } from '../../scripts/locationSelector';
+  initLocationSelector();
+
+</script>
+
