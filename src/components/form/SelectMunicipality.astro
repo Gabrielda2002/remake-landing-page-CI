@@ -1,0 +1,23 @@
+---
+
+---
+
+<div class="flex flex-col">
+  <label for="municipality" class="text-[rgb(0,179,160)] mb-2">
+    Seleccione un municipio
+  </label>
+  <select 
+    class="w-full border p-2 border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)]" 
+    id="municipality" 
+    name="municipio" 
+    required
+    disabled
+  >
+    <option value=""></option>
+  </select>
+</div>
+
+<script>
+  import { initLocationSelector } from '../../scripts/locationSelector';
+  initLocationSelector();
+</script>

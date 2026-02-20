@@ -3,6 +3,7 @@
 import Navbar from "@/components/header/Navbar.astro";
 import "../styles/global.css";
 import Footer from "@/components/Footer.astro";
+import Form from "@/components/form/Form.astro";
 
 interface Props {
     title: string;
@@ -28,7 +29,8 @@ const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Pro
 <body>
 <Navbar/>
   <main>
-      <slot />
+    <Form />
+    <slot />
   </main>
   <Footer/>
 </body>
