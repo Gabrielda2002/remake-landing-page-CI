@@ -18,17 +18,27 @@ import SelectMunicipality from "./SelectMunicipality.astro";
       required
       pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ ]+" 
       class="w-full border border-[rgb(168,182,201)] p-2 rounded focus:outline-none focus:border-[rgb(0,179,160)]">
+      <span class="hidden text-red-500 text-sm mt-1">Debe tener al menos 2 caracteres</span>
     </div>
 
     <div class="flex flex-col">
       <label for="apellidos" class="text-[rgb(0,179,160)] mb-2">Apellidos</label>
-      <input type="text" class="w-full border border-[rgb(168,182,201)] p-2 rounded focus:outline-none focus:border-[rgb(0,179,160)]" id="last_names" name="apellidos" required>
+      <input type="text" 
+      id="last_names" 
+      name="apellidos" 
+      required
+      pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ ]+" 
+      class="w-full border border-[rgb(168,182,201)] p-2 rounded focus:outline-none focus:border-[rgb(0,179,160)]">
+      <span class="hidden text-red-500 text-sm mt-1">Debe tener al menos 2 caracteres</span>
     </div>
 
     <div class="flex flex-col">
       <label for="identification_type" class="text-[rgb(0,179,160)] mb-2">Tipo de identificación</label>
       <select 
-        class="w-full border p-2 border-[rgb(168,182,201)] rounded h-10.5 focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400" id="identification_type" name="tipo_identificacion" required>
+      id="identification_type" 
+      name="tipo_identificacion" 
+      required
+      class="w-full border p-2 border-[rgb(168,182,201)] rounded h-10.5 focus:outline-none focus:border-[rgb(0,179,160)]">
         <option value="" disabled selected>Tipo de identificación</option>
         <option value="cc" class="text-black">CC</option>
         <option value="ce" class="text-black">CE</option>
@@ -38,34 +48,57 @@ import SelectMunicipality from "./SelectMunicipality.astro";
 
     <div class="flex flex-col">
       <label for="numero_identificacion" class="text-[rgb(0,179,160)] mb-2">Número de identificación</label>
-      <input type="number" class="w-full border p-2 rounded border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]" id="identification_number" name="numero_identificacion" required>
+      <input type="text" 
+      id="identification_number" 
+      name="numero_identificacion" 
+      required
+      class="w-full border p-2 rounded border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]">
+      <span class="hidden text-red-500 text-sm mt-1">Debe tener al menos 6 caracteres</span>
     </div>
 
-    
     <div class="flex flex-col">
       <label for="departamento" class="text-[rgb(0,179,160)] mb-2">Seleccione un departamento</label>
-      <select  class="w-full border p-2 border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400" id="department" name="departamento" required>
+      <select 
+      id="department" 
+      name="departamento" 
+      required
+      class="w-full border p-2 border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400">
         <option value="">Seleccione</option>
         <option value="departamento">Departamento</option>
       </select>
     </div>
   
     <div class="flex flex-col">
-        <label for="municipio" class="text-[rgb(0,179,160)] mb-2">Seleccione un municipio</label>
-        <select  class="w-full border border-[rgb(168,182,201)] p-2 rounded focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400" id="municipality" name="municipio" required>
-          <option value="">Seleccione</option>
-          <option value="municipio">Municipio</option>
-        </select>
+      <label for="municipio" 
+      class="text-[rgb(0,179,160)] mb-2">Seleccione un municipio</label>
+      <select  
+      id="municipality" 
+      name="municipio" 
+      required
+      class="w-full border border-[rgb(168,182,201)] p-2 rounded focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400">
+        <option value="">Seleccione</option>
+        <option value="municipio">Municipio</option>
+      </select>
     </div>
 
     <div class="flex flex-col">
       <label for="telefono" class="text-[rgb(0,179,160)] mb-2">Número de teléfono</label>
-      <input type="tel" class="w-full border p-2 rounded border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]" id="phone" name="telefono" required>
+      <input type="tel" 
+      id="phone" 
+      name="telefono" 
+      required
+      class="w-full border p-2 rounded border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]">
+      <span class="hidden text-red-400 text-sm mt-1">Debe tener exactamente 10 dígitos</span>
     </div>
 
     <div class="flex flex-col">
       <label for="email" class="text-[rgb(0,179,160)] mb-2">Correo electrónico</label>
-      <input type="email" class="w-full border p-2 rounded border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]" id="email" name="email" required>
+      <input type="email" 
+      id="email" 
+      name="email" 
+      required
+      class="w-full border p-2 rounded border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]">
+      <span class="hidden text-red-400 text-sm mt-1">Correo electrónico no válido</span>
     </div>
 
     <div class="flex flex-col">
@@ -74,12 +107,24 @@ import SelectMunicipality from "./SelectMunicipality.astro";
 
     <div class="flex flex-col">
       <label for="edad" class="text-[rgb(0,179,160)] mb-2">Edad</label>
-      <input type="number" class="w-full border p-2 rounded border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]" id="age" name="edad" min="0" max="120" required>
+      <input 
+      type="number" 
+      id="age" 
+      name="edad" 
+      min="18" max="120" 
+      step="1"
+      required
+      class="w-full border p-2 rounded border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]">
+      <span class="hidden text-red-400 text-sm mt-1">Debes tener al menos 18 años</span>
     </div>
 
     <div class="flex flex-col">
       <label for="municipio" class="text-[rgb(0,179,160)] mb-2">Nacionalidad</label>
-      <select class="w-full border p-2 rounded h-10.5 border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400" id="nationality" name="nacionalidad" required>
+      <select 
+      id="nationality" 
+      name="nacionalidad" 
+      required
+      class="w-full border p-2 rounded h-10.5 border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400">
         <option value="" disabled selected hidden>Nacionalidad</option>
         <option value="nacionalidad">Colombiano</option>
       </select>
@@ -87,7 +132,11 @@ import SelectMunicipality from "./SelectMunicipality.astro";
 
     <div class="flex flex-col">
       <label for="fecha_nacimiento" class="text-[rgb(0,179,160)] mb-2">Fecha de nacimiento</label>
-      <input type="date" class="w-full border p-2 rounded h-10.5 border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]" id="date_birth " name="fecha_nacimiento" required>
+      <input type="date" 
+      id="date_birth" 
+      name="fecha_nacimiento" 
+      required
+      class="w-full border p-2 rounded h-10.5 border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]">
     </div>
 
     <div class="col-span-2 flex justify-center">
@@ -100,7 +149,10 @@ import SelectMunicipality from "./SelectMunicipality.astro";
 
 <script>
   import { initLocationSelector } from '../../scripts/locationSelector';
-  initLocationSelector();
+  import {initFormValidations } from '../../scripts/formValidations'
 
+  initLocationSelector();
+  initFormValidations();
+  
 </script>
 
