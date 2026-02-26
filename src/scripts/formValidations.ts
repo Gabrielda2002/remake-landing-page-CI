@@ -116,6 +116,31 @@ function validateAgeRange(selector: string) {
   input.addEventListener('blur', validate);
 }
 
+export function validateSelectRequired(selector: string) {
+  const select = document.querySelector(selector) as HTMLSelectElement;
+  if (!select) return;
+  const span = select.nextElementSibling as HTMLElement;
+
+  select.addEventListener('mousedown', () => {
+    if (select.matches(':focus')) {
+      setTimeout(() => {
+        if (!select.value) {
+          span.textContent = "Campo requerido";
+          span.classList.remove('hidden');
+          select.style.border = "2px solid red";
+        }
+      });
+    }
+  });
+
+  select.addEventListener('change', () => {
+    if (select.value) {
+      span.classList.add('hidden');
+      select.style.border = "";
+    }
+  });
+}
+
 function validateEmail(selector: string) {
   const input = document.querySelector(selector) as HTMLInputElement;
   if (!input) return;
@@ -226,11 +251,14 @@ export function initFormValidations() {
   
   // Edad
   validateOnlyNumber("#age");
-  validateRequired("#age"); 
+  validateRequired("#age");
   limitDigitCount("#age", 3);
   validateAgeRange("#age");
 
   // Fecha
   validateBirthDate("#date_birth");
 
+  //Select
+  validateSelectRequired("#identification_type");
+  validateSelectRequired("#nationality");
 }

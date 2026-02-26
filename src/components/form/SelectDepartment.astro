@@ -2,17 +2,23 @@
 ---
 
 ---
-
 <div class="flex flex-col">
   <label for="departamento" class="text-[rgb(0,179,160)] mb-2">Seleccione un departamento</label>
-  <select  class="w-full border p-2 border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)]" 
+  <select  
   id="department" 
   name="departamento" 
-  required>
+  required
+  class="w-full border p-2 border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)]" 
+  >
+  <option value =""></option>
   </select>
+  <span class="hidden text-red-500 text-sm mt-1">Campo requerido</span>
 </div>
 
 <script>
   import { initLocationSelector } from '../../scripts/locationSelector';
+  import { validateSelectRequired } from '../../scripts/formValidations'
   initLocationSelector();
+  validateSelectRequired("#department")
 </script>
+

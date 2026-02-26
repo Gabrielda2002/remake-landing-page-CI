@@ -39,11 +39,14 @@ import SelectMunicipality from "./SelectMunicipality.astro";
       name="tipo_identificacion" 
       required
       class="w-full border p-2 border-[rgb(168,182,201)] rounded h-10.5 focus:outline-none focus:border-[rgb(0,179,160)]">
-        <option value="" disabled selected>Tipo de identificación</option>
-        <option value="cc" class="text-black">CC</option>
-        <option value="ce" class="text-black">CE</option>
-        <option value="pas" class="text-black">PAS</option>
+        <option value="" selected hidden>Tipo de identificación</option>
+
+        <!-- ACA VA EL BUSCADOR -->
+        <option value="cc">CC</option>
+        <option value="ce">CE</option>
+        <option value="pas">PAS</option>
       </select>
+      <span class="hidden text-red-500 text-sm mt-1">Campo requerido</span>
     </div>
 
     <div class="flex flex-col">
@@ -55,30 +58,13 @@ import SelectMunicipality from "./SelectMunicipality.astro";
       class="w-full border p-2 rounded border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]">
       <span class="hidden text-red-500 text-sm mt-1">Debe tener al menos 6 caracteres</span>
     </div>
-
-    <div class="flex flex-col">
-      <label for="departamento" class="text-[rgb(0,179,160)] mb-2">Seleccione un departamento</label>
-      <select 
-      id="department" 
-      name="departamento" 
-      required
-      class="w-full border p-2 border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400">
-        <option value="">Seleccione</option>
-        <option value="departamento">Departamento</option>
-      </select>
-    </div>
   
     <div class="flex flex-col">
-      <label for="municipio" 
-      class="text-[rgb(0,179,160)] mb-2">Seleccione un municipio</label>
-      <select  
-      id="municipality" 
-      name="municipio" 
-      required
-      class="w-full border border-[rgb(168,182,201)] p-2 rounded focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400">
-        <option value="">Seleccione</option>
-        <option value="municipio">Municipio</option>
-      </select>
+      <SelectDepartment/>
+    </div>
+
+    <div class="flex flex-col">
+      <SelectMunicipality/>
     </div>
 
     <div class="flex flex-col">
@@ -124,10 +110,11 @@ import SelectMunicipality from "./SelectMunicipality.astro";
       id="nationality" 
       name="nacionalidad" 
       required
-      class="w-full border p-2 rounded h-10.5 border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)] text-gray-400">
+      class="w-full border p-2 rounded h-10.5 border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]">
         <option value="" disabled selected hidden>Nacionalidad</option>
         <option value="nacionalidad">Colombiano</option>
       </select>
+        <span class="hidden text-red-500 text-sm mt-1">Campo requerido</span>
     </div>
 
     <div class="flex flex-col">
