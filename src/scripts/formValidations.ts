@@ -7,12 +7,17 @@ function getOriginalMessage(span: HTMLElement): string {
   return originalMessages.get(span)!;
 }
 
-function validateOnlyLetters (selector: string) {
+function validateOnlyLetters(selector: string) {
   const input = document.querySelector(selector) as HTMLInputElement;
-  input?.addEventListener('input', (e) => {
+
+  const validate = (e: Event) => {
     const target = e.target as HTMLInputElement;
-    target.value = target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
-  });
+    target.value = target.value
+      .replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')
+      .toUpperCase()
+      .trim();
+  };
+  input?.addEventListener('input', validate);
 }
 
 function validateOnlyNumber(selector: string) {
@@ -23,13 +28,12 @@ function validateOnlyNumber(selector: string) {
   });
 }
 
-//Longitud de los inputs
-function validateMinimumMaximum (selector: string, minimum: number, maximum?:number) {
+function validateMinimumMaximum(selector: string, minimum: number, maximum?: number) {
   const input = document.querySelector(selector) as HTMLInputElement;
   if (!input) return;
   
   const span = input.nextElementSibling as HTMLElement;
-  const mensajeOriginal = getOriginalMessage(span);
+  const originalMsg = getOriginalMessage(span);
   
   const validate = () => {
     if (input.value.trim() === '') return;
@@ -42,13 +46,13 @@ function validateMinimumMaximum (selector: string, minimum: number, maximum?:num
     } 
     if (maximum !== undefined && input.value.length > maximum) {
       input.style.border = "2px solid red";
-      span.textContent = `Debe tener como maximo ${maximum} caracteres`;
+      span.textContent = `Debe tener como máximo ${maximum} caracteres`;
       span.classList.remove('hidden');
       return;
     }
     input.style.border = "";
-    span.textContent = mensajeOriginal;
-    span.classList.add('hidden')
+    span.textContent = originalMsg;
+    span.classList.add('hidden');
   };
 
   input.addEventListener('input', validate);
@@ -60,7 +64,7 @@ function validateExactLength(selector: string, length: number) {
   if (!input) return;
   
   const span = input.nextElementSibling as HTMLElement;
-  const mensajeOriginal = getOriginalMessage(span); 
+  const originalMsg = getOriginalMessage(span); 
   
   const validate = () => {
     if (input.value.trim() === '') return;
@@ -72,7 +76,7 @@ function validateExactLength(selector: string, length: number) {
       span.textContent = `Debe tener exactamente ${length} dígitos`;
       span.classList.remove('hidden');
     } else {
-      span.textContent = mensajeOriginal;
+      span.textContent = originalMsg;
       span.classList.add('hidden');
     }
   };
@@ -86,14 +90,10 @@ function validateAgeRange(selector: string) {
   if (!input) return;
 
   const span = input.nextElementSibling as HTMLElement;
-  const mensajeOriginal = getOriginalMessage(span);
+  const originalMsg = getOriginalMessage(span);
   
   const validate = () => {
-    if (input.value === '') {
-      input.style.border = "";
-      span.classList.add('hidden');
-      return;
-    }
+    if (input.value === '') return;
 
     const age = parseInt(input.value);
     
@@ -107,7 +107,7 @@ function validateAgeRange(selector: string) {
       span.classList.remove('hidden');
     } else {
       input.style.border = "";
-      span.textContent = mensajeOriginal; 
+      span.textContent = originalMsg; 
       span.classList.add('hidden');
     }
   };
@@ -116,13 +116,12 @@ function validateAgeRange(selector: string) {
   input.addEventListener('blur', validate);
 }
 
-function validarEmail(selector: string) {
+function validateEmail(selector: string) {
   const input = document.querySelector(selector) as HTMLInputElement;
   if (!input) return;
   
   const span = input.nextElementSibling as HTMLElement;
-  const mensajeOriginal = getOriginalMessage(span);
-
+  const originalMsg = getOriginalMessage(span);
   
   const validate = () => {
     if (input.value.trim() === '') return;
@@ -135,7 +134,7 @@ function validarEmail(selector: string) {
       span.classList.remove('hidden');
     } else {
       input.style.border = "";
-      span.textContent = mensajeOriginal;
+      span.textContent = originalMsg;
       span.classList.add('hidden');
     }
   };
@@ -144,33 +143,35 @@ function validarEmail(selector: string) {
   input.addEventListener('blur', validate);
 }
 
-function validateRequired(selector:string){
-  const input = document.querySelector(selector) as HTMLInputElement;
+function validateRequired(selector: string) {
+  const input = document.querySelector(selector) as HTMLInputElement || HTMLSelectElement;
   if (!input) return;
 
   const span = input.nextElementSibling as HTMLElement;
-  const mensajeOriginal = getOriginalMessage(span);
+  const originalMsg = getOriginalMessage(span);
 
   const validate = () => {
-    if(input.value.trim()  === ''){
+    if (input.value.trim() === '') {
       span.textContent = "Campo requerido";
       span.classList.remove('hidden');
       input.style.border = "2px solid red";
-    }else{
-      span.textContent = mensajeOriginal;
+    } else {
+      span.textContent = originalMsg;
+      input.style.border = "";
     }
-  }
+  };
+  
   input.addEventListener('blur', validate);  
   input.addEventListener('input', validate);
 }
 
-function limitDigitCount(select: string, digit: number){
-  const input = document.querySelector(select) as HTMLInputElement;
-  if(!input) return;
+function limitDigitCount(selector: string, digit: number) {
+  const input = document.querySelector(selector) as HTMLInputElement;
+  if (!input) return;
 
   input.addEventListener('input', (e) => {
     const target = e.target as HTMLInputElement;
-        if(target.value.length > digit){
+    if (target.value.length > digit) {
       target.value = target.value.slice(0, digit);
     }
   });
@@ -182,15 +183,18 @@ function validateBirthDate(selector: string) {
 
   const today = new Date();
   const maximumDate = new Date();
-
   maximumDate.setFullYear(today.getFullYear() - 18);
 
   const year = maximumDate.getFullYear();
   const month = String(maximumDate.getMonth() + 1).padStart(2, '0');
   const day = String(maximumDate.getDate()).padStart(2, '0');
-
   const maxDate = `${year}-${month}-${day}`;
+  
   input.setAttribute('max', maxDate);
+  
+  if (!input.value) {
+    input.value = maxDate;
+  }
 }
 
 
@@ -208,7 +212,7 @@ export function initFormValidations() {
   // Número identificación
   validateOnlyNumber("#identification_number");
   validateRequired("#identification_number");
-  validateMinimumMaximum('#identification_number', 6, 50);
+  validateMinimumMaximum('#identification_number', 6, 20);
   
   // Teléfono
   validateOnlyNumber("#phone");
@@ -218,14 +222,15 @@ export function initFormValidations() {
   
   // Email
   validateRequired("#email");         
-  validarEmail("#email");           
+  validateEmail("#email");           
   
   // Edad
   validateOnlyNumber("#age");
-  validateRequired("#age");
+  validateRequired("#age"); 
   limitDigitCount("#age", 3);
   validateAgeRange("#age");
 
+  // Fecha
   validateBirthDate("#date_birth");
 
 }
