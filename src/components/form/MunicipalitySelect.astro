@@ -1,0 +1,43 @@
+---
+// MunicipalitySelect.astro
+export interface Props {
+  required?: boolean;
+  name?: string;
+  id?: string;
+  label?: string;
+  departmentId?: number;
+}
+
+const { 
+  required = true, 
+  name = "municipio",
+  id = "municipality",
+  label = "Seleccione un municipio",
+  departmentId 
+} = Astro.props;
+---
+
+<div class="flex flex-col">
+  <label for={id} class="text-[rgb(0,179,160)] mb-2">{label}</label>
+  
+  <select
+    id={id}
+    name={name}
+    {required}
+    disabled={!departmentId}
+    class="w-full border p-2 border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)] disabled:bg-gray-100"
+  >
+    <option value="" hidden>Seleccione un municipio</option>
+  </select>
+
+  {required && (
+    <span class="hidden text-red-500 text-sm mt-1">Campo requerido</span>
+  )}
+</div>
+
+<script>
+  import { initMunicipalityHandler } from '../../scripts/municipalityHandler';
+  import { validateSelectRequired } from '../../scripts/formValidations'
+  initMunicipalityHandler();
+  validateSelectRequired("#municipality")  
+</script>

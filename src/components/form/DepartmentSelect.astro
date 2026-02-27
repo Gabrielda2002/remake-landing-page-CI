@@ -1,0 +1,63 @@
+---
+// DepartmentSelect.astro
+import { getDepartments } from '@/services/colombiaApi';
+import type { Department } from '@/types/Location';
+import { sortByName } from '@/utils/sorter';
+
+export interface Props {
+  required?: boolean;
+  name?: string;
+  label?: string;
+}
+
+const { 
+  required = true, 
+  name = "departamento",
+  label = "Seleccione un departamento"
+} = Astro.props;
+
+let departments: Department[] = [];
+let error = false;
+
+try {
+  const data = await getDepartments();
+  departments = sortByName(data);
+} catch {
+  error = true;
+}
+---
+
+<div class="flex flex-col">
+  <label for="department" class="text-[rgb(0,179,160)] mb-2">
+    {label}
+  </label>
+  
+  {error ? (
+    <span class="text-red-500 text-sm">
+      Error al cargar los departamentos
+    </span>
+  ) : (
+    <select
+      id="department"
+      name={name}
+      {required}
+      class="w-full border p-2 border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)]"
+    >
+      <option value="" selected disabled>Seleccione un departamento</option>
+      {departments.map(depto => (
+        <option value={depto.id}>{depto.name}</option>
+      ))}
+    </select>
+  )}
+
+  {!error && required && (
+    <span class="hidden text-red-500 text-sm mt-1">
+      Campo requerido
+    </span>
+  )}
+</div>
+
+<script>
+  import { validateSelectRequired } from '@/scripts/formValidations';
+  validateSelectRequired("#department");
+</script>
