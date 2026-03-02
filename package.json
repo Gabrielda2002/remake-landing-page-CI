@@ -11,6 +11,12 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.17.1",
+    "jquery": "^4.0.0",
+    "select2": "4.1.0-rc.0",
     "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "@types/jquery": "^4.0.0",
+    "@types/select2": "^4.0.63"
   }
 }
