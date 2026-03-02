@@ -1,7 +1,8 @@
 ---
-import SelectDepartment from "./SelectDepartment.astro";
 import SelectEps from "./SelectEps.astro";
-import SelectMunicipality from "./SelectMunicipality.astro";
+import DepartmentSelect from './DepartmentSelect.astro';
+import MunicipalitySelect from './MunicipalitySelect.astro';
+import TypeIdentification from "./TypeIdentification.astro";
 ---
 
 <div class="justify-center w-full max-w-5xl mx-auto h-auto m-10 bs-[rgb(rgb(255, 255, 255)]">
@@ -33,20 +34,7 @@ import SelectMunicipality from "./SelectMunicipality.astro";
     </div>
 
     <div class="flex flex-col">
-      <label for="identification_type" class="text-[rgb(0,179,160)] mb-2">Tipo de identificación</label>
-      <select 
-      id="identification_type" 
-      name="tipo_identificacion" 
-      required
-      class="w-full border p-2 border-[rgb(168,182,201)] rounded h-10.5 focus:outline-none focus:border-[rgb(0,179,160)]">
-        <option value="" selected hidden>Tipo de identificación</option>
-
-        <!-- ACA VA EL BUSCADOR -->
-        <option value="cc">CC</option>
-        <option value="ce">CE</option>
-        <option value="pas">PAS</option>
-      </select>
-      <span class="hidden text-red-500 text-sm mt-1">Campo requerido</span>
+      <TypeIdentification/>
     </div>
 
     <div class="flex flex-col">
@@ -60,11 +48,11 @@ import SelectMunicipality from "./SelectMunicipality.astro";
     </div>
   
     <div class="flex flex-col">
-      <SelectDepartment/>
+      <DepartmentSelect/>
     </div>
 
     <div class="flex flex-col">
-      <SelectMunicipality/>
+      <MunicipalitySelect/>
     </div>
 
     <div class="flex flex-col">
@@ -135,11 +123,7 @@ import SelectMunicipality from "./SelectMunicipality.astro";
 </div>
 
 <script>
-  import { initLocationSelector } from '../../scripts/locationSelector';
   import {initFormValidations } from '../../scripts/formValidations'
-
-  initLocationSelector();
   initFormValidations();
-  
 </script>
 
