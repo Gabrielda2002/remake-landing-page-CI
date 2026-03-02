@@ -1,20 +1,17 @@
 ---
-// DepartmentSelect.astro
 import { getDepartments } from '@/services/colombiaApi';
 import type { Department } from '@/types/Location';
+import type { BaseSelectProps } from '@/types/BaseSelectProps';
 import { sortByName } from '@/utils/sorter';
+import SearchableSelect from '../iu/SearchableSelect.astro';
 
-export interface Props {
-  required?: boolean;
-  name?: string;
-  label?: string;
-}
 
-const { 
-  required = true, 
+const {
+  id = "department",
   name = "departamento",
-  label = "Seleccione un departamento"
-} = Astro.props;
+  label = "Seleccione un departamento",
+  required = true
+} = Astro.props as BaseSelectProps;
 
 let departments: Department[] = [];
 let error = false;
@@ -37,17 +34,23 @@ try {
       Error al cargar los departamentos
     </span>
   ) : (
-    <select
-      id="department"
-      name={name}
-      {required}
-      class="w-full border p-2 border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)]"
-    >
-      <option value="" selected disabled>Seleccione un departamento</option>
-      {departments.map(depto => (
-        <option value={depto.id}>{depto.name}</option>
-      ))}
-    </select>
+    <SearchableSelect 
+      id={id}
+      placeholder="Busque un departamento" 
+      required={required}
+    > 
+      <select
+        id={id}
+        name={name}
+        {required}
+        class="w-full border p-2 border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)]"
+      >
+        <option value="" selected disabled>Seleccione un departamento</option>
+        {departments.map(depto => (
+          <option value={depto.id}>{depto.name}</option>
+        ))}
+      </select>
+    </SearchableSelect>
   )}
 
   {!error && required && (
@@ -56,8 +59,3 @@ try {
     </span>
   )}
 </div>
-
-<script>
-  import { validateSelectRequired } from '@/scripts/formValidations';
-  validateSelectRequired("#department");
-</script>

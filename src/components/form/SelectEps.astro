@@ -1,26 +1,42 @@
 ---
 import { EPS_LIST } from '../../data/epsList'
+import type { BaseSelectProps } from '@/types/BaseSelectProps';
+import SearchableSelect from '../iu/SearchableSelect.astro'
+
+const { 
+  id = "eps",
+  name = "Eps",
+  label = "EPS",
+  required = true
+} = Astro.props as BaseSelectProps;
 ---
 
 <div class="flex flex-col">
-  <label for="tipo_identificacion" class="text-[rgb(0,179,160)] mb-2">EPS</label>
+  <label for="tipo_identificacion" class="text-[rgb(0,179,160)] mb-2">
+    {label}
+  </label>
+
+  <SearchableSelect
+    id={id} 
+    placeholder="Busque una EPS" 
+    required={required}
+  >
   <select 
-  id="eps" 
-  name="eps"
-  required 
-  class="w-full border p-2 rounded h-10.5 border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]">
-    <option value="" disabled selected hidden>EPS</option>
-    {
-      EPS_LIST.map(eps => (
-        <option value={eps.id}>{eps.name}</option>
-      ))
-    }
-  </select>
-  <span class="hidden text-red-500 text-sm mt-1">Campo requerido</span>
-</div>
-
-<script>
-  import { validateSelectRequired } from '../../scripts/formValidations'
-    validateSelectRequired("#eps")
-
-</script>
+    id={id}
+    name={name}
+    required
+    class="w-full border p-2 rounded h-10.5 border-[rgb(168,182,201)] focus:outline-none focus:border-[rgb(0,179,160)]">
+      <option value="" disabled selected hidden></option>
+      {
+        EPS_LIST.map(eps => (
+          <option value={eps.id}>{eps.name}</option>
+        ))
+      }
+    </select>
+  </SearchableSelect>
+  {required && (
+    <span class="hidden text-red-500 text-sm mt-1">
+      Campo requerido
+    </span>
+  )}
+  </div>

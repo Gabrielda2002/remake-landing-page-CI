@@ -1,43 +1,49 @@
 ---
-// MunicipalitySelect.astro
-export interface Props {
-  required?: boolean;
-  name?: string;
-  id?: string;
-  label?: string;
+import type { BaseSelectProps } from '@/types/BaseSelectProps';
+import SearchableSelect from '../iu/SearchableSelect.astro';
+
+export interface MunicipalitySelectProps extends BaseSelectProps {
   departmentId?: number;
 }
 
 const { 
-  required = true, 
-  name = "municipio",
   id = "municipality",
+  name = "municipio",
   label = "Seleccione un municipio",
-  departmentId 
-} = Astro.props;
+  required = true, 
+  departmentId
+} = Astro.props as MunicipalitySelectProps;
 ---
 
 <div class="flex flex-col">
-  <label for={id} class="text-[rgb(0,179,160)] mb-2">{label}</label>
+  <label for="municipality" class="text-[rgb(0,179,160)] mb-2">
+    {label}
+  </label>
   
-  <select
-    id={id}
-    name={name}
-    {required}
-    disabled={!departmentId}
-    class="w-full border p-2 border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)] disabled:bg-gray-100"
+  <SearchableSelect 
+    id={id} 
+    placeholder="Busque un municipio" 
+    required={required}
   >
-    <option value="" hidden>Seleccione un municipio</option>
-  </select>
+    <select
+      id={id}
+      name={name}
+      required={required}
+      disabled={!departmentId}
+      class="w-full border p-2 border-[rgb(168,182,201)] rounded disabled:bg-gray-100"
+    >
+      <option value="" selected disabled>Seleccione un municipio</option>
+    </select>
+  </SearchableSelect>
 
   {required && (
-    <span class="hidden text-red-500 text-sm mt-1">Campo requerido</span>
+    <span class="hidden text-red-500 text-sm mt-1">
+      Campo requerido
+    </span>
   )}
 </div>
 
 <script>
   import { initMunicipalityHandler } from '../../scripts/municipalityHandler';
-  import { validateSelectRequired } from '../../scripts/formValidations'
   initMunicipalityHandler();
-  validateSelectRequired("#municipality")  
 </script>
