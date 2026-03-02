@@ -15,9 +15,6 @@ export function initMunicipalityHandler() {
       return;
     }
 
-    muni.disabled = true;
-    muni.innerHTML = '<option value="" hidden>Cargando...</option>';
-    
     try {
       const cities = sortByName(await getMunicipality(parseInt(deptId)));
       muni.innerHTML = 
