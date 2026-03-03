@@ -1,0 +1,19 @@
+---
+import Layout from '@/layout/Layout.astro';
+import { LocationForm } from '@/components/react/Form';
+---
+
+<Layout title="Ejemplo de Formulario" description='Ejemplo de formulario integrado con React en Astro'>
+  <main class="min-h-screen bg-gray-50 py-10">
+    <!-- 
+      El componente React se integra directamente en Astro.
+      client:load hace que el componente sea interactivo inmediatamente.
+      
+      Otras opciones de hidratación:
+      - client:idle - Carga cuando el navegador está inactivo
+      - client:visible - Carga cuando el elemento es visible
+      - client:media - Carga según media query
+    -->
+    <LocationForm client:load />
+  </main>
+</Layout>
