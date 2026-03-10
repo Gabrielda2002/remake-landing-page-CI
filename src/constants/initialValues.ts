@@ -13,5 +13,5 @@ export const initialValues: FormValues = {
   eps: '',
   age: '',
   nationality: '',
-  date: ''
+  date: null  
 };

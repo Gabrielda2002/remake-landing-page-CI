@@ -8,12 +8,14 @@ export const validationSchema = Yup.object<FormValues>({
     .required("Nombre requerido")
     .matches(/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/, "Solo se permiten letras")
     .min(2, "Mínimo 2 caracteres")
+    .max(40, "Debe tener como máximo 40 caracteres")
     .transform(value => value?.toUpperCase()),
 
   lastNames: Yup.string()
     .required("Apellido requerido")
     .matches(/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/, "Solo se permiten letras")
     .min(2, "Mínimo 2 caracteres")
+    .max(40, "Debe tener como máximo 40 caracteres")
     .transform(value => value?.toUpperCase()),
   
   identificationType: Yup.string()
@@ -57,8 +59,7 @@ export const validationSchema = Yup.object<FormValues>({
       .required('Nacionalidad requerida'),
 
   date: Yup.date()
-    .required('Fecha de nacimiento requerida')
-    .max(new Date(), 'La fecha no puede ser futura')
+    .required('Fecha requerida')
     .test('edad-valida', 'La edad debe ser entre 18 y 125 años', function(value) {
       if (!value) return false;
       

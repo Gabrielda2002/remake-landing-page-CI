@@ -8,6 +8,7 @@ import { initialValues } from '@/constants/initialValues';
 import { DOCUMENT_LIST } from '@/constants/identificationType';
 import { NATIONALITY } from '@/constants/nationality';
 import { SelectField } from './OptionSelect';
+import { FormDateInput } from './FormDateInput';
 
 export const Form: React.FC = () => {
   const formik = useFormik({
@@ -20,7 +21,7 @@ export const Form: React.FC = () => {
   });
 
   return (
-    <div className="w-full max-w-5xl mx-auto p-6">
+    <div className="w-full max-w-6xl mx-auto p-6">
       <form className="grid grid-cols-2 gap-4 shadow-lg rounded-lg p-6 bg-white" onSubmit={formik.handleSubmit}>
 
         {/*Nombres  */}
@@ -29,7 +30,7 @@ export const Form: React.FC = () => {
           id = "names"
           name= "names"
           label = "Nombres"
-          required = {true}
+          required
           pattern =  "[A-Za-zÁÉÍÓÚáéíóúñÑ ]+"
           formik={formik}
           onlyLetters
@@ -121,15 +122,14 @@ export const Form: React.FC = () => {
         />
               
         {/*Fecha*/}
-        <FormInput
-          type="date"
-          id = "date"
-          name= "date"
-          label = "Fecha de nacimiento"
-          required = {true}
+        <FormDateInput
+          id="date"
+          name="date"
+          label="Fecha de nacimiento"
+          required
           formik={formik}
-          />
-
+        />
+        
         <div className="col-span-2 flex justify-center mt-4">
           <button
             type="submit"

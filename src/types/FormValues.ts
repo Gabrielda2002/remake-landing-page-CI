@@ -10,5 +10,5 @@ export interface FormValues {
   eps: string;
   age: string;
   nationality: string;
-  date: string;
+  date: Date | null;
 }
