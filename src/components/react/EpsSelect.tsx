@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import { EPS_LIST} from "@/constants/epsList";
-import { SelectSearch, type SelectOption } from "../ui/SelectSearch";
+import { SelectSearch} from "../ui/SelectSearch";
+import type { SelectOption } from '@/types/SelectOption';
 
 interface EpsSelectProps<T extends { eps: string }> {
   id?: string;

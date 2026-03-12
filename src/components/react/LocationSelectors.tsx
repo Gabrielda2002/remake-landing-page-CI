@@ -1,6 +1,7 @@
 // components/LocationSelectors.tsx
 import React, { useState, useEffect } from 'react';
-import { SelectSearch, type SelectOption } from '@/components/ui/SelectSearch';
+import { SelectSearch } from '@/components/ui/SelectSearch';
+import type { SelectOption } from '@/types/SelectOption';
 import { getDepartments } from '@/services/colombiaApi';
 import { useMunicipalities } from './useMunicipalities';
 import { sortByName } from '@/utils/sorter';
