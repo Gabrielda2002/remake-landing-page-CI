@@ -21,8 +21,11 @@ export const Form: React.FC = () => {
   });
 
   return (
-    <div className="w-full max-w-6xl mx-auto p-6">
-      <form className="grid grid-cols-2 gap-4 shadow-lg rounded-lg p-6 bg-white" onSubmit={formik.handleSubmit}>
+    <div className="w-full max-w-6xl mx-auto p-6 font-['Bai_Jamjuree',sans-serif]">
+      <h4 className="text-[rgb(0,121,196)] text-[36px] text-left mb-3 font-['Bai_Jamjuree',sans-serif] font-medium">CONTÁCTENOS</h4>
+      <p className="text-[rgb(86,86,88)] text[18px] text-left mb-10 font-['Bai_Jamjuree',sans-serif] font-medium ">¿Quieres participar en un estudio clínico?</p>
+      
+      <form className="grid grid-cols-2 gap-4 shadow-lg rounded-lg p-6 bg-white text-[rgb(86,86,88)]" onSubmit={formik.handleSubmit}>
 
         {/*Nombres  */}
         <FormInput
@@ -56,7 +59,7 @@ export const Form: React.FC = () => {
           placeholder="Tipo de identificación"
           data={DOCUMENT_LIST}
           formik={formik}
-          required={true}
+          required
         />
 
         {/* Numero ID */}
@@ -65,8 +68,8 @@ export const Form: React.FC = () => {
           id = "identificationNumber"
           name= "identificationNumber"
           label = "Número de identificación"
-          required = {true}
-          pattern =  "[A-Za-zÁÉÍÓÚáéíóúñÑ ]+"
+          required
+          pattern = "[0-9]*"
           formik={formik}
           onlyNumbers
         />
@@ -81,7 +84,7 @@ export const Form: React.FC = () => {
           name= "phone"
           label = "Número de teléfono"
           required = {true}
-          pattern =  "[A-Za-zÁÉÍÓÚáéíóúñÑ ]+"
+          pattern =  "[0-9]*"
           formik = {formik}
           onlyNumbers
         />
@@ -106,6 +109,7 @@ export const Form: React.FC = () => {
           name= "age"
           label = "Edad"
           required = {true}
+          pattern =  "[0-9]*"
           formik = {formik}
           onlyNumbers
         />

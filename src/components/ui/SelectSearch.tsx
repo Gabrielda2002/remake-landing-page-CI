@@ -144,7 +144,7 @@ export const SelectSearch: React.FC<SelectSearchProps> = ({
         />
       </div>
 
-      {error && <span className="text-red-500 text-sm mt-1">{error}</span>}
+      {error && <span className="text-red-500 text-sm mt-1 font-medium">{error}</span>}
     </div>
   );
 };

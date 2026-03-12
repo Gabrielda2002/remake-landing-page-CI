@@ -66,7 +66,7 @@ export const FormDateInput: React.FC<DateInputProps> = ({
       />
 
       {error && (
-        <span className="text-red-500 text-sm mt-1">{error}</span>
+        <span className="text-red-500 text-sm mt-1 font-medium">{error}</span>
       )}
     </div>
   );
