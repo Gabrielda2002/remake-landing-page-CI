@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
-
-interface SelectOption {
-  id: string | number;
-  name: string;
-}
+import { SelectArrow } from '../ui/SelectArrow';
+import { SelectDropdown } from '../ui/SelectDropdown';
+import type { OptionData } from '@/types/OptionData'; 
 
 interface SelectFieldProps {
   id: string;
   name: string;
   label: string;
   placeholder: string;
-  data: SelectOption[];
+  data: OptionData[];
   required?: boolean;
   formik: ReturnType<typeof useFormik<any>>;
 }
@@ -25,67 +23,58 @@ export const SelectField: React.FC<SelectFieldProps> = ({
   required = true,
   formik
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  
   const error = formik.touched[name] && formik.errors[name]
     ? String(formik.errors[name])
     : undefined;
 
+  const selectedOption = data.find(item => item.id === formik.values[name]);
+
+  const options = data.map(item => ({
+    value: item.id,
+    label: item.name
+  }));
+
   return (
-    <div className="flex flex-col">
-      <label htmlFor={name} className="text-[rgb(0,179,160)] mb-2">
+    <div className="flex flex-col w-full font-['Bai_Jamjuree',sans-serif]">
+      <label htmlFor={id} className="text-[rgb(0,179,160)] mb-2">
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
       </label>
-      
+
       <div className="relative">
-        <select
-          id={id}
-          name={name}
-          value={formik.values[name] || ''}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+        <div
+          onClick={() => setIsOpen(!isOpen)}
+          onBlur={() => formik.setFieldTouched(name, true)}
           className={`
-            w-full border p-2 rounded h-10.5 focus:outline-none appearance-none pr-10
-            ${!formik.values[name] ? 'text-gray-400' : 'text-black'}
-            ${error 
-              ? 'border-red-500' 
-              : 'border-[rgb(168,182,201)] focus:border-[rgb(0,179,160)]'
-            }
+            w-full border p-2 rounded h-10.5 cursor-pointer flex items-center justify-between
+            ${error ? 'border-red-500' : 'border-[rgb(168,182,201)]'}
+            text-[rgb(86,86,88)]
+            hover:border-[rgb(0,179,160)] focus:border-[rgb(0,179,160)] outline-none
           `}
+          tabIndex={0}
         >
-          <option value="" hidden disabled className="text-gray-400">
-            {placeholder}
-          </option>
-          {data.map((item) => (
-            <option  
-              key={item.id} 
-              value={item.id}
-              className="p-2 text-black"
-            >
-              {item.name}
-            </option>
-          ))}
-        </select>
-        
-        {/* Flecha personalizada */}
-        <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none">
-          <svg
-            className="w-5 h-5 text-gray-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
+          <span>{selectedOption ? selectedOption.name : placeholder}</span>
+          <SelectArrow isOpen={isOpen} />
         </div>
+
+        <SelectDropdown
+          isOpen={isOpen}
+          options={options}
+          filteredOptions={options}
+          value={formik.values[name]}
+          onSelectOption={(value) => {
+            formik.setFieldValue(name, value);
+            setIsOpen(false);
+          }}
+          onClose={() => setIsOpen(false)}
+          id={id}
+        />
       </div>
 
       {error && (
-        <span className="text-red-500 text-sm mt-1">{error}</span>
+        <span className="text-red-500 text-sm mt-1 font-medium">{error}</span>
       )}
     </div>
   );
