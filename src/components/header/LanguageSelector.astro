@@ -1,26 +1,51 @@
 ---
 import coFlag from "/content/banderas/flag-co.svg?url";
 import gbFlag from "/content/banderas/flag-gb.svg?url";
+
+interface Language {
+  name: string;
+  flag: string;
+  href: string;
+  code: string;
+}
+
+const LANGUAGE_FLAG: Language[] = [
+  { name: "Español", flag: coFlag, href: "/es", code: "es" },
+  { name: "Inglés", flag: gbFlag, href: "/en", code: "en" }
+]
+
+export interface LanguageProps {
+  spanText?: string;
+  languages?: Language[];
+}
+
+const { 
+  spanText = "Seleccione para ver las opciones de navegación",
+  languages = LANGUAGE_FLAG 
+} = Astro.props;
 ---
 
 <div class="language-group relative" id="languageSelector">
   <div class="selected-wrapper flex items-center px-1 py-2 transition hover:bg-[rgb(219,218,218)] rounded cursor-pointer relative group" id="selectedWrapper">
-    <img src={coFlag} alt="Español" width="24" height="16" class="rounded-sm" id="currentFlag">
+    <img src={languages[0].flag} alt={languages[0].name} width="24" height="16" class="rounded-sm" id="currentFlag">
     
     <span class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-2 bg-[rgb(0,179,160)] text-white text-[16px] rounded-2xl opacity-0 group-hover:opacity-100 transition text-center pointer-events-none w-40 leading-tight z-20">
-      Seleccione para ver las opciones de navegación
+      {spanText}
     </span>
   </div>
 
-  <div class="drop hidden absolute top-full right-0 mt-1 bg-white shadow-lg rounded min-w-30 z-10" id="languageDropdown">
-    <a href="/es" class="flag-option flex items-center space-x-2 px-3 py-2 hover:bg-[rgb(219,218,218)] transition" data-lang="es" data-flag={coFlag}>
-      <img src={coFlag} alt="Español" width="24" height="16" class="rounded-sm">
-      <span>Español</span>
-    </a>
-    <a href="/en" class="flag-option flex items-center space-x-2 px-3 py-2 hover:bg-[rgb(219,218,218)] transition" data-lang="en" data-flag={gbFlag}>
-      <img src={gbFlag} alt="Inglés" width="24" height="16" class="rounded-sm">
-      <span>Inglés</span>
-    </a>
+  <div class="drop hidden absolute top-full right-0 mt-1 bg-white shadow-lg rounded min-w-40 z-10" id="languageDropdown">
+    {languages.map((lang: Language) => (
+      <a
+        href={lang.href} 
+        class="flag-option flex space-x-2 px-3 py-2 hover:bg-[rgb(219,218,218)] transition text-center" 
+        data-lang={lang.code}
+        data-flag={lang.flag}
+      >
+        <img src={lang.flag} alt={lang.name} width="24" height="16" class="rounded-sm" />
+        <span>{lang.name}</span>
+      </a>
+    ))}
   </div>
 </div>
 
