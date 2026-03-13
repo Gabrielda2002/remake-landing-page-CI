@@ -1,0 +1,26 @@
+---
+interface Props {
+  width?: string;
+  height?: string;
+  className?: string;
+  src?: string;
+}
+
+const { 
+  width = "100%", 
+  height = "200", 
+  className = "",
+  src = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15808.40988207448!2d-72.493919!3d7.884347!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6645a1aa0d99a5%3A0x2793b71a9595074a!2sAv.%203a%20Este%20%2313A-82%2C%20Los%20Caobos%2C%20C%C3%BAcuta%2C%20Norte%20de%20Santander!5e0!3m2!1sen!2sco!4v1771275602653!5m2!1sen!2sco"
+} = Astro.props;
+---
+
+  <iframe 
+    src={src}
+    width={width}
+    height={height}
+    style="border:0;"
+    allowfullscreen
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  >
+  </iframe>
