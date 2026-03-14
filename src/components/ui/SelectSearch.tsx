@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { SelectArrow } from './SelectArrow';
-import { SelectDropdown } from './SelectDropdown';
+import { SelectDropdown } from './SelectDropdown'; 
 import type { SelectOption } from '@/types/SelectOption';
 
 export interface SelectSearchProps extends Omit<
@@ -33,42 +33,91 @@ export const SelectSearch: React.FC<SelectSearchProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Filtrar opciones basado en la búsqueda
+  // Filtra opciones según el texto de búsqueda
   const filteredOptions = options.filter((option) =>
     option.label.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Busca la opción cuyo valor coincide con el valor seleccionado
   const selectedOption = options.find((option) => option.value === value);
   const displayValue = selectedOption ? selectedOption.label : '';
 
+  // Manejar teclas de navegación
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (disabled) return;
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        setIsOpen(true);
+        setHighlightedIndex((prev) =>
+          prev < filteredOptions.length - 1 ? prev + 1 : prev
+        );
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : 0));
+        break;
+      case 'Enter':
+        e.preventDefault();
+        if (isOpen && highlightedIndex >= 0 && filteredOptions[highlightedIndex]) {
+          handleSelectOption(filteredOptions[highlightedIndex].value);
+        } else {
+          setIsOpen(true);
+        }
+        break;
+      case 'Escape':
+        e.preventDefault();
+        setIsOpen(false);
+        setSearchTerm('');
+        setHighlightedIndex(-1);
+        break;
+      case 'Tab':
+        setIsOpen(false);
+        setSearchTerm('');
+        setHighlightedIndex(-1);
+        break;
+    }
+  };
+
+  // Ejecuta onChange, cierra dropdown, limpia búsqueda y quita foco al seleccionar
   const handleSelectOption = (optionValue: string | number) => {
     onChange(optionValue);
     setIsOpen(false);
     setSearchTerm('');
+    setHighlightedIndex(-1);
     inputRef.current?.blur();
   };
 
+  // Abre/cierra dropdown al hacer clic y enfoca input si se abre
   const handleInputClick = () => {
     if (!disabled) {
       setIsOpen(!isOpen);
       if (!isOpen) {
+        setHighlightedIndex(-1);
         setTimeout(() => inputRef.current?.focus(), 0);
       }
     }
   };
 
+  // Limpia selección, búsqueda y cierra dropdown sin propagar el evento
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation();
     onChange('');
     setSearchTerm('');
     setIsOpen(false);
+    setHighlightedIndex(-1);
   };
 
+  // Cierra dropdown y limpia búsqueda
   const handleClose = () => {
     setIsOpen(false);
     setSearchTerm('');
+    setHighlightedIndex(-1);
   };
 
   return (
@@ -101,6 +150,7 @@ export const SelectSearch: React.FC<SelectSearchProps> = ({
             type="text"
             value={isOpen ? searchTerm : displayValue}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleKeyDown}
             onBlur={onBlur}
             placeholder={placeholder}
             disabled={disabled}
@@ -135,12 +185,14 @@ export const SelectSearch: React.FC<SelectSearchProps> = ({
 
         <SelectDropdown
           isOpen={isOpen}
-          options={options}
           filteredOptions={filteredOptions}
           value={value}
+          highlightedIndex={highlightedIndex}
           onSelectOption={handleSelectOption}
+          onHighlightChange={setHighlightedIndex}
           onClose={handleClose}
           id={id || 'select'}
+          dropdownRef={dropdownRef}
         />
       </div>
 

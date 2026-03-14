@@ -1,36 +1,38 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import type { SelectOption } from '@/types/SelectOption';
 
 interface SelectDropdownProps {
   isOpen: boolean;
-  options: SelectOption[];
   filteredOptions: SelectOption[];
   value: string | number;
+  highlightedIndex: number;
   onSelectOption: (value: string | number) => void;
-  onClose: () => void;  
+  onHighlightChange: (index: number) => void;
+  onClose: () => void;
   id: string | number;
-  children?: React.ReactNode;
+  dropdownRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export const SelectDropdown: React.FC<SelectDropdownProps> = ({
   isOpen,
   filteredOptions,
   value,
+  highlightedIndex,
   onSelectOption,
+  onHighlightChange,
   onClose,
   id,
-  children
+  dropdownRef
 }) => {
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  // Referencia al contenedor principal para detectar clicks fuera
   const containerRef = useRef<HTMLDivElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Click outside
+  // Cierra el dropdown cuando se hace click fuera del componente
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         onClose();
-        setHighlightedIndex(-1);
+        onHighlightChange(-1);
       }
     };
 
@@ -41,9 +43,9 @@ export const SelectDropdown: React.FC<SelectDropdownProps> = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, onHighlightChange]);
 
-  // Scroll automático
+  //scroll automático para mostrar la opción resaltada se ejecuta cuando cambia highlightedIndex
   useEffect(() => {
     if (highlightedIndex >= 0 && dropdownRef.current) {
       const highlightedElement = dropdownRef.current.children[highlightedIndex] as HTMLElement;
@@ -54,13 +56,12 @@ export const SelectDropdown: React.FC<SelectDropdownProps> = ({
         });
       }
     }
-  }, [highlightedIndex]);
+  }, [highlightedIndex, dropdownRef]);
 
   if (!isOpen) return null;
 
   return (
     <div ref={containerRef} className="relative">
-      {children}
       <div
         ref={dropdownRef}
         id={`${id}-listbox`}
@@ -82,9 +83,9 @@ export const SelectDropdown: React.FC<SelectDropdownProps> = ({
               onClick={() => {
                 onSelectOption(option.value);
                 onClose();
-                setHighlightedIndex(-1);
+                onHighlightChange(-1);
               }}
-              onMouseEnter={() => setHighlightedIndex(index)}
+              onMouseEnter={() => onHighlightChange(index)}
             >
               {option.label}
             </div>
