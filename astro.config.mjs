@@ -10,8 +10,9 @@ export default defineConfig({
     plugins: [tailwindcss()],
     resolve: {
       alias: {
-        '@services': '/public/content/servicios'
-      }
+        '@services': '/public/content/servicios',
+        '@professional': '/public/content/profesionales'
+      },
     },
     ssr: {
       noExternal: ['primereact']

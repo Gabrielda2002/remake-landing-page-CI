@@ -1,0 +1,35 @@
+---
+export interface ProfessionalCard {
+  id: string | number
+  name: string,
+  image: string
+  possition: string
+}
+
+interface Prop {
+  title?: string,
+  professional: Array<ProfessionalCard>
+}
+
+const { title, professional } = Astro.props;
+---
+
+<div class="container max-w-6xl mx-auto px-7 font-['Bai_Jamjuree',sans-serif] mt-10 mb-10">
+  {title && <h4 class="text-3xl font-medium text-[rgb(0,121,196)]">{title}</h4>}
+
+  <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {professional.map((person: ProfessionalCard) => (
+      <article class="rounded-2xl bg-linear-to-r from-[rgb(179,229,252)] to-[rgb(197,202,233)] pt-5 mb-4 pb-8">
+        <img
+          src={person.image}
+          alt={`Foto de ${person.name}`}
+          loading="lazy"
+          class="block w-full object-cover rounded-xl"
+        />
+
+        <h5 class="mt-4 pl-5 text-[18px] text-[rgb(0,121,196)] font-bold">{person.name}</h5>
+        <p class="mt-1 pl-5 text-base text-[rgb(86,86,88)]">{person.possition}</p>
+      </article>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,62 @@
+---
+import type { ProfessionalCard } from "./ProfessionalCard.astro"
+import ProfessionalCardList from "./ProfessionalCard.astro"
+import team1 from "@professional/team1.webp"
+import team2 from "@professional/team2.webp"
+import team3 from "@professional/team3.webp"
+import team4 from "@professional/team4.webp"
+import team5 from "@professional/team5.webp"
+import team6 from "@professional/team6.webp"
+import team7 from "@professional/team7.webp"
+
+
+const LIST_PROFESSIONAL:Array<ProfessionalCard> = [
+  {
+    id: "1",
+    name: "Eder Leonardo Caceres Reatiga",
+    image: team1.src,
+    possition: "Investigador" 
+  }
+  ,
+  {
+    id: "2",
+    name: "Armando Diaz Vergel",
+    image: team2.src,
+    possition: "Investigador" 
+  },
+  {
+    id: "3",
+    name: "Norida Margarita Torrado Ruiz",
+    image: team3.src,
+    possition: "Subinvestigador" 
+  },
+  {
+    id: "4",
+    name: "Alberth Alcides Brito Lopez",
+    image: team4.src,
+    possition: "Subinvestigador" 
+  },
+  {
+    id: "5",
+    name:"Nelly Esperanza Prato Gonzalez",
+    image: team5.src,
+    possition: "Coordinadora de Laboratorio" 
+  },
+  {
+    id: "6",
+    name: "Juan Carlos Mariño Davila",
+    image: team6.src,
+    possition: "Bacteriologo" 
+  },
+  {
+    id: "7",
+    name: "Ingrid Catherine Torrado Acevedo",
+    image: team7.src,
+    possition: "Coordinadora de Estudios" 
+  }
+]
+---
+
+<section id="profesionales" >
+  <ProfessionalCardList title="Nuestro equipo profesional" professional={LIST_PROFESSIONAL}/>
+</section>

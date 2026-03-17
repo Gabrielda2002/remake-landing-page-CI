@@ -5,6 +5,7 @@ import "../styles/global.css";
 import Footer from "@/components/Footer.astro";
 import {Form} from "@/components/react/Form"
 import Research from "@/components/research/Research.astro";
+import Professional from "@/components/professional/Professional.astro";
 
 interface Props {
     title: string;
@@ -31,6 +32,8 @@ const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Pro
 <Navbar/>
   <main>
 
+    <Professional/>
+    
     <Research/>
     <Form  client:load/>
     <slot />
