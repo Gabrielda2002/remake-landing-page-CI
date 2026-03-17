@@ -1,0 +1,86 @@
+---
+export interface ResearchItem {
+  id: string | number;
+  title: string;
+  description: string;
+  imageUrl: string ;
+  imageAlt: string;
+  imagePositionX: 'left' | 'right';
+  imagePositionY?: 'top' | 'button';
+  serviceList?: string[]
+}
+
+export interface Props {
+  items: ResearchItem[];
+  title?: string;
+}
+
+const { items, title } = Astro.props;
+---
+
+<div class="container max-w-6xl mx-auto px-4 font-['Bai_Jamjuree',sans-serif]">
+  {title && <h4 class="text-3xl font-medium text-[rgb(0,121,196)] text-[36px]">{title}</h4>}
+  
+  {
+    items.map((item, index) => {
+      const isImageLeft = item.imagePositionX === 'left' || index % 2 === 0;
+      const contentOrderClass = isImageLeft ? 'md:order-1' : 'md:order-2';
+      const emptyOrderClass = isImageLeft ? 'md:order-2' : 'md:order-1';
+
+      const imageBlock = (
+        <img 
+          src={item.imageUrl} 
+          alt={item.imageAlt}
+          class="w-full h-auto rounded-lg shadow-lg"
+          loading="lazy"
+        />
+      );
+
+      const textBlock = (
+        <h3 class="font-bold text-[rgb(0,179,160)] text-[20px] py-2">{item.title}</h3>
+        <p class="text-[rgb(86,86,88)] leading-relaxed">{item.description}</p>
+      );
+
+      let contentBlock;
+
+      switch (item.imagePositionY) {
+        case 'top':
+          contentBlock = (
+            <div class="flex flex-col gap-4">
+              {imageBlock}
+              {textBlock}
+            </div>
+          );
+          break;
+        case 'button':
+          contentBlock = (
+            <div class="flex flex-col gap-4">
+              {textBlock}
+              {imageBlock}
+            </div>
+          );
+          break;
+      }
+
+      return (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start my-12 py-2">
+          {
+            contentBlock ? (
+              <div class={contentOrderClass}>
+                {contentBlock}
+              </div>
+              <div class={`${emptyOrderClass} hidden md:block`}></div>
+            ) : (
+              <div class={`${isImageLeft ? 'md:order-1' : 'md:order-2'}`}>
+                {imageBlock}
+              </div>
+              <div class={`${isImageLeft ? 'md:order-2' : 'md:order-1'}`}>
+                {textBlock}
+              </div>
+            )
+          }
+        </div>
+      );
+    })
+  }
+</div>
