@@ -1,17 +1,20 @@
 ---
 import type { ResearchItem } from "./ResearchInfo.astro"
-import service2 from '@services/service2.webp';
-import service3 from '@services/service3.webp';
-import service5 from '@services/service5.webp';
 
+import service1 from '@services/service1.webp';
+import service3 from '@services/service3.webp';
+import service4 from '@services/service4.webp';
+import service5 from '@services/service5.webp';
 import ResearchInfo from "./ResearchInfo.astro";
+
+const SERVICE_LIST = ["Medicina General", "Fisioterapia", "Psicología", "Cardiología", "Dermatología", "Endocrinología", "Medicina Interna", "Neumología", "Ortopedia y/o Traumatología"]
 
 const researchItems: ResearchItem[] = [
   {
     id: 1,
     title: "Laboratorio Clínico",
     description: "En el Laboratorio Clínico Norvital IPS cuidamos tu salud con confianza y precisión. Somos un laboratorio privado comprometido con la excelencia. Nuestro equipo de bacteriólogos y tecnología avanzada garantizan resultados confiables y oportunos. Ofrecemos una amplia variedad de análisis en Coagulación, Hematología, Microscopía, Inmunoquímica e Inmunoserología, con calidad en cada proceso. Confía en nosotros para un cuidado integral y eficiente.",
-    imageUrl: service3.src,
+    imageUrl: service1.src,
     imageAlt: "Muestra laboratorio clinico",
     imagePositionX: "left"
   },
@@ -19,7 +22,7 @@ const researchItems: ResearchItem[] = [
     id: 2,
     title: "Farmacia",
     description: "Nuestro Servicio Farmacéutico está enfocado en brindar atención integral para ensayos clínicos. Nos especializamos en la dispensación, seguimiento farmacoterapéutico y farmacovigilancia, garantizando el uso seguro y efectivo de los medicamentos. Cumplimos con las Buenas Prácticas Clínicas, priorizando la seguridad del paciente y el cumplimiento normativo.",
-    imageUrl: service2.src,
+    imageUrl: service4.src,
     imageAlt: "Muestra deposito farmacia",
     imagePositionX: "right"
   },
@@ -35,10 +38,11 @@ const researchItems: ResearchItem[] = [
     id: 4,
     title: "Lineas de investigación",
     description: "Ofertamos servicios de consulta externa general y especializada para lo cual contamos con profesionales con amplia experiencia en el sector.",
-    imageUrl: service5.src,
+    imageUrl: service3.src,
     imageAlt: "Lista de servicios ofertados",
     imagePositionX: "right",
-    imagePositionY: "top"
+    imagePositionY: "top",
+    serviceList: SERVICE_LIST
   }
 ]
 --- 

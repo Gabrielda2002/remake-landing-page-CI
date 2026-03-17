@@ -18,7 +18,7 @@ export interface Props {
 const { items, title } = Astro.props;
 ---
 
-<div class="container max-w-6xl mx-auto px-4 font-['Bai_Jamjuree',sans-serif]">
+<div class="container max-w-6xl mx-auto px-4 font-['Bai_Jamjuree',sans-serif] mt-10">
   {title && <h4 class="text-3xl font-medium text-[rgb(0,121,196)] text-[36px]">{title}</h4>}
   
   {
@@ -69,7 +69,19 @@ const { items, title } = Astro.props;
               <div class={contentOrderClass}>
                 {contentBlock}
               </div>
-              <div class={`${emptyOrderClass} hidden md:block`}></div>
+
+              <div class={`${emptyOrderClass} hidden md:block`}>
+                {item.serviceList && item.serviceList.length > 0 && (
+                  <ul class="flex flex-col gap-2">
+                    {item.serviceList.map((service) => (
+                    <li class="text-[rgb(86,86,88)] text-[18px] py-2 pl-3.5 border-b border-gray-200 last:border-b-0 flex items-start gap-2">
+                      <span class=" text-[rgb(0,121,196)]">✓</span>
+                      <span>{service}</span>
+                    </li>                   
+                   ))}
+                  </ul>
+                )}
+              </div>
             ) : (
               <div class={`${isImageLeft ? 'md:order-1' : 'md:order-2'}`}>
                 {imageBlock}
