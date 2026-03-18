@@ -1,0 +1,48 @@
+---
+interface ColorParagraph {
+  accent: string;
+  content: string;
+}
+
+interface Props {
+  title: string;
+  years?: string;
+  paragraph: string;
+  subtitle: string;
+  colorParagraphs: ColorParagraph[];
+}
+
+const { title, years, paragraph, subtitle, colorParagraphs } = Astro.props as Props;
+const [yearsValue = "", ...yearsLabelParts] = (years ?? "").trim().split(/\s+/);
+const yearsLabel = yearsLabelParts.join(" ");
+const hasYears = Boolean(yearsValue);
+---
+
+<section class="container max-w-6xl mx-auto px-7 mt-20 mb-40 font-['Bai_Jamjuree',sans-serif]">
+  <h4 class="text-3xl font-medium text-[rgb(0,121,196)]">{title}</h4>
+
+  <div class="mt-4 flex items-stretch gap-4 md:gap-8">
+    {
+      hasYears && (
+        <div class="shrink-0 min-w-18 md:min-w-24 border-r border-[rgb(0,121,196)]/30 pr-4 md:pr-6 flex flex-col justify-center text-[rgb(0,121,196)]">
+          <span class="text-4xl md:text-5xl font-semibold leading-none">{yearsValue}</span>
+          {yearsLabel && <span class="mt-1 text-lg md:text-xl font-medium leading-none uppercase">{yearsLabel}</span>}
+        </div>
+      )
+    }
+    <p class="flex-1 text-[rgb(86,86,88)] leading-relaxed text-base md:text-lg">{paragraph}</p>
+  </div>
+
+  <h5 class="mt-8 text-2xl font-semibold text-[rgb(0,121,196)] text-center">{subtitle}</h5>
+
+  <div class="mt-5 space-y-3">
+    {
+      colorParagraphs.map((item) => (
+        <p class="text-[rgb(86,86,88)] leading-relaxed text-base md:text-lg">
+          <span class="text-[rgb(0,179,160)]">{item.accent}</span>{" "}
+          {item.content}
+        </p>
+      ))
+    }
+  </div>
+</section>

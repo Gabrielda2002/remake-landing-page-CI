@@ -1,0 +1,30 @@
+---
+import TextContentSection from "./TextContentSection.astro";
+
+const COLOR_PARAGRAPHS = [
+  {
+    accent: "Pioneros en Norte de Santander:",
+    content: "Primeros en obtener la certificación en Buenas Prácticas Clínicas del Invima."
+  },
+  {
+    accent: "Capacidad validada:",
+    content: "Autorizados para conducir investigaciones clínicas con medicamentos en seres humanos."
+  },
+  {
+    accent: "Infraestructura de alto nivel:",
+    content: " Espacios y recursos para estudios de Fases II, III y IV."
+  },
+  {
+    accent: "Expertos en nuevas evidencias:",
+    content: "Desarrollamos estudios observacionales, Real World Evidence (RWE) e Investigación Aplicada."
+  }
+];
+---
+
+<TextContentSection
+  title="NUESTRO CAMINO"
+  years="10 AÑOS"
+  paragraph="Impulsando la salud con servicios de baja y mediana complejidad, respaldados por excelencia humana y profesional. Nuestras alianzas con EPS de alto prestigio fortalecen nuestra posición en el sector."
+  subtitle="Hoy Somos:"
+  colorParagraphs={COLOR_PARAGRAPHS}
+/>
