@@ -3,10 +3,10 @@ export interface ProfessionalCard {
   id: string | number
   name: string,
   image: string
-  possition: string
+  position: string
 }
 
-interface Prop {
+interface Props {
   title?: string,
   professional: Array<ProfessionalCard>
 }
@@ -18,18 +18,57 @@ const { title, professional } = Astro.props;
   {title && <h4 class="text-3xl font-medium text-[rgb(0,121,196)]">{title}</h4>}
 
   <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    {professional.map((person: ProfessionalCard) => (
-      <article class="rounded-2xl bg-linear-to-r from-[rgb(179,229,252)] to-[rgb(197,202,233)] pt-5 mb-4 pb-8">
-        <img
-          src={person.image}
-          alt={`Foto de ${person.name}`}
-          loading="lazy"
-          class="block w-full object-cover rounded-xl"
-        />
+    {professional.map((person: ProfessionalCard, index: number) => (
+      <article
+        class={`rounded-2xl bg-linear-to-r from-[rgb(179,229,252)] to-[rgb(197,202,233)] pt-5 mb-4 pb-8 ${professional.length % 3 === 1 && index === professional.length - 1 ? "lg:col-start-2" : ""}`}
+      >
+        <button
+          type="button"
+          class="block w-full cursor-pointer appearance-none border-0 bg-transparent p-0 outline-none focus:outline-none focus-visible:outline-none focus-visible:ring-0"
+          data-professional-trigger
+          data-image-src={person.image}
+          data-image-alt={`Foto de ${person.name}`}
+        >
+          <img
+            src={person.image}
+            alt={`Foto de ${person.name}`}
+            loading="lazy"
+            class="block w-full object-cover rounded-xl transition-transform duration-300 hover:scale-[1.01]"
+          />
+        </button>
 
         <h5 class="mt-4 pl-5 text-[18px] text-[rgb(0,121,196)] font-bold">{person.name}</h5>
-        <p class="mt-1 pl-5 text-base text-[rgb(86,86,88)]">{person.possition}</p>
+        <p class="mt-1 pl-5 text-base text-[rgb(86,86,88)]">{person.position}</p>
       </article>
     ))}
   </div>
+
+  <div
+    id="professional-lightbox"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4 backdrop-blur-[2px]"
+    aria-hidden="true"
+  >
+    <div class="relative w-full max-w-4xl">
+      <button
+        type="button"
+        class="absolute -top-14 right-0 text-6xl leading-none text-white hover:text-sky-200"
+        aria-label="Cerrar imagen ampliada"
+        data-lightbox-close
+      >
+        &times;
+      </button>
+
+      <img
+        id="professional-lightbox-image"
+        src=""
+        alt=""
+        class="mx-auto max-h-[85vh] w-auto max-w-full rounded-2xl"
+      />
+    </div>
+  </div>
 </div>
+
+<script>
+  import { initProfessionalLightbox } from '../../scripts/professionalLightbox'
+  initProfessionalLightbox();
+</script>
