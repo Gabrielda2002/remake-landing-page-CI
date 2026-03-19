@@ -1,4 +1,6 @@
 ---
+import Title from '../ui/Title.astro';
+
 export interface ResearchItem {
   id: string | number;
   title: string;
@@ -19,7 +21,7 @@ const { items, title } = Astro.props;
 ---
 
 <div class="container max-w-6xl mx-auto px-4 font-['Bai_Jamjuree',sans-serif] mt-20 mb-20">
-  {title && <h4 class="text-3xl font-medium text-[rgb(0,121,196)]">{title}</h4>}
+  <Title title={title} />
   
   {
     items.map((item, index) => {

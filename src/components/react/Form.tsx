@@ -22,8 +22,8 @@ export const Form: React.FC = () => {
 
   return (
     <div className="w-full max-w-6xl mx-auto p-6 font-['Bai_Jamjuree',sans-serif]">
-      <h4 className="text-[rgb(0,121,196)] text-3xl text-left mb-3 font-['Bai_Jamjuree',sans-serif] font-medium">CONTÁCTENOS</h4>
-      <p className="text-[rgb(86,86,88)] text[18px] text-left mb-10 font-['Bai_Jamjuree',sans-serif] font-medium ">¿Quieres participar en un estudio clínico?</p>
+      <h4 className="text-[rgb(0,121,196)] text-3xl text-left mb-3">CONTÁCTENOS</h4>
+      <p className="text-[rgb(86,86,88)] text[18px] text-left mb-10">¿Quieres participar en un estudio clínico?</p>
       
       <form className="grid grid-cols-2 gap-4 shadow-lg rounded-lg p-6 bg-white text-[rgb(86,86,88)]" onSubmit={formik.handleSubmit}>
 
