@@ -1,10 +1,11 @@
 ---
 
 import Title from '../ui/Title.astro';
+import ImageTextCard from '../ui/ImageTextCard.astro';
 
 export interface ProfessionalCard {
   id: string | number
-  name: string,
+  name?: string,
   image: string
   position: string
 }
@@ -20,10 +21,15 @@ const { title, professional } = Astro.props;
   <Title title={title} />
   <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {professional.map((person: ProfessionalCard, index: number) => (
-      <article
-        class={`rounded-2xl bg-linear-to-r from-[rgb(179,229,252)] to-[rgb(197,202,233)] pt-5 mb-4 pb-8 ${professional.length % 3 === 1 && index === professional.length - 1 ? "lg:col-start-2" : ""}`}
+      <ImageTextCard
+        image={person.image}
+        alt={`Foto de ${person.name}`}
+        title={person.name}
+        text={person.position}
+        className={professional.length % 3 === 1 && index === professional.length - 1 ? 'lg:col-start-2' : ''}
       >
         <button
+          slot="media"
           type="button"
           class="block w-full cursor-pointer appearance-none border-0 bg-transparent p-0 outline-none focus:outline-none focus-visible:outline-none focus-visible:ring-0"
           data-professional-trigger
@@ -37,10 +43,7 @@ const { title, professional } = Astro.props;
             class="block w-full object-cover rounded-xl transition-transform duration-300 hover:scale-[1.01]"
           />
         </button>
-
-        <h5 class="mt-4 pl-5 text-[18px] text-[rgb(0,121,196)] font-bold">{person.name}</h5>
-        <p class="mt-1 pl-5 text-base text-[rgb(86,86,88)]">{person.position}</p>
-      </article>
+      </ImageTextCard>
     ))}
   </div>
 

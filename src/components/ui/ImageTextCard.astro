@@ -1,0 +1,37 @@
+---
+interface Props {
+  image: string;
+  text: string;
+  title?: string;
+  alt?: string;
+  className?: string;
+  titleClassName?: string;
+  textClassName?: string;
+  imageClassName?: string;
+}
+
+const {
+  image,
+  text,
+  title,
+  alt = 'Imagen de tarjeta',
+  className = '',
+  titleClassName = '',
+  textClassName = '',
+  imageClassName = ''
+} = Astro.props as Props;
+---
+
+<article class={`rounded-2xl bg-linear-to-r from-[rgb(179,229,252)] to-[rgb(197,202,233)] pt-5 mb-4 pb-8 ${className}`}>
+  <slot name="media">
+    <img
+      src={image}
+      alt={alt}
+      loading="lazy"
+      class={`block w-full object-cover rounded-xl ${imageClassName}`}
+    />
+  </slot>
+
+  {title && <h5 class={`mt-4 pl-5 text-[18px] text-[rgb(0,121,196)] font-bold ${titleClassName}`}>{title}</h5>}
+  <p class={`mt-1 pl-5 text-[14px] text-[rgb(86,86,88)] leading-8 ${textClassName}`} set:html={text}></p>
+</article>
