@@ -8,6 +8,7 @@ import Research from "@/components/research/Research.astro";
 import Professional from "@/components/professional/Professional.astro";
 import Institute from "@/components/institute/Institute.astro";
 import TextContent from "@/components/text/TextContent.astro";
+import AboutUs from "@/components/about-us/AboutUs.astro";
 
 interface Props {
     title: string;
@@ -33,6 +34,7 @@ const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Pro
 <body>
 <Navbar/>
   <main>
+    <AboutUs />
     <TextContent />
     <Institute />
     <Professional/>

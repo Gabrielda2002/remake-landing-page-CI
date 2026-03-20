@@ -11,7 +11,9 @@ export default defineConfig({
     resolve: {
       alias: {
         '@services': '/public/content/servicios',
-        '@professional': '/public/content/profesionales'
+        '@professional': '/public/content/profesionales',
+        '@map': '/public/content/mapa-mental',
+        '@banner': '/public/content/banners'
       },
     },
     ssr: {
