@@ -1,0 +1,14 @@
+---
+export interface PropsParagraph {
+  subtitle: string;
+  paragraph: string
+}
+
+const {subtitle, paragraph} = Astro.props;
+---
+
+<div>
+  <h4 class="font-bold text-[rgb(0,179,160)] text-[20px] py-2">{subtitle}</h4>
+  <p class="text-[rgb(86,86,88)] leading-relaxed">{paragraph}</p>
+</div>
+
