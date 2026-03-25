@@ -9,6 +9,7 @@ import Professional from "@/components/professional/Professional.astro";
 import Institute from "@/components/institute/Institute.astro";
 import TextContent from "@/components/text/TextContent.astro";
 import AboutUs from "@/components/about-us/AboutUs.astro";
+import LandingHero from "@/components/landingHero/LandingHero.astro";
 
 interface Props {
     title: string;
@@ -32,8 +33,13 @@ const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Pro
   <title>Document</title>
 </head>
 <body>
-<Navbar/>
   <main>
+    <section class="hero-wrapper">
+      <LandingHero/>
+      <div class="hero-navbar">
+        <Navbar/>
+      </div>
+    </section>
     <AboutUs />
     <TextContent />
     <Institute />
@@ -55,4 +61,17 @@ const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Pro
         width: 100%;
         min-height: 100vh;
     }
+
+  .hero-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .hero-navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
 </style>
