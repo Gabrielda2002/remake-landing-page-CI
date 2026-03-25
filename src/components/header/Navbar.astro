@@ -2,20 +2,36 @@
 import Menu from './Menu.astro';
 import SocialIcons from './SocialIcons.astro';
 import LanguageSelector from './LanguageSelector.astro';
+import LogoWeb from '@Logo/logo.webp'
 import Logo from '../ui/Logo.astro';
+import '@styles/navbar.css';
 ---
 
-<div class=" font-['Bai_Jamjuree',sans-serif] header-actions flex items-center justify-between rounded-4xl mt-5 mx-4 md:mx-15 p-4 bg-[rgb(255,255,255)] shadow-[0_4px_20px_rgba(0,0,0,0.2)]"> 
-  
-  <div class="w-[30%] md:w-[25%] ml-5">
-    <Logo />
-  </div>
-  <div class="w-[50%] flex justify-center">
-    <Menu />
-  </div>
+<header class="font-['Bai_Jamjuree',sans-serif] mt-5 mx-4 md:mx-15">
+  <div class="header-actions flex items-center justify-between rounded-4xl p-3 bg-[rgb(255,255,255)] shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+    <details class="nav-mobile-menu">
+      <summary aria-label="Abrir menú" title="Abrir menú">
+        <img src="/content/menu/menu.webp" alt="Abrir menú" class="w-10 h-10 object-contain" />
+      </summary>
+      <div class="nav-mobile-dropdown">
+        <Menu />
+      </div>
+    </details>
 
-  <div class="flex items-center justify-end gap-1 w-[20%] md:w-[25%] mr-5">
-    <SocialIcons />
-    <LanguageSelector />
+    <div class="brand-container w-[30%] md:w-[25%] ml-5">
+      <div class="brand-desktop-logo">
+        <Logo />
+      </div>
+      <img src={LogoWeb.src} alt="Nordvital" class="brand-mobile-logo" />
+    </div>
+
+    <div class="w-[50%] flex justify-center nav-desktop-menu">
+      <Menu />
+    </div>
+
+    <div class="flex items-center justify-end gap-1 w-[20%] md:w-[25%] mr-5 nav-desktop-extra">
+      <SocialIcons />
+      <LanguageSelector />
+    </div>
   </div>
-</div>
+</header>

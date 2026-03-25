@@ -15,6 +15,7 @@ export default defineConfig({
         '@map': '/public/content/mapa-mental',
         '@banner': '/public/content/banners',
         '@Logo': '/public/content/logos',
+        '@styles': '/src/styles',
       },
     },
     ssr: {
