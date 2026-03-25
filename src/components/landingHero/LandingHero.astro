@@ -1,0 +1,56 @@
+---
+import logoWeb from '@Logo/logo.webp'
+import caimedlogo from '@Logo/caimedlogo.webp'
+import banerFondo from '@banner/firstbannerbg.webp'
+import invimalogo from '@Logo/invimalogo.webp'
+import nordvitalcolor from '@Logo/logonordvitalcolor.webp'
+import ScrollDownArrow from '../ui/ScrollDownArrow.astro'
+import Stamp from '../ui/Stamp.astro'
+
+interface Props {
+  imagenFondo?: string
+  logo?: string
+  title?: string,
+  subtitle?: string,
+  subtitle2?: string
+}
+
+const {
+      imagenFondo = banerFondo.src,
+      logo = logoWeb.src,
+      title="Innovamos con ciencia,", 
+      subtitle= "Transformamos con conocimiento.",
+      subtitle2= "Aplicando rigor, estrategia y tecnología en cada desafío."
+    }:Props = Astro.props;
+---
+
+<div
+  class="relative overflow-hidden w-full min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center font-['Bai_Jamjuree',sans-serif]"
+  style={`background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0.75) 65%, rgba(255, 255, 255, 0.88) 100%), url(${imagenFondo});`}
+>
+  
+  <div class="relative z-10 w-full max-w-360 px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
+    <div class="mt-20 mb-5 w-full max-w-20">
+      <img src={logo} alt="logo nordvital" class="w-full h-auto object-contain">
+    </div>
+
+    <div class="w-full max-w-[min(100%,70rem)] text-[rgb(255,255,255)] bg-[rgba(14,27,63,0.6)] px-[clamp(1rem,6vw,5.5rem)] py-[clamp(.85rem,1.8vw,1.25rem)] rounded-2xl wrap-break-word">
+      <h1 class="text-[clamp(1.85rem,5.2vw,3rem)] leading-tight font-bold">{title}</h1>
+      <h4 class="text-[clamp(1.1rem,3vw,1.5rem)] leading-snug font-medium mt-1">{subtitle}</h4>
+      <h6 class="text-[clamp(1rem,2.25vw,1.25rem)] leading-relaxed mt-1">{subtitle2}</h6>
+    </div>
+
+    <div class="pt-5 flex flex-wrap items-center justify-center gap-3 sm:gap-4 w-full max-w-120">
+      <Stamp image={nordvitalcolor.src} alt='Logo norvital'/>
+      <Stamp image={caimedlogo.src} alt='Logo caimed'/>
+      <Stamp image={invimalogo.src} alt='Logo invima'/> 
+    </div>
+
+    <div class="mt-10">
+      <ScrollDownArrow />
+    </div>
+  </div>
+</div>
+
+
+

@@ -13,7 +13,8 @@ export default defineConfig({
         '@services': '/public/content/servicios',
         '@professional': '/public/content/profesionales',
         '@map': '/public/content/mapa-mental',
-        '@banner': '/public/content/banners'
+        '@banner': '/public/content/banners',
+        '@Logo': '/public/content/logos',
       },
     },
     ssr: {
