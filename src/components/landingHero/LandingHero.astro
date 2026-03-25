@@ -8,7 +8,7 @@ import ScrollDownArrow from '../ui/ScrollDownArrow.astro'
 import Stamp from '../ui/Stamp.astro'
 
 interface Props {
-  imagenFondo?: string
+  backgroundImage?: string
   logo?: string
   title?: string,
   subtitle?: string,
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const {
-      imagenFondo = banerFondo.src,
+      backgroundImage = banerFondo.src,
       logo = logoWeb.src,
       title="Innovamos con ciencia,", 
       subtitle= "Transformamos con conocimiento.",
@@ -26,7 +26,7 @@ const {
 
 <div
   class="relative overflow-hidden w-full min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center font-['Bai_Jamjuree',sans-serif]"
-  style={`background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0.75) 65%, rgba(255, 255, 255, 0.88) 100%), url(${imagenFondo});`}
+  style={`background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0.75) 65%, rgba(255, 255, 255, 0.88) 100%), url(${backgroundImage});`}
 >
   
   <div class="relative z-10 w-full max-w-360 px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
