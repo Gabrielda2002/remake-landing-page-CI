@@ -12,7 +12,7 @@ const defaultItems: Array<MenuItem> = [
   { href: "#inicio", label: "Inicio" },
   { href: "#quienes-somos", label: "Quienes Somos" },
   { href: "#trayectoria", label: "Trayectoria" },
-  { href: "#instituto", label: "Instituto" },
+  { href: "#instituto", label: "Instituto de Investigación" },
   { href: "#servicios", label: "Servicios" },
   { href: "#contactenos", label: "Contáctenos" }
 ];
@@ -21,11 +21,11 @@ const { items = defaultItems } = Astro.props;
 ---
 
 <div class=menu-container>
-  <nav class="menu flex justify-center items-center space-x-2 lg:space-x-4 text-sm font-bold tracking-wide">
+  <nav class="menu flex justify-center items-center space-x-1 lg:space-x-2 text-sm font-bold tracking-wide">
     {items.map((item) => (
       <a 
         href={item.href} 
-        class="text-[rgb(0,121,196)] hover:bg-[rgb(219,218,218)] px-3 py-1.5 rounded transition whitespace-nowrap"
+        class="text-[rgb(0,121,196)] hover:bg-[rgb(219,218,218)] px-1.5 py-1.5 rounded transition whitespace-nowrap"
         aria-current={item.href === "#inicio" ? "page" : undefined}
       >
         {item.label}
