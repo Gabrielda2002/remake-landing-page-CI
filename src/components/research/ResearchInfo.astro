@@ -72,15 +72,15 @@ const { items, title } = Astro.props;
                 {contentBlock}
               </div>
 
-              <div class={`${emptyOrderClass} hidden md:block`}>
+              <div class={emptyOrderClass}>
                 {item.serviceList && item.serviceList.length > 0 && (
-                  <ul class="flex flex-col gap-2">
+                  <ul class="flex flex-col gap-2 mt-4 md:mt-0">
                     {item.serviceList.map((service) => (
-                    <li class="text-[rgb(86,86,88)] text-[18px] py-2 pl-3.5 border-b border-gray-200 last:border-b-0 flex items-start gap-2">
-                      <span class=" text-[rgb(0,121,196)]">✓</span>
-                      <span>{service}</span>
-                    </li>                   
-                   ))}
+                      <li class="text-[rgb(86,86,88)] text-[18px] py-2 pl-3.5 border-b border-gray-200 last:border-b-0 flex items-start gap-2">
+                        <span class="text-[rgb(0,121,196)]">✓</span>
+                        <span>{service}</span>
+                      </li>
+                    ))}
                   </ul>
                 )}
               </div>
