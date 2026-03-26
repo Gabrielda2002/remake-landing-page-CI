@@ -1,3 +1,32 @@
+.navbar-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+  padding: 1.25rem 1rem;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.navbar-header.navbar-hidden {
+  transform: translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+body {
+  padding-top: 5rem;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding-top: 4rem;
+  }
+}
+
 .brand-mobile-logo {
   display: none;
   height: 2rem;
