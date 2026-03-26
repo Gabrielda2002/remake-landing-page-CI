@@ -32,25 +32,34 @@ const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Pro
   <title>{title}</title>
   <title>Document</title>
 </head>
-<body>
-  <main>
-    <section class="hero-wrapper">
-      <LandingHero/>
-      <div class="hero-navbar">
-        <Navbar/>
-      </div>
-    </section>
-    <AboutUs />
-    <TextContent />
-    <Institute />
-    <Professional/>
-    <Research/>
-    <Form  client:load/>
-    <slot />
-  </main>
-  <Footer/>
-</body>
-
+  <body>
+    <main>
+      <section id="inicio" class="hero-wrapper">
+        <LandingHero/>
+        <div class="hero-navbar">
+          <Navbar/>
+        </div>
+      </section>
+      <section id="quienes-somos">
+        <AboutUs />
+      </section>
+      <section id="trayectoria">
+        <TextContent />
+      </section>
+      <section id="instituto">
+        <Institute />
+      </section>
+      <Professional/>
+      <section id="servicios">
+        <Research/>
+      </section>
+      <section id="contactenos">
+        <Form  client:load/>
+      </section>
+      <slot />
+    </main>
+    <Footer/>
+  </body>
 </html>
 
 

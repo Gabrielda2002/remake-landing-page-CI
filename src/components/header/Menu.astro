@@ -24,8 +24,9 @@ const { items = defaultItems } = Astro.props;
   <nav class="menu flex justify-center items-center space-x-1 lg:space-x-2 text-sm font-bold tracking-wide">
     {items.map((item) => (
       <a 
-        href={item.href} 
-        class="text-[rgb(0,121,196)] hover:bg-[rgb(219,218,218)] px-1.5 py-1.5 rounded transition whitespace-nowrap"
+        href={item.href}
+        data-section={item.href.replace('#', '')}
+        class="text-[rgb(0,121,196)] hover:bg-[rgb(219,218,218)] px-1.5 py-1.5 rounded transition whitespace-nowrap menu-link"
         aria-current={item.href === "#inicio" ? "page" : undefined}
       >
         {item.label}
@@ -33,3 +34,24 @@ const { items = defaultItems } = Astro.props;
     ))}
   </nav>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuLinks = document.querySelectorAll('.menu-link');
+    
+    menuLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const sectionId = link.getAttribute('data-section');
+        
+        if (sectionId) {
+          const targetSection = document.getElementById(sectionId);
+          
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+  });
+</script>
