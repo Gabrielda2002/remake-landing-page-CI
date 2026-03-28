@@ -23,15 +23,13 @@ const {title, information, banner, text, diagram}= Astro.props;
         <Paragraph subtitle={info.subtitle} paragraph={info.paragraph} />
       ))}
     </div>
-
-    <div class="w-full lg:max-w-2xl lg:justify-self-end">
-      <ImageTextCard
-        image={banner}
-        imageClassName="h-80 md:h-90"
-        text={text}
-      />
-    </div>
-
+<div class="w-full lg:max-w-2xl lg:justify-self-end">
+  <ImageTextCard
+    image={banner}
+    imageClassName="aspect-video md:aspect-[16/7]"
+    text={text}
+  />
+</div>
     <div class="w-full flex justify-center lg:col-span-2 pt-10">
       <img src={diagram} alt="diagrama" class="max-w-full h-auto w-175" />
     </div>
