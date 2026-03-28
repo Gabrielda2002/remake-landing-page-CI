@@ -3,7 +3,7 @@ import { socialLinks } from '../../data/socialLinks';
 ---
 
 <div class="social-container flex items-center space-x-2.5">
-  {socialLinks.map(link => (
+  {socialLinks.map((link, index) => (
     <a 
       href={link.url}
       target="_blank" 
@@ -11,7 +11,8 @@ import { socialLinks } from '../../data/socialLinks';
       title={link.nombre}
     >
       <span set:html={link.svg} />
-      <span class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-2 bg-[rgb(0,179,160)] text-white text-[16px] rounded-2xl opacity-0 group-hover:opacity-100 transition text-center pointer-events-none w-40 leading-tight z-30" style="font-family: 'PrimeIcons', sans-serif; word-wrap: break-word;">
+      <span class={`absolute top-full mt-2 px-3 py-2 bg-[rgb(0,179,160)] text-white text-[16px] rounded-2xl opacity-0 group-hover:opacity-100 transition text-center pointer-events-none w-40 leading-tight z-30
+        ${index === socialLinks.length - 1 ? 'right-0' : 'left-1/2 -translate-x-1/2'}`}>
         {link.tooltip}
       </span>
     </a>
