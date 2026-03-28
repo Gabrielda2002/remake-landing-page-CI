@@ -7,6 +7,7 @@ export function initLanguageSelector() {
   wrapper?.addEventListener('click', (e) => {
     e.stopPropagation();
     dropdown?.classList.toggle('hidden');
+    wrapper.classList.toggle('is-open');
   });
 
   document.querySelectorAll('.flag-option').forEach(option => {
@@ -22,6 +23,8 @@ export function initLanguageSelector() {
       }
       
       dropdown?.classList.add('hidden');
+      wrapper?.classList.remove('is-open'); 
+
     });
   });
 
@@ -30,6 +33,7 @@ export function initLanguageSelector() {
         !wrapper.contains(e.target as Node) && 
         !dropdown.contains(e.target as Node)) {
       dropdown.classList.add('hidden');
+      wrapper.classList.remove('is-open'); 
     }
   });
 }
