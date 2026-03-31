@@ -2,21 +2,24 @@ export const defaultLang = "es";
 
 export const translations = {
   es: {
+    //header
     nav: {
       inicio: "Inicio",
       quienesSomos: "Quienes Somos",
       trayectoria: "Trayectoria",
       instituto: "Instituto de Investigación",
       servicios: "Servicios",
-      contactenos: "Contáctenos",
+      contactenos: "Contáctenos", 
     },
     social: {
       facebook: "Seleccione para ir a la pagina de Facebook",
       instagram: "Seleccione para ir a la pagina de Instagram",
       tiktok: "Seleccione para ir a la pagina de Tiktok",
     },
-    languages:{
+    languages:{ 
       selectPrompt: "Seleccione para ver las opciones de navegación",
+      es: "Español",
+      en: "Inglés"
     }
   },
   
@@ -36,6 +39,8 @@ export const translations = {
     },
     languages:{
       selectPrompt: "Select to see navigation options",
+      es: "Spanish",
+      en: "English"
     }
   },
 };

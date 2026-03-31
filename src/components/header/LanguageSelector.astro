@@ -7,11 +7,12 @@ interface Language {
   flag: string;
   href: string;
   code: string;
+  i18nKey?: string
 }
 
 const LANGUAGE_FLAG: Language[] = [
-  { name: "Español", flag: coFlag, href: "/es", code: "es" },
-  { name: "Inglés", flag: gbFlag, href: "/en", code: "en" }
+  { name: "Español", flag: coFlag, href: "/es", code: "es", i18nKey:"languages.es" },
+  { name: "Inglés", flag: gbFlag, href: "/en", code: "en", i18nKey:"languages.en" }
 ]
 
 export interface LanguageProps {
@@ -50,7 +51,9 @@ const {
       data-flag={lang.flag}
     >
       <img src={lang.flag} alt={lang.name} width="24" height="16" class="rounded-sm" />
-      <span>{lang.name}</span>
+      <span
+         data-i18n={lang.i18nKey}>{lang.name}
+      </span>
     </a>
   ))}
 </div>
