@@ -20,7 +20,14 @@ export const translations = {
       selectPrompt: "Seleccione para ver las opciones de navegación",
       es: "Español",
       en: "Inglés"
-    }
+    },
+
+    //Landing
+    landing:{
+      title: "Innovamos con ciencia,",
+      subtitle: "Transformamos con conocimiento.",
+      text: "Aplicando rigor, estrategia y tecnología en cada desafío."
+    },
   },
   
   en: {
@@ -41,6 +48,13 @@ export const translations = {
       selectPrompt: "Select to see navigation options",
       es: "Spanish",
       en: "English"
-    }
+    },
+
+    //Landing
+    landing:{
+      title: "We innovate with science,",
+      subtitle: "We transform with knowledge.",
+      text: "Applying rigor, strategy, and technology to every challenge."
+    },
   },
 };
