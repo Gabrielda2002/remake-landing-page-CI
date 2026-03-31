@@ -11,7 +11,8 @@ import { socialLinks } from '../../data/socialLinks';
       title={link.nombre}
     >
       <span set:html={link.svg} />
-      <span class={`absolute top-full mt-2 px-3 py-2 bg-[rgb(0,179,160)] text-white text-[16px] rounded-2xl opacity-0 group-hover:opacity-100 transition text-center pointer-events-none w-40 leading-tight z-30
+      <span data-i18n={link.i18nKey}
+      class={`absolute top-full mt-2 px-3 py-2 bg-[rgb(0,179,160)] text-white text-[16px] rounded-2xl opacity-0 group-hover:opacity-100 transition text-center pointer-events-none w-40 leading-tight z-30
         ${index === socialLinks.length - 1 ? 'right-0' : 'left-1/2 -translate-x-1/2'}`}>
         {link.tooltip}
       </span>
