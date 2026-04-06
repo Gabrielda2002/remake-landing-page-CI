@@ -31,6 +31,14 @@ const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Pro
   <meta property="og:url" content="https://investigation.nordvitalips.com" />
   <title>{title}</title>
   <title>Document</title>
+  <script is:inline>
+    (function () {
+      var lang = localStorage.getItem('lang');
+      if (lang && lang !== 'es') {
+        document.documentElement.style.visibility = 'hidden';
+      }
+    })();
+  </script>
 </head>
   <body>
     <main>

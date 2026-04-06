@@ -9,6 +9,7 @@ export function applyLang(lang: Lang) {
     const text = keys.reduce((obj: any, key) => obj?.[key], t);
     if (text) el.textContent = text;
   });
+  document.documentElement.style.visibility = '';
 }
 
 export function initI18n() {
