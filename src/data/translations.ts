@@ -42,6 +42,30 @@ export const translations = {
         paragraph: "Posicionar a NORDVITAL IPS SAS en el 2029 como una organización líder en innovación, reconocida por su excelencia operativa, humanizada y la calidad de sus servicios."
       },
       text: "Lo hacemos porque creemos en una medicina que evoluciona con propósito. Investigamos para anticiparnos a los desafíos de la salud y ofrecer soluciones reales que mejoren la vida de las personas, hoy y mañana."
+    },
+    
+    //texto
+    text: {
+      title: "NUESTRO CAMINO",
+      subtitle: "Hoy Somos:",
+      year: "AÑOS",
+      paragraph: "Impulsando la salud con servicios de baja y mediana complejidad, respaldados por excelencia humana y profesional. Nuestras alianzas con EPS de alto prestigio fortalecen nuestra posición en el sector.",
+      pioneers:{ 
+        accent: "Pioneros en Norte de Santander:",
+        content: "Primeros en obtener la certificación en Buenas Prácticas Clínicas del Invima."
+      },
+      capacity:{ 
+        accent: "Capacidad validada:",
+        content: "Autorizados para conducir investigaciones clínicas con medicamentos en seres humanos."
+      },
+      infrastructure:{ 
+        accent: "Infraestructura de alto nivel:",
+        content: "Espacios y recursos para estudios de Fases II, III y IV." 
+      },
+      experts:{ 
+        accent: "Expertos en nuevas evidencias:", 
+        content: "Desarrollamos estudios observacionales, Real World Evidence (RWE) e Investigación Aplicada." 
+      }
     }
   },
   
@@ -72,6 +96,7 @@ export const translations = {
       subtitle: "We transform with knowledge.",
       text: "Applying rigor, strategy, and technology to every challenge."
     },
+
     //about
     aboutUs: {
       title: "WE ARE",
@@ -86,6 +111,30 @@ export const translations = {
         paragraph: "To position NORDVITAL IPS SAS by 2029 as a leading organization in innovation, recognized for its operational excellence, human-centered care, and the quality of its services."
       },
       text: "We do it because we believe in a purpose-driven evolution of medicine. We conduct research to anticipate healthcare challenges and provide real solutions that improve people's lives, today and tomorrow."
+    },
+
+    //text
+    text: {
+      title: "OUR JOURNEY",
+      subtitle: "Today we are:",
+      year: "YEARS",
+      paragraph: "Driving health with low- and medium-complexity services, backed by human and professional excellence. Our partnerships with high-prestige EPS strengthen our position in the sector.",
+      pioneers:{ 
+        accent: "Pioneers in Norte de Santander",
+        content: " First to obtain INVIMA's Good Clinical Practices certification."
+      },
+      capacity:{ 
+        accent: "Validated capacity:",
+        content: "Authorized to conduct clinical research with medicinal products in humans."
+      },
+      infrastructure:{ 
+        accent: "High-level infrastructure:",
+        content: "Facilities and resources for Phase II, III, and IV studies." 
+      },
+      experts:{ 
+        accent: "Experts in new evidence:", 
+        content: "We develop observational studies, Real-World Evidence (RWE), and Applied Research." 
+      }
     }
-  },
+  }
 };
