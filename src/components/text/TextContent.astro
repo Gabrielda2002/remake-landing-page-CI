@@ -1,5 +1,12 @@
 ---
 import TextContentSection from "./TextContentSection.astro";
+const TITLE = "NUESTRO CAMINO";
+
+const SUBTITLE = "Hoy Somos:"
+
+const YEAR = "10 AÑOS";
+
+const PARAGRAPH = "Impulsando la salud con servicios de baja y mediana complejidad, respaldados por excelencia humana y profesional. Nuestras alianzas con EPS de alto prestigio fortalecen nuestra posición en el sector."
 
 const COLOR_PARAGRAPHS = [
   {
@@ -22,9 +29,9 @@ const COLOR_PARAGRAPHS = [
 ---
 
 <TextContentSection
-  title="NUESTRO CAMINO"
-  years="10 AÑOS"
-  paragraph="Impulsando la salud con servicios de baja y mediana complejidad, respaldados por excelencia humana y profesional. Nuestras alianzas con EPS de alto prestigio fortalecen nuestra posición en el sector."
-  subtitle="Hoy Somos:"
+  title={TITLE}
+  years={YEAR}
+  paragraph= {PARAGRAPH}
+  subtitle= {SUBTITLE}
   colorParagraphs={COLOR_PARAGRAPHS}
 />
