@@ -16,8 +16,13 @@ export function initI18n() {
     applyLang((e as CustomEvent<{ lang: Lang }>).detail.lang);
   });
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = (localStorage.getItem('lang') ?? defaultLang) as Lang;
-    applyLang(savedLang);
-  });
+  const savedLang = localStorage.getItem('lang') as Lang | null;
+
+  if (savedLang && savedLang !== defaultLang) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => applyLang(savedLang));
+    } else {
+      applyLang(savedLang);
+    }
+  }
 }
