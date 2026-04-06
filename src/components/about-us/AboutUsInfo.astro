@@ -15,12 +15,17 @@ const {title, information, banner, text, diagram}= Astro.props;
 ---
 
 <div class="container max-w-6xl mx-auto px-7 font-['Bai_Jamjuree',sans-serif] mt-20 mb-40">
-  <Title title={title} />
+  <Title title={title} i18nKey="aboutUs.title" />
 
   <div class="mt-8 grid grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-10">
     <div class="w-full pb-2 pr-10 lg:max-w-xl">
       {information.map((info) => (
-        <Paragraph subtitle={info.subtitle} paragraph={info.paragraph} />
+        <Paragraph 
+        subtitle={info.subtitle} 
+        paragraph={info.paragraph}
+        i18nKeySubtitle={info.i18nKeySubtitle}
+        i18nKeyParagraph={info.i18nKeyParagraph}
+         />
       ))}
     </div>
 <div class="w-full lg:max-w-2xl lg:justify-self-end">
@@ -28,6 +33,7 @@ const {title, information, banner, text, diagram}= Astro.props;
     image={banner}
     imageClassName="aspect-video md:aspect-[16/7]"
     text={text}
+    i18nKeyText="aboutUs.text"
   />
 </div>
     <div class="w-full flex justify-center lg:col-span-2 pt-10">

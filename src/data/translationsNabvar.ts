@@ -28,9 +28,25 @@ export const translations = {
       subtitle: "Transformamos con conocimiento.",
       text: "Aplicando rigor, estrategia y tecnología en cada desafío."
     },
+    //about
+    aboutUs: {
+      title: "SOMOS",
+      nordvital: { 
+        subtitle: "NORDVITAL IPS SAS", 
+        paragraph: "Transformamos la investigación clínica en avances reales. Con un equipo experto, tecnología de vanguardia y rigor científico, convertimos el conocimiento en tratamientos que mejoran vidas." },
+      commitment: { 
+        subtitle: "NUESTRO COMPROMISO",
+        paragraph: "En NORDVITAL IPS SAS ofrecemos servicios de salud ambulatorios de baja y mediana complejidad a nivel nacional. Estamos comprometidos con la salud de nuestros usuarios, con un enfoque en la gestión del riesgo, altos estándares de calidad y seguridad en la atención. Contamos con tecnología de punta y un talento humano idóneo que nos distingue."},
+      vision: {
+        subtitle: "VISIÓN",
+        paragraph: "Posicionar a NORDVITAL IPS SAS en el 2029 como una organización líder en innovación, reconocida por su excelencia operativa, humanizada y la calidad de sus servicios."
+      },
+      text: "Lo hacemos porque creemos en una medicina que evoluciona con propósito. Investigamos para anticiparnos a los desafíos de la salud y ofrecer soluciones reales que mejoren la vida de las personas, hoy y mañana."
+    }
   },
   
   en: {
+    //header
     nav: {
       inicio: "Home",
       quienesSomos: "About Us",
@@ -56,5 +72,20 @@ export const translations = {
       subtitle: "We transform with knowledge.",
       text: "Applying rigor, strategy, and technology to every challenge."
     },
+    //about
+    aboutUs: {
+      title: "WE ARE",
+      nordvital: {
+        subtitle: "NORDVITAL IPS SAS",
+        paragraph: "We transform clinical research into real progress. With an expert team, cutting-edge technology, and scientific rigor, we turn knowledge into treatments that improve lives."},
+      commitment: { 
+        subtitle: "OUR COMMITMENT",
+        paragraph: "At NORDVITAL IPS SAS, we offer outpatient healthcare services of low and medium complexity nationwide. We are committed to the health of our users, focusing on risk management, high standards of quality, and safe care. We are distinguished by our state-of-the-art technology and qualified human talent."},
+      vision: { 
+        subtitle: "OUR VISION",
+        paragraph: "To position NORDVITAL IPS SAS by 2029 as a leading organization in innovation, recognized for its operational excellence, human-centered care, and the quality of its services."
+      },
+      text: "We do it because we believe in a purpose-driven evolution of medicine. We conduct research to anticipate healthcare challenges and provide real solutions that improve people's lives, today and tomorrow."
+    }
   },
 };
