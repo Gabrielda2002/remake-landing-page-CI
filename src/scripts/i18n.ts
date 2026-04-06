@@ -1,4 +1,4 @@
-import { translations, defaultLang } from "@/data/translationsNabvar";
+import { translations, defaultLang } from "@/data/translations";
 
 type Lang = keyof typeof translations;
 
