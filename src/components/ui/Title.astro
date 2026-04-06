@@ -1,13 +1,15 @@
 ---
 interface Props{
   title?: string;
+  i18nKey?: string;
 }
 
-const {title} = Astro.props;
+const {title, i18nKey} = Astro.props;
 ---
 
 {
   title && <h4 
+  data-i18n={i18nKey}
   class="text-3xl font-medium text-[rgb(0,121,196)]">
   {title}
   </h4>  

@@ -8,17 +8,17 @@ interface Props {
   titleClassName?: string;
   textClassName?: string;
   imageClassName?: string;
+  i18nKeyText?: string;
 }
 
 const {
-  image,
-  text,
-  title,
+  image, text, title,
   alt = 'Imagen de tarjeta',
-  className = '',
-  titleClassName = '',
-  textClassName = '',
-  imageClassName = ''
+  className,
+  titleClassName,
+  textClassName,
+  imageClassName,
+  i18nKeyText
 } = Astro.props as Props;
 ---
 
@@ -31,7 +31,14 @@ const {
       class={`block w-full object-cover rounded-xl ${imageClassName}`}
     />
   </slot>
+  {title && 
+    <h5 class={`mt-4 pl-5 text-[18px] text-[rgb(0,121,196)] font-bold ${titleClassName}`}>
+      {title}
+    </h5>}
+    <p 
+      data-i18n={i18nKeyText}
+      class={`mt-1 pl-5 text-[14px] text-[rgb(86,86,88)] leading-8 ${textClassName}`}>
+      {text}
+    </p>
 
-  {title && <h5 class={`mt-4 pl-5 text-[18px] text-[rgb(0,121,196)] font-bold ${titleClassName}`}>{title}</h5>}
-  <p class={`mt-1 pl-5 text-[14px] text-[rgb(86,86,88)] leading-8 ${textClassName}`} set:html={text}></p>
 </article>
