@@ -9,54 +9,65 @@ import team5 from "@professional/team5.webp"
 import team6 from "@professional/team6.webp"
 import team7 from "@professional/team7.webp"
 
+const TITLE = "NUESTRO EQUIPO";
 
 const LIST_PROFESSIONAL:Array<ProfessionalCard> = [
   {
     id: "1",
     name: "Eder Leonardo Caceres Reatiga",
     image: team1.src,
-    position: "Investigador" 
-  }
-  ,
+    position: "Investigador",
+    i18nKeyPosition: "professional.positions.0"
+  },
   {
     id: "2",
     name: "Armando Diaz Vergel",
     image: team2.src,
-    position: "Investigador" 
+    position: "Investigador",
+    i18nKeyPosition: "professional.positions.0"
   },
   {
     id: "3",
     name: "Norida Margarita Torrado Ruiz",
     image: team3.src,
-    position: "Subinvestigador" 
+    position: "Subinvestigador",
+    i18nKeyPosition: "professional.positions.1"
   },
   {
     id: "4",
     name: "Alberth Alcides Brito Lopez",
     image: team4.src,
-    position: "Subinvestigador" 
+    position: "Subinvestigador",
+    i18nKeyPosition: "professional.positions.1"
   },
   {
     id: "5",
     name:"Nelly Esperanza Prato Gonzalez",
     image: team5.src,
-    position: "Coordinadora de Laboratorio" 
+    position: "Coordinadora de Laboratorio",
+    i18nKeyPosition: "professional.positions.2"
   },
   {
     id: "6",
     name: "Juan Carlos Mariño Davila",
     image: team6.src,
-    position: "Bacteriologo" 
+    position: "Bacteriologo", 
+    i18nKeyPosition: "professional.positions.3"
   },
   {
     id: "7",
     name: "Ingrid Catherine Torrado Acevedo",
     image: team7.src,
-    position: "Coordinadora de Estudios" 
+    position: "Coordinadora de Estudios",
+    i18nKeyPosition: "professional.positions.4"
   }
 ]
 ---
 
 <section id="profesionales" >
-  <ProfessionalCardList title="NUESTRO EQUIPO" professional={LIST_PROFESSIONAL}/>
+  <ProfessionalCardList 
+    title={TITLE}
+    i18nKeyTitle="professional.title"
+    professional={LIST_PROFESSIONAL}
+    />
 </section>

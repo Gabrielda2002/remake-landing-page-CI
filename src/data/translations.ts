@@ -28,6 +28,7 @@ export const translations = {
       subtitle: "Transformamos con conocimiento.",
       text: "Aplicando rigor, estrategia y tecnología en cada desafío."
     },
+
     //about
     aboutUs: {
       title: "SOMOS",
@@ -67,6 +68,7 @@ export const translations = {
         content: "Desarrollamos estudios observacionales, Real World Evidence (RWE) e Investigación Aplicada." 
       }
     },
+
     //institute
     institute: {
       title: "INSTITUTO DE INVESTIGACIÓN",
@@ -79,6 +81,12 @@ export const translations = {
       cert2025: { 
         description: "Se otorga la certificación en Buenas Prácticas Clínicas a la institución NORDVITAL IPS S.A.S sede NORDVITAL 3E para realizar investigaciones con medicamentos en seres humanos." 
       }
+    },
+
+    //Professional
+    professional: {
+      title: "NUESTRO EQUIPO",
+      positions: ["Investigador", "Subinvestigador", "Coordinadora de Laboratorio", "Bacteriologo", "Coordinadora de Estudios"]
     },
   },
   
@@ -149,6 +157,7 @@ export const translations = {
         content: "We develop observational studies, Real-World Evidence (RWE), and Applied Research." 
       }
     },
+
     //institute
     institute: {
       title: "RESEARCH INSTITUTE",
@@ -161,6 +170,12 @@ export const translations = {
       cert2025: {
          description: "The NORDVITAL IPS S.A.S. institution, NORDVITAL 3E site, is granted Good Clinical Practices certification to conduct research involving human subjects with medications." 
       }
+    },
+
+    //Professional
+    professional: {
+      title: "OUR TEAM",
+      positions: ["Researcher", "Research Associate", "Laboratory Coordinator", "Bacteriologist", "Research Coordinator"]
     },
   }
 };
