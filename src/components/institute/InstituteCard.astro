@@ -5,18 +5,20 @@ export interface InfoInstitute{
   year: string;
   description: string;
   position: 'right' | 'left';
+  i18nKeyDescription?:  string
 }
 
 interface Props{
   title?: string;
+  i18nKeyTitle: string
   information: Array<InfoInstitute>;
 }
 
-const { title, information} = Astro.props as Props;
+const { title, i18nKeyTitle, information} = Astro.props as Props;
 ---
 
 <div class="container max-w-6xl mx-auto px-7 font-['Bai_Jamjuree',sans-serif] mt-20 mb-20">
-  <Title title={title} />
+  <Title title={title} i18nKey={i18nKeyTitle}/>
   <div class="relative mt-10">
     <span
       class="absolute inset-y-0 left-4 z-0 w-0.5 bg-[rgb(175,175,177)] md:left-1/2 md:-translate-x-1/2"
@@ -47,7 +49,10 @@ const { title, information} = Astro.props as Props;
                 }`}
               >
                 <p class="text-[rgb(0,179,160)] leading-none font-bold">{item.year}</p>
-                <p class="text-[rgb(86,86,88)] leading-relaxed">{item.description}</p>
+                <p data-i18n={item.i18nKeyDescription}
+                  class="text-[rgb(86,86,88)] leading-relaxed">
+                    {item.description}
+                </p>
               </div>
             </article>
           );

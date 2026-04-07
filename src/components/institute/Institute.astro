@@ -2,24 +2,33 @@
 import type { InfoInstitute } from "./InstituteCard.astro"
 import InstituteCard from "./InstituteCard.astro"
 
+const TITLE = "INSTITUTO DE INVESTIGACIÓN";
+
 const INFO:Array<InfoInstitute> = [
   {
     year: "2010",
     description: "Se certifica por el INVIMA el primer Centro de Investigación en Colombia en el Departamento de Cundinamarca.",
-    position: "left"
+    position: "left",
+    i18nKeyDescription: "institute.cert2010.description"
   },
   {
     year: "2024",
     description: "162 IPS certificadas como Centros de Investigación en el país. Principalmente en el Departamento de Cundinamarca con 51 centros, seguido de Antioquia y Atlántico.",
-    position: "right"
+    position: "right",
+    i18nKeyDescription: "institute.cert2024.description"
   },
   {
     year: "2025",
     description: "Se otorga la certificación en Buenas Prácticas Clínicas a la institución NORDVITAL IPS S.A.S sede NORDVITAL 3E para realizar investigaciones con medicamentos en seres humanos.",
-    position: "left"
+    position: "left",
+    i18nKeyDescription: "institute.cert2025.description"
   }
 ]
 ---
 
-<InstituteCard title="INSTITUTO DE INVESTIGACIÓN" information={INFO}/>
+<InstituteCard 
+  title={TITLE}
+  i18nKeyTitle="institute.title"
+  information={INFO}
+/>
 

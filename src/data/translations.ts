@@ -66,7 +66,20 @@ export const translations = {
         accent: "Expertos en nuevas evidencias:", 
         content: "Desarrollamos estudios observacionales, Real World Evidence (RWE) e Investigación Aplicada." 
       }
-    }
+    },
+    //institute
+    institute: {
+      title: "INSTITUTO DE INVESTIGACIÓN",
+      cert2010: { 
+        description: "Se certifica por el INVIMA el primer Centro de Investigación en Colombia en el Departamento de Cundinamarca." 
+      },
+      cert2024: { 
+        description: "162 IPS certificadas como Centros de Investigación en el país. Principalmente en el Departamento de Cundinamarca con 51 centros, seguido de Antioquia y Atlántico." 
+      },
+      cert2025: { 
+        description: "Se otorga la certificación en Buenas Prácticas Clínicas a la institución NORDVITAL IPS S.A.S sede NORDVITAL 3E para realizar investigaciones con medicamentos en seres humanos." 
+      }
+    },
   },
   
   en: {
@@ -135,6 +148,19 @@ export const translations = {
         accent: "Experts in new evidence:", 
         content: "We develop observational studies, Real-World Evidence (RWE), and Applied Research." 
       }
-    }
+    },
+    //institute
+    institute: {
+      title: "RESEARCH INSTITUTE",
+      cert2010: { 
+        description: "The first Research Center in Colombia is certified by INVIMA in the Department of Cundinamarca."
+      },
+      cert2024: { 
+        description: "162 healthcare providers (IPS) certified as Research Centers in the country, mainly in the Department of Cundinamarca with 51 centers, followed by Antioquia and Atlántico." 
+      },
+      cert2025: {
+         description: "The NORDVITAL IPS S.A.S. institution, NORDVITAL 3E site, is granted Good Clinical Practices certification to conduct research involving human subjects with medications." 
+      }
+    },
   }
 };
