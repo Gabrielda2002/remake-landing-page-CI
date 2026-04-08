@@ -5,7 +5,7 @@ export const translations = {
     //header
     nav: {
       inicio: "Inicio",
-      quienesSomos: "Quienes Somos",
+      quieneSomos: "Quienes Somos",
       trayectoria: "Trayectoria",
       instituto: "Instituto de Investigación",
       servicios: "Servicios",
