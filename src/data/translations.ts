@@ -88,6 +88,29 @@ export const translations = {
       title: "NUESTRO EQUIPO",
       positions: ["Investigador", "Subinvestigador", "Coordinadora de Laboratorio", "Bacteriologo", "Coordinadora de Estudios"]
     },
+
+    //Research
+    research: {
+      title: "NUESTRAS AREAS DE INVESTIGACIÓN",
+      
+      laboratory: {
+        subtitle: "Laboratorio Clínico",
+        paragraph: "En el Laboratorio Clínico Norvital IPS cuidamos tu salud con confianza y precisión. Somos un laboratorio privado comprometido con la excelencia. Nuestro equipo de bacteriólogos y tecnología avanzada garantizan resultados confiables y oportunos. Ofrecemos una amplia variedad de análisis en Coagulación, Hematología, Microscopía, Inmunoquímica e Inmunoserología, con calidad en cada proceso. Confía en nosotros para un cuidado integral y eficiente."
+      },
+      pharmacy:{
+        subtitle: "Farmacia",
+        paragraph: "Nuestro Servicio Farmacéutico está enfocado en brindar atención integral para ensayos clínicos. Nos especializamos en la dispensación, seguimiento farmacoterapéutico y farmacovigilancia, garantizando el uso seguro y efectivo de los medicamentos. Cumplimos con las Buenas Prácticas Clínicas, priorizando la seguridad del paciente y el cumplimiento normativo."
+      },
+      sample: {
+        subtitle: "Toma de muestras de Laboratorio Clínico",
+        paragraph: "En Nordvital I.P.S., la toma de muestras es segura, cómoda y precisa. Nuestro personal calificado asegura un trato profesional y humano, siguiendo protocolos estrictos y utilizando insumos de alta calidad. Nos esforzamos para que te sientas tranquilo y bien atendido desde el primer momento. ¡Tu salud está en las mejores manos!"
+      },
+      lines: {
+        subtitle: "Lineas de investigación",
+        paragraph: "Ofertamos servicios de consulta externa general y especializada para lo cual contamos con profesionales con amplia experiencia en el sector."
+      },
+      services : ["Medicina General", "Fisioterapia", "Psicología", "Cardiología", "Dermatología", "Endocrinología", "Medicina Interna", "Neumología", "Ortopedia y/o Traumatología"]
+    },
   },
   
   en: {
@@ -176,6 +199,29 @@ export const translations = {
     professional: {
       title: "OUR TEAM",
       positions: ["Researcher", "Research Associate", "Laboratory Coordinator", "Bacteriologist", "Research Coordinator"]
+    },
+
+    //Research
+    research: {
+      title: "OUR RESEARCH AREAS",
+      
+      laboratory: {
+        subtitle: "Clinical Laboratory",
+        paragraph: "At Norvital IPS Clinical Laboratory, we care for your health with confidence and precision. We are a private laboratory committed to excellence. Our team of bacteriologists and advanced technology ensure reliable and timely results. We offer a wide variety of tests in Coagulation, Hematology, Microscopy, Immunochemistry, and Immunoserology, with quality in every process. Trust us for comprehensive and efficient care."
+      },
+      pharmacy:{
+        subtitle: "Pharmacy",
+        paragraph: "Our Pharmaceutical Service focuses on providing comprehensive care for clinical trials. We specialize in dispensing, pharmacotherapeutic follow-up, and pharmacovigilance, ensuring the safe and effective use of medications. We comply with Good Clinical Practices, prioritizing patient safety and regulatory compliance."
+      },
+      sample: {
+        subtitle: "Clinical Laboratory Sample Collection",
+        paragraph: "At Nordvital I.P.S., sample collection is safe, comfortable, and accurate. Our qualified staff ensures professional and compassionate care, following strict protocols and using high-quality materials. We strive to make you feel calm and well cared for from the very first moment. Your health is in the best hands!"
+      },
+      lines: {
+        subtitle: "Research Lines",
+        paragraph: "We offer general and specialized outpatient consultation services, supported by professionals with extensive experience in the field."
+      },
+      services : ["General Medicine", "Physiotherapy", "Psychology", "Cardiology", "Dermatology", "Endocrinology", "Internal Medicine", "Pulmonology", "Orthopedics and/or Traumatology"]
     },
   }
 };

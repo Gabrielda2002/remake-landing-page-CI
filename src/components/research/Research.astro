@@ -7,44 +7,55 @@ import service4 from '@services/service4.webp';
 import service5 from '@services/service5.webp';
 import ResearchInfo from "./ResearchInfo.astro";
 
+const TITLE = "NUESTRAS AREAS DE INVESTIGACIÓN";
+
 const SERVICE_LIST = ["Medicina General", "Fisioterapia", "Psicología", "Cardiología", "Dermatología", "Endocrinología", "Medicina Interna", "Neumología", "Ortopedia y/o Traumatología"]
 
 const researchItems: ResearchItem[] = [
   {
-    id: 1,
     subtitle: "Laboratorio Clínico",
     paragraph: "En el Laboratorio Clínico Norvital IPS cuidamos tu salud con confianza y precisión. Somos un laboratorio privado comprometido con la excelencia. Nuestro equipo de bacteriólogos y tecnología avanzada garantizan resultados confiables y oportunos. Ofrecemos una amplia variedad de análisis en Coagulación, Hematología, Microscopía, Inmunoquímica e Inmunoserología, con calidad en cada proceso. Confía en nosotros para un cuidado integral y eficiente.",
     imageUrl: service1.src,
     imageAlt: "Muestra laboratorio clinico",
-    imagePositionX: "left"
+    imagePositionX: "left",
+    i18nKeySubtitle: "research.laboratory.subtitle",
+    i18nKeyParagraph: "research.laboratory.paragraph"
   },
   { 
-    id: 2,
     subtitle: "Farmacia",
     paragraph: "Nuestro Servicio Farmacéutico está enfocado en brindar atención integral para ensayos clínicos. Nos especializamos en la dispensación, seguimiento farmacoterapéutico y farmacovigilancia, garantizando el uso seguro y efectivo de los medicamentos. Cumplimos con las Buenas Prácticas Clínicas, priorizando la seguridad del paciente y el cumplimiento normativo.",
     imageUrl: service4.src,
     imageAlt: "Muestra deposito farmacia",
-    imagePositionX: "right"
+    imagePositionX: "right",
+    i18nKeySubtitle: "research.pharmacy.subtitle",
+    i18nKeyParagraph: "research.pharmacy.paragraph"
   },
   {
-    id: 3,
     subtitle: "Toma de muestras de Laboratorio Clínico",
     paragraph: "En Nordvital I.P.S., la toma de muestras es segura, cómoda y precisa. Nuestro personal calificado asegura un trato profesional y humano, siguiendo protocolos estrictos y utilizando insumos de alta calidad. Nos esforzamos para que te sientas tranquilo y bien atendido desde el primer momento. ¡Tu salud está en las mejores manos!",
     imageUrl: service5.src,
     imageAlt: "Muestra laboratorio clinico",
-    imagePositionX: "left"
+    imagePositionX: "left",
+    i18nKeySubtitle: "research.sample.subtitle",
+    i18nKeyParagraph: "research.sample.paragraph"
   },
   {
-    id: 4,
     subtitle: "Lineas de investigación",
     paragraph: "Ofertamos servicios de consulta externa general y especializada para lo cual contamos con profesionales con amplia experiencia en el sector.",
     imageUrl: service3.src,
     imageAlt: "Lista de servicios ofertados",
     imagePositionX: "right",
     imagePositionY: "top",
-    serviceList: SERVICE_LIST
+    serviceList: SERVICE_LIST,
+    i18nKeySubtitle: "research.lines.subtitle",
+    i18nKeyParagraph: "research.lines.paragraph",
+    i18nKeyServiceList: "research.services"
   }
 ]
 --- 
 
-<ResearchInfo items={researchItems} title="NUESTRAS AREAS DE INVESTIGACIÓN"/>
+<ResearchInfo
+  items={researchItems} 
+  title={TITLE}
+  i18nKeyTitle="research.title"
+/>

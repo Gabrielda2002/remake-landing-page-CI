@@ -3,7 +3,6 @@ import Title from '../ui/Title.astro';
 import Paragraph from '../ui/Paragraph.astro';
 
 export interface ResearchItem {
-  id: string | number;
   subtitle: string;
   paragraph: string;
   imageUrl: string ;
@@ -11,18 +10,22 @@ export interface ResearchItem {
   imagePositionX: 'left' | 'right';
   imagePositionY?: 'top' | 'button';
   serviceList?: string[]
+  i18nKeySubtitle?: string;
+  i18nKeyParagraph?: string;
+  i18nKeyServiceList?: string;   
 }
 
 export interface Props {
   items: ResearchItem[];
   title?: string;
+  i18nKeyTitle?: string
 }
 
-const { items, title } = Astro.props;
+const { items, i18nKeyTitle, title } = Astro.props;
 ---
 
 <div class="container max-w-6xl mx-auto px-4 font-['Bai_Jamjuree',sans-serif] mt-20 mb-20">
-  <Title title={title} />
+  <Title title={title} i18nKey={i18nKeyTitle}/>
   
   {
     items.map((item, index) => {
@@ -40,7 +43,12 @@ const { items, title } = Astro.props;
       );
 
       const textBlock = (
-        <Paragraph subtitle={item.subtitle} paragraph={item.paragraph}/>
+        <Paragraph 
+        subtitle={item.subtitle} 
+        paragraph={item.paragraph}
+        i18nKeySubtitle={item.i18nKeySubtitle}
+        i18nKeyParagraph={item.i18nKeyParagraph}
+        />
       );
 
       let contentBlock;
@@ -75,10 +83,14 @@ const { items, title } = Astro.props;
               <div class={emptyOrderClass}>
                 {item.serviceList && item.serviceList.length > 0 && (
                   <ul class="flex flex-col gap-2 mt-4 md:mt-0">
-                    {item.serviceList.map((service) => (
+                    {item.serviceList.map((service, idx) => (
                       <li class="text-[rgb(86,86,88)] text-[18px] py-2 pl-3.5 border-b border-gray-200 last:border-b-0 flex items-start gap-2">
                         <span class="text-[rgb(0,121,196)]">✓</span>
-                        <span>{service}</span>
+                        <span
+                          data-i18n={item.i18nKeyServiceList ? `${item.i18nKeyServiceList}.${idx}` : undefined}
+                        >
+                          {service}
+                        </span>
                       </li>
                     ))}
                   </ul>
