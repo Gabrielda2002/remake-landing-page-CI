@@ -25,6 +25,13 @@ export const Form: React.FC = () => {
     }
   });
 
+// Re-validar cuando cambia el idioma para actualizar los mensajes de error visibles
+  useEffect(() => {
+    if (Object.keys(formik.touched).length > 0) {
+      formik.validateForm();
+    }
+  }, [currentLang]);
+
   return (
     <div className="w-full max-w-6xl mx-auto p-6 font-['Bai_Jamjuree',sans-serif]">
       <h4 className="text-[rgb(0,121,196)] text-3xl text-left mb-3">{t('form.title')}</h4>
