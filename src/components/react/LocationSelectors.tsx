@@ -7,6 +7,7 @@ import { useMunicipalities } from './useMunicipalities';
 import { sortByName } from '@/utils/sorter';
 import type { Department } from '@/types/Location';
 import { useFormik } from 'formik';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface LocationSelectorsProps<T extends { department: string; municipality: string }> {
   formik: ReturnType<typeof useFormik<T>>;
@@ -15,6 +16,7 @@ interface LocationSelectorsProps<T extends { department: string; municipality: s
 export const LocationSelectors = <T extends { department: string; municipality: string }>({
   formik
 }: LocationSelectorsProps<T>) => {
+  const { t } = useTranslation();
   const [departments, setDepartments] = useState<Department[]>([]);
   const [loadingDepartments, setLoadingDepartments] = useState(true);
   const [departmentsError, setDepartmentsError] = useState<string | null>(null);
@@ -59,7 +61,7 @@ export const LocationSelectors = <T extends { department: string; municipality: 
   if (loadingDepartments) {
     return (
       <div className="flex justify-center items-center p-6 col-span-2">
-        <div className="text-[rgb(0,179,160)] text-lg">Cargando formulario...</div>
+        <div className="text-[rgb(0,179,160)] text-lg">{t('form.loading.form')}</div>
       </div>
     );
   }
@@ -67,7 +69,7 @@ export const LocationSelectors = <T extends { department: string; municipality: 
   if (departmentsError) {
     return (
       <div className="p-6 col-span-2">
-        <div className="text-red-500 text-center">{departmentsError}</div>
+        <div className="text-red-500 text-center">{t('form.messages.departmentsError')}</div>
       </div>
     );
   }
@@ -78,12 +80,12 @@ export const LocationSelectors = <T extends { department: string; municipality: 
         <SelectSearch
           id="department"
           name="department"
-          label="Seleccione un departamento"
+          label={t('form.fields.department')}
           value={formik.values.department}
           options={departmentOptions}
           onChange={(value) => formik.setFieldValue('department', value)}
           onBlur={() => formik.setFieldTouched('department', true)}
-          placeholder="Busque un departamento"
+          placeholder={t('form.placeholders.department')}
           required
           error={formik.touched.department && formik.errors.department ? String(formik.errors.department) : undefined}
         />
@@ -93,17 +95,17 @@ export const LocationSelectors = <T extends { department: string; municipality: 
         <SelectSearch
           id="municipality"
           name="municipality"
-          label="Seleccione un municipio"
+          label={t('form.fields.municipality')}
           value={formik.values.municipality}
           options={municipalityOptions}
           onChange={(value) => formik.setFieldValue('municipality', value)}
           onBlur={() => formik.setFieldTouched('municipality', true)}
           placeholder={
             loadingMunicipalities
-              ? 'Cargando municipios...'
+              ? t('form.loading.municipalities')
               : !formik.values.department
-                ? 'Primero seleccione un departamento'
-                : 'Busque un municipio'
+                ? t('form.messages.selectDepartmentFirst')
+                : t('form.placeholders.municipality')
           }
           disabled={!formik.values.department || loadingMunicipalities}
           required
