@@ -111,6 +111,57 @@ export const translations = {
       },
       services : ["Medicina General", "Fisioterapia", "Psicología", "Cardiología", "Dermatología", "Endocrinología", "Medicina Interna", "Neumología", "Ortopedia y/o Traumatología"]
     },
+
+    //Form
+    form: {
+      title: "CONTÁCTENOS",
+      subtitle: "¿Quieres participar en un estudio clínico?",
+      fields: {
+        names: "Nombres",
+        lastNames: "Apellidos",
+        identificationType: "Tipo de identificación",
+        identificationNumber: "Número de identificación",
+        department: "Departamento",
+        municipality: "Municipio",
+        phone: "Número de teléfono",
+        email: "Correo electrónico",
+        eps: "EPS",
+        age: "Edad",
+        nationality: "Nacionalidad",
+        date: "Fecha de nacimiento"
+      },
+      placeholders: {
+        identificationType: "Tipo de identificación",
+        department: "Departamento",
+        municipality: "Municipio",
+        eps: "EPS",
+        nationality: "Nacionalidad"
+      },
+      button: {
+        submit: "Enviar",
+        submitting: "Enviando..."
+      },
+      validations: {
+        required: "{{field}} requerido",
+        requiredFemale: "{{field}} requerida",
+        onlyLetters: "Solo se permiten letras",
+        onlyNumbers: "Solo se permiten números",
+        minChars: "Mínimo {{min}} caracteres",
+        maxChars: "Máximo {{max}} caracteres",
+        exactChars: "Debe tener exactamente {{count}} caracteres",
+        validEmail: "Debe ser un correo electrónico válido",
+        validAge: "La edad debe ser entre {{min}} y {{max}} años",
+        phoneLength: "El teléfono debe tener exactamente {{count}} dígitos"
+      },
+      loading: {
+        form: "Cargando formulario...",
+        municipalities: "Cargando municipios..."
+      },
+      messages: {
+        selectDepartmentFirst: "Primero seleccione un departamento",
+        departmentsError: "Error al cargar los departamentos"
+      }
+    },
   },
   
   en: {
@@ -222,6 +273,57 @@ export const translations = {
         paragraph: "We offer general and specialized outpatient consultation services, supported by professionals with extensive experience in the field."
       },
       services : ["General Medicine", "Physiotherapy", "Psychology", "Cardiology", "Dermatology", "Endocrinology", "Internal Medicine", "Pulmonology", "Orthopedics and/or Traumatology"]
+    },
+
+    //Form
+    form: {
+      title: "CONTACT US",
+      subtitle: "Would you like to participate in a clinical study?",
+      fields: {
+        names: "First Names",
+        lastNames: "Last Names",
+        identificationType: "Identification Type",
+        identificationNumber: "Identification Number",
+        department: "Department",
+        municipality: "Municipality",
+        phone: "Phone Number",
+        email: "Email",
+        eps: "Health Insurance Provider",
+        age: "Age",
+        nationality: "Nationality",
+        date: "Date of Birth"
+      },
+      placeholders: {
+        identificationType: "Identification Type",
+        department: "Department",
+        municipality: "Municipality",
+        eps: "Health Insurance Provider",
+        nationality: "Nationality"
+      },
+      button: {
+        submit: "Submit",
+        submitting: "Submitting..."
+      },
+      validations: {
+        required: "{{field}} is required",
+        requiredFemale: "{{field}} is required",
+        onlyLetters: "Only letters are allowed",
+        onlyNumbers: "Only numbers are allowed",
+        minChars: "Minimum {{min}} characters",
+        maxChars: "Maximum {{max}} characters",
+        exactChars: "Must have exactly {{count}} characters",
+        validEmail: "Must be a valid email address",
+        validAge: "Age must be between {{min}} and {{max}} years",
+        phoneLength: "Phone number must have exactly {{count}} digits"
+      },
+      loading: {
+        form: "Loading form...",
+        municipalities: "Loading municipalities..."
+      },
+      messages: {
+        selectDepartmentFirst: "First select a department",
+        departmentsError: "Error loading departments"
+      }
     },
   }
 };
