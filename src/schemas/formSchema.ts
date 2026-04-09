@@ -3,70 +3,92 @@ import * as Yup from 'yup';
 import { differenceInYears } from 'date-fns';
 import type { FormValues } from '@/types/FormValues';
 
-export const validationSchema = Yup.object<FormValues>({
-  names: Yup.string()
-    .required("Nombre requerido")
-    .matches(/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/, "Solo se permiten letras")
-    .min(2, "Mínimo 2 caracteres")
-    .max(40, "Debe tener como máximo 40 caracteres")
-    .transform(value => value?.toUpperCase()),
+// Mensajes centralizados
+const messages = {
+  required: (field: string) => `${field} requerido`,
+  onlyLetters: 'Solo se permiten letras',
+  onlyNumbers: 'Solo se permiten números',
+  minChars: (min: number) => `Mínimo ${min} caracteres`,
+  maxChars: (max: number) => `Máximo ${max} caracteres`,
+ 
+  phoneLength: (count: number) => 
+    `El teléfono debe tener exactamente ${count} dígitos`,
+  validEmail: 'Debe ser un correo electrónico válido',
 
-  lastNames: Yup.string()
-    .required("Apellido requerido")
-    .matches(/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/, "Solo se permiten letras")
-    .min(2, "Mínimo 2 caracteres")
-    .max(40, "Debe tener como máximo 40 caracteres")
-    .transform(value => value?.toUpperCase()),
-  
-  identificationType: Yup.string()
-    .required('Tipo de identificación requerido'),
+  validAge: (min: number, max: number) => 
+    `La edad debe ser entre ${min} y ${max} años`,
+};
 
-  identificationNumber: Yup.string()
-    .required("Número de identificación requerido")
-    .matches(/^[0-9]+$/, "Solo se permiten números")
-    .min(6, "Mínimo 6 caracteres")
-    .max(20, "Máximo 20 caracteres"),
+// Función para obtener el nombre del campo traducido
+const fieldName = (t: ((key: string) => string) | undefined, key: string, fallback: string) =>
+  t ? t(key) : fallback;
 
-  department: Yup.string()
-    .required('Departamento requerido'),
+// Schema único, multilenguaje y simple
+export const getValidationSchema = (t?: (key: string) => string) =>
+  Yup.object<FormValues>({
+    names: Yup.string()
+      .required(messages.required(fieldName(t, 'form.fields.names', 'Nombre')))
+      .matches(/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/, messages.onlyLetters)
+      .min(2, messages.minChars(2))
+      .max(40, messages.maxChars(40))
+      .transform(value => value?.toUpperCase()),
 
-  municipality: Yup.string()
-    .required('Municipio es requerido'),
+    lastNames: Yup.string()
+      .required(messages.required(fieldName(t, 'form.fields.lastNames', 'Apellido')))
+      .matches(/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/, messages.onlyLetters)
+      .min(2, messages.minChars(2))
+      .max(40, messages.maxChars(40))
+      .transform(value => value?.toUpperCase()),
 
-  phone: Yup.string()
-    .required('Teléfono requerido')
-    .matches(/^[0-9]+$/, "Solo se permiten números")
-    .length(10, "El teléfono debe tener exactamente 10 dígitos"),
+    identificationType: Yup.string()
+      .required(messages.required(fieldName(t, 'form.fields.identificationType', 'Tipo de identificación'))),
 
-  email: Yup.string()
-    .required('Correo requerido')
-    .email('Debe ser un correo electrónico válido'),
+    identificationNumber: Yup.string()
+      .required(messages.required(fieldName(t, 'form.fields.identificationNumber', 'Número de identificación')))
+      .matches(/^[0-9]+$/, messages.onlyNumbers)
+      .min(6, messages.minChars(6))
+      .max(20, messages.maxChars(20)),
 
-  eps: Yup.string()
-    .required('EPS es requerida'),
+    department: Yup.string()
+      .required(messages.required(fieldName(t, 'form.fields.department', 'Departamento'))),
 
-  age: Yup.string()
-    .required('Edad requerida')
-    .matches(/^[0-9]+$/, "Solo se permiten números")
-    .test('edad-valida', 'La edad debe ser entre 18 y 125 años', 
-      value => {
+    municipality: Yup.string()
+      .required(messages.required(fieldName(t, 'form.fields.municipality', 'Municipio'))),
+
+    phone: Yup.string()
+      .required(messages.required(fieldName(t, 'form.fields.phone', 'Teléfono')))
+      .matches(/^[0-9]+$/, messages.onlyNumbers)
+      .length(10, messages.phoneLength(10)),
+
+    email: Yup.string()
+      .required(messages.required(fieldName(t, 'form.fields.email', 'Correo')))
+      .email(messages.validEmail),
+
+    eps: Yup.string()
+      .required(messages.required(fieldName(t, 'form.fields.eps', 'EPS'))),
+
+    age: Yup.string()
+      .required(messages.required(fieldName(t, 'form.fields.age', 'Edad')))
+      .matches(/^[0-9]+$/, messages.onlyNumbers)
+      .test('edad-valida', messages.validAge(18, 125), value => {
         if (!value) return false;
         const age = parseInt(value, 10);
         return age >= 18 && age <= 125;
       }),
 
-  nationality: Yup.string()
-      .required('Nacionalidad requerida'),
+    nationality: Yup.string()
+      .required(messages.required(fieldName(t, 'form.fields.nationality', 'Nacionalidad'))),
 
-  date: Yup.date()
-    .required('Fecha requerida')
-    .test('edad-valida', 'La edad debe ser entre 18 y 125 años', function(value) {
-      if (!value) return false;
-      
-      const today = new Date();
-      const birthDate = new Date(value);
-      const age = differenceInYears(today, birthDate);
-      
-      return age >= 18 && age <= 125;
-    }),
-});
+    date: Yup.date()
+      .required(messages.required(fieldName(t, 'form.fields.date', 'Fecha')))
+      .test('edad-valida', messages.validAge(18, 125), function(value) {
+        if (!value) return false;
+        const today = new Date();
+        const birthDate = new Date(value);
+        const age = differenceInYears(today, birthDate);
+        return age >= 18 && age <= 125;
+      }),
+  });
+
+// Para retrocompatibilidad, exporta el schema por defecto en español
+export const validationSchema = getValidationSchema();
