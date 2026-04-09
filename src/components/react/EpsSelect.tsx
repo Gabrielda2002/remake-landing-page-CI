@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import { EPS_LIST} from "@/constants/epsList";
 import { SelectSearch} from "../ui/SelectSearch";
 import type { SelectOption } from '@/types/SelectOption';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface EpsSelectProps<T extends { eps: string }> {
   id?: string;
@@ -14,10 +15,13 @@ interface EpsSelectProps<T extends { eps: string }> {
 export const EpsSelect = <T extends { eps: string }>({
   id = "eps",
   name = "eps" as keyof T,
-  label = "EPS",
+  label,
   required = true,
   formik
 }: EpsSelectProps<T>) => {
+  const { t } = useTranslation();
+  const finalLabel = label || t('form.fields.eps');
+  
   const options: SelectOption[] = EPS_LIST.map(eps => ({
     value: eps.id,
     label: eps.name 
@@ -33,7 +37,8 @@ export const EpsSelect = <T extends { eps: string }>({
   return (
     <div className="flex flex-col">
       <label htmlFor={String(id)} className="text-[rgb(0,179,160)] mb-2">
-        {label}
+        {finalLabel}
+        {required && <span className="text-red-500 ml-1">*</span>}
       </label>
 
       <SelectSearch
@@ -43,7 +48,7 @@ export const EpsSelect = <T extends { eps: string }>({
         options={options}
         onChange={(value) => formik.setFieldValue(String(name), value)}
         onBlur={() => formik.setFieldTouched(String(name), true)}
-        placeholder="EPS"
+        placeholder={t('form.placeholders.eps')}
         required={required}
         error={getErrorMessage()}
       />
