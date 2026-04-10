@@ -42,7 +42,7 @@ export const translations = {
         subtitle: "VISIÓN",
         paragraph: "Posicionar a NORDVITAL IPS SAS en el 2029 como una organización líder en innovación, reconocida por su excelencia operativa, humanizada y la calidad de sus servicios."
       },
-      text: "Lo hacemos porque creemos en una medicina que evoluciona con propósito. Investigamos para anticiparnos a los desafíos de la salud y ofrecer soluciones reales que mejoren la vida de las personas, hoy y mañana."
+      text: "Lo hacemos porque creemos en una medicina que evoluciona con propósito. Investigamos para anticiparnos a los desafíos de la salud y ofrecer soluciones reales que mejoren la vida de las personas, <strong>hoy y mañana.</strong>"
     },
     
     //texto
@@ -210,7 +210,7 @@ export const translations = {
         subtitle: "OUR VISION",
         paragraph: "To position NORDVITAL IPS SAS by 2029 as a leading organization in innovation, recognized for its operational excellence, human-centered care, and the quality of its services."
       },
-      text: "We do it because we believe in a purpose-driven evolution of medicine. We conduct research to anticipate healthcare challenges and provide real solutions that improve people's lives, today and tomorrow."
+      text: "We do it because we believe in a purpose-driven evolution of medicine. We conduct research to anticipate healthcare challenges and provide real solutions that improve people's lives, <strong>today and tomorrow.</strong>"
     },
 
     //text
