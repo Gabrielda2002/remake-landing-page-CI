@@ -7,7 +7,7 @@ export function applyLang(lang: Lang) {
   document.querySelectorAll<HTMLElement>('[data-i18n]').forEach(el => {
     const keys = el.dataset.i18n!.split('.');
     const text = keys.reduce((obj: any, key) => obj?.[isNaN(Number(key)) ? key : Number(key)], t);
-    if (text) el.textContent = text;
+    if (text) el.innerHTML = text;
   });
   document.documentElement.style.visibility = '';
 }
