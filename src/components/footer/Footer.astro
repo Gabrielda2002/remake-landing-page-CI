@@ -3,19 +3,21 @@ import logoTexto from "/content/logos/logotextoblanco.webp?url";
 import GoogleMaps from "@/components/ui/GoogleMaps.astro"
 
 interface FooterInformation {
-  text: string | number
+  text: string | number,
+  i18nKey?: string
 }
 
 interface Props {
   title?: string,
-  information?: FooterInformation[]
+  information?: FooterInformation[],
+  i18nKeyTitle?: string;
 }
 
 const informations: Array<FooterInformation>=[
   {text: "Catherine Torrado Acevedo"},
-  {text: "Correo institutodeinvestigacion@nordvitalips.com"},
-  {text: "Tl: 3242800091"},
-  {text: "Dirección: AV 3A E #13A - 82 CAOBOS"},
+  {text: "Email: institutodeinvestigacion@nordvitalips.com"},
+  {text: "Cl: 3242800091"},
+  {text: "Dirección: AV 3A E #13A - 82 CAOBOS", i18nKey: "footer.address"},
   {text: "Cúcuta, Norte de Santander"},
 ]
 
@@ -26,16 +28,16 @@ const {title = "Contactenos", information = informations} = Astro.props;
   <div class="grid grid-cols-1 gap-4">
     
     <div class="pl-10 border-b border-white/20 pb-2">
-      <img src={logoTexto} alt="Logo de Nordvital" class="w-32 h-auto hover:scale-105 transition-transform duration-300"/>              
+      <img src={logoTexto} alt="Logo de Nordvital" class="w-32 h-auto"/>              
     </div>
 
     <div class="grid grid-cols-1 max-[800px]:grid-cols-1 min-[801px]:grid-cols-2 gap-4 pl-10 pr-5">
       
       <div class="contact-info text-white space-y-4">
-        <h4 class="text-lg font-bold mb-3">{title}</h4>
+        <h4 data-i18n="footer.title" class="text-lg font-bold mb-3">{title}</h4>
       <div class="space-y-2">
         {information.map((info) => (
-          <p class="text-sm opacity-90">
+          <p data-i18n={info.i18nKey} class="text-shadow-2xs opacity-90">
             {info.text}
           </p>
         ))}
@@ -43,7 +45,7 @@ const {title = "Contactenos", information = informations} = Astro.props;
     </div>
 
       <div class="rounded-xl overflow-hidden shadow-2xl border-2 border-white/30 hover:border-white/50 transition-colors duration-300 mr-5">
-        <GoogleMaps></GoogleMaps>
+        <GoogleMaps/>
       </div>
     </div> 
   </div>

@@ -162,6 +162,11 @@ export const translations = {
         departmentsError: "Error al cargar los departamentos"
       }
     },
+    //footer
+    footer: {
+      title: "Contacto",
+      address: "Dirección: AV 3A E #13A - 82 CAOBOS"
+    }
   },
   
   en: {
@@ -325,5 +330,10 @@ export const translations = {
         departmentsError: "Error loading departments"
       }
     },
+    //footer
+    footer: {
+      title: "Contact Us",
+      address: "Address: AV 3A E #13A - 82 CAOBOS"
+    }
   }
 };
