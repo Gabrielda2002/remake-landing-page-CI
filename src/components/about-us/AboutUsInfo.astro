@@ -31,7 +31,7 @@ const {title, information, banner, text, diagram}= Astro.props;
 <div class="w-full lg:max-w-2xl lg:justify-self-end">
   <ImageTextCard
     image={banner}
-    imageClassName="aspect-video md:aspect-[16/7]"
+    imageClassName="w-full h-full object-cover md:object-contain"
     text={text}
     i18nKeyText="aboutUs.text"
   />
