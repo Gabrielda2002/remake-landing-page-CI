@@ -1,18 +1,18 @@
 ---
-import coFlag from "/content/banderas/flag-co.svg?url";
-import gbFlag from "/content/banderas/flag-gb.svg?url";
+import coFlag from '@flag/flag-co.svg'
+import gbFlag from '@flag/flag-gb.svg';
 
 interface Language {
   name: string;
-  flag: string;
+  flag: string; 
   href: string;
   code: string;
   i18nKey?: string
 }
 
 const LANGUAGE_FLAG: Language[] = [
-  { name: "Español", flag: coFlag, href: "/es", code: "es", i18nKey:"languages.es" },
-  { name: "Inglés", flag: gbFlag, href: "/en", code: "en", i18nKey:"languages.en" }
+  { name: "Español", flag: coFlag.src, href: "/es", code: "es", i18nKey:"languages.es" },
+  { name: "Inglés", flag: gbFlag.src, href: "/en", code: "en", i18nKey:"languages.en" }
 ]
 
 export interface LanguageProps {

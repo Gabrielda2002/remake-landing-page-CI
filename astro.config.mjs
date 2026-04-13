@@ -10,11 +10,12 @@ export default defineConfig({
     plugins: [tailwindcss()],
     resolve: {
       alias: {
-        '@services': '/public/content/servicios',
-        '@professional': '/public/content/profesionales',
-        '@map': '/public/content/mapa-mental',
-        '@banner': '/public/content/banners',
-        '@Logo': '/public/content/logos',
+        '@services': '/src/assets/servicios',
+        '@professional': '/src/assets/profesionales',
+        '@map': '/src/assets/mapa-mental',
+        '@banner': '/src/assets/banners',
+        '@logo': '/src/assets/logos',
+        '@flag': '/src/assets/banderas',
         '@styles': '/src/styles',
       },
     },

@@ -13,7 +13,7 @@ import LandingHero from "@/components/landingHero/LandingHero.astro";
 
 interface Props {
   title: string;
-    description: string;
+  description: string;
 }
 
 const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Props = Astro.props;
@@ -24,7 +24,7 @@ const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Pro
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="/content/logos/logo.webp" />
+  <link rel="icon" type="image/svg+xml" href="@/assets/logos/logo.webp"/>
   <meta name="generator" content={Astro.generator} />
   <meta name="description" content={description} />
   <meta property="og:type" content="website" />
