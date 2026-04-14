@@ -1,11 +1,12 @@
 ---
 import Title from '../ui/Title.astro';
 import Paragraph from '../ui/Paragraph.astro';
+import { Image } from 'astro:assets';
 
 export interface ResearchItem {
   subtitle: string;
   paragraph: string;
-  imageUrl: string ;
+  imageUrl:  ImageMetadata;
   imageAlt: string;
   imagePositionX: 'left' | 'right';
   imagePositionY?: 'top' | 'button';
@@ -34,7 +35,7 @@ const { items, i18nKeyTitle, title } = Astro.props;
       const emptyOrderClass = isImageLeft ? 'md:order-2' : 'md:order-1';
 
       const imageBlock = (
-        <img 
+        <Image 
           src={item.imageUrl} 
           alt={item.imageAlt}
           class="w-full h-auto rounded-lg shadow-lg"
