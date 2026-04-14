@@ -1,6 +1,7 @@
 ---
-import logoTexto from "@logo/logotextoblanco.webp?url";
+import logoTexto from "@logo/logotextoblanco.webp";
 import GoogleMaps from "@/components/ui/GoogleMaps.astro"
+import { Image } from "astro:assets";
 
 interface FooterInformation {
   text: string | number,
@@ -28,7 +29,11 @@ const {title = "Contactenos", information = informations} = Astro.props;
   <div class="grid grid-cols-1 gap-4">
     
     <div class="pl-10 border-b border-white/20 pb-2">
-      <img src={logoTexto} alt="Logo de Nordvital" class="w-32 h-auto"/>              
+      <Image 
+        src={logoTexto} 
+        alt="Logo de Nordvital" 
+        class="w-32 h-auto"
+      />              
     </div>
 
     <div class="grid grid-cols-1 max-[800px]:grid-cols-1 min-[801px]:grid-cols-2 gap-4 pl-10 pr-5">
