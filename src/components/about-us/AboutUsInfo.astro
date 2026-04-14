@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import ImageTextCard from "../ui/ImageTextCard.astro";
 import Paragraph, { type PropsParagraph } from "../ui/Paragraph.astro";
 import Title from "../ui/Title.astro"
@@ -6,9 +7,9 @@ import Title from "../ui/Title.astro"
 export interface Props {
   title?: string,
   information: Array<PropsParagraph>,
-  banner: string,
+  banner: ImageMetadata,
   text: string,
-  diagram?: string
+  diagram: ImageMetadata
 }
 
 const {title, information, banner, text, diagram}= Astro.props;
@@ -37,7 +38,11 @@ const {title, information, banner, text, diagram}= Astro.props;
   />
 </div>
     <div class="w-full flex justify-center lg:col-span-2 pt-10">
-      <img src={diagram} alt="diagrama" class="max-w-full h-auto w-175" />
+      <Image
+        src={diagram} 
+        alt="diagrama" 
+        class="max-w-full h-auto w-175"
+      />
     </div>
   </div>
 </div>
