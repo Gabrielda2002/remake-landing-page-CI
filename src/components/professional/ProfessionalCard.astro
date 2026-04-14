@@ -1,11 +1,12 @@
 ---
 import Title from '../ui/Title.astro';
 import ImageTextCard from '../ui/ImageTextCard.astro';
+import { Image } from 'astro:assets';
 
 export interface ProfessionalCard {
   id: string | number
   name?: string,
-  image: string
+  image: ImageMetadata,
   position: string,
   i18nKeyPosition?: string
 }
@@ -35,10 +36,10 @@ const { title, i18nKeyTitle, professional } = Astro.props;
           type="button"
           class="block w-full cursor-pointer appearance-none border-0 bg-transparent p-0 outline-none focus:outline-none focus-visible:outline-none focus-visible:ring-0"
           data-professional-trigger
-          data-image-src={person.image}
+          data-image-src={person.image.src}
           data-image-alt={`Foto de ${person.name}`}
         >
-          <img
+          <Image
             src={person.image}
             alt={`Foto de ${person.name}`}
             loading="lazy"
@@ -68,7 +69,7 @@ const { title, i18nKeyTitle, professional } = Astro.props;
         id="professional-lightbox-image"
         src=""
         alt=""
-        class="mx-auto max-h-[85vh] w-auto max-w-full rounded-2xl"
+        class="mx-auto max-h-[95vh] w-auto max-w-full rounded-2xl"
       />
     </div>
   </div>
