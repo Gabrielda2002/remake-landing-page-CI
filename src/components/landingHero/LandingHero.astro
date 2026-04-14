@@ -6,18 +6,19 @@ import invimalogo from '@logo/invimalogo.webp'
 import nordvitalcolor from '@logo/logonordvitalcolor.webp'
 import ScrollDownArrow from '../ui/ScrollDownArrow.astro'
 import Stamp from '../ui/Stamp.astro'
+import { Image } from 'astro:assets'
 
 interface Props {
-  backgroundImage?: string
-  logo?: string
+  backgroundImage: ImageMetadata,
+  logo?: ImageMetadata
   title?: string,
   subtitle?: string,
   subtitle2?: string
 }
 
 const {
-      backgroundImage = banerFondo.src,
-      logo = logoWeb.src,
+      backgroundImage = banerFondo,
+      logo = logoWeb,
       title="Innovamos con ciencia,", 
       subtitle= "Transformamos con conocimiento.",
       subtitle2= "Aplicando rigor, estrategia y tecnología en cada desafío."
@@ -26,12 +27,15 @@ const {
 
 <div
   class="relative overflow-hidden w-full min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center font-['Bai_Jamjuree',sans-serif]"
-  style={`background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0.75) 65%, rgba(255, 255, 255, 0.88) 100%), url(${backgroundImage});`}
+  style={`background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0.75) 65%, rgba(255, 255, 255, 0.88) 100%), url(${backgroundImage.src});`}
 >
   
   <div class="relative z-10 w-full max-w-360 px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
     <div class="mt-20 mb-5 w-full max-w-20">
-      <img src={logo} alt="logo nordvital" class="w-full h-auto object-contain">
+      <Image
+        src={logo}
+        alt="logo nordvital" class="w-full h-auto object-contain"
+      />
     </div>
 
     <div class="w-full max-w-[min(100%,70rem)] text-[rgb(255,255,255)] bg-[rgba(14,27,63,0.6)] px-[clamp(1rem,6vw,5.5rem)] py-[clamp(.85rem,1.8vw,1.25rem)] rounded-2xl wrap-break-word">
@@ -41,9 +45,9 @@ const {
     </div>
 
     <div class="pt-5 flex flex-wrap items-center justify-center gap-3 sm:gap-4 w-full max-w-120">
-      <Stamp image={nordvitalcolor.src} alt='Logo norvital'/>
-      <Stamp image={caimedlogo.src} alt='Logo caimed'/>
-      <Stamp image={invimalogo.src} alt='Logo invima'/> 
+      <Stamp image={nordvitalcolor} alt='Logo norvital'/>
+      <Stamp image={caimedlogo} alt='Logo caimed'/>
+      <Stamp image={invimalogo} alt='Logo invima'/> 
     </div>
 
     <div class="mt-10">
