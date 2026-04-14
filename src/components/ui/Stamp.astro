@@ -1,13 +1,15 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props{
-  image: string,
-  alt?: string
+  image: ImageMetadata,
+  alt: string
 }
 const {image, alt}: Props = Astro.props;
 ---
 
 <div class="w-32 h-20 p-3 bg-[rgb(255,255,255)] rounded-2xl flex items-center justify-center">
-  <img
+  <Image
     src={image}
     alt={alt ?? 'Stamp logo'}
     class="w-full h-full object-contain"
