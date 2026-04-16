@@ -112,9 +112,17 @@ export const translations = {
       services : ["Medicina General", "Fisioterapia", "Psicología", "Cardiología", "Dermatología", "Endocrinología", "Medicina Interna", "Neumología", "Ortopedia y/o Traumatología"]
     },
 
-    //Form
-    form: {
+    //Forms
+    form:{
       title: "CONTÁCTENOS",
+      buttons: {
+        contact: "Contacto",
+        study: "Estudio Clínico"
+      }
+    },
+
+    //Form estudio
+    formStudy: {
       subtitle: "¿Quieres participar en un estudio clínico?",
       fields: {
         names: "Nombres",
@@ -162,6 +170,16 @@ export const translations = {
         departmentsError: "Error al cargar los departamentos"
       }
     },
+    
+    //Form contact
+    formContact: {
+      subtitle: "Nos pondremos en contacto contigo",
+      fields:{
+        subject: "Asunto",
+        descipcion: "Descripción"
+      }
+    },
+
     //footer
     footer: {
       title: "Contacto",
@@ -280,9 +298,17 @@ export const translations = {
       services : ["General Medicine", "Physiotherapy", "Psychology", "Cardiology", "Dermatology", "Endocrinology", "Internal Medicine", "Pulmonology", "Orthopedics and/or Traumatology"]
     },
 
-    //Form
-    form: {
+    //Forms
+    form:{
       title: "CONTACT US",
+      buttons: {
+        contact: "Contact",
+        study: "Clinical Study"
+      }
+    },
+
+    //formStudy
+    formStudy: {
       subtitle: "Would you like to participate in a clinical study?",
       fields: {
         names: "First Names",
@@ -330,6 +356,16 @@ export const translations = {
         departmentsError: "Error loading departments"
       }
     },
+    
+    //Form contact
+    formContact: {
+      subtitle: "We will get in touch with you",
+      fields:{
+        subject: "Subject",
+        descipcion: "Descipcion"
+      }
+    },
+
     //footer
     footer: {
       title: "Contact Us",
