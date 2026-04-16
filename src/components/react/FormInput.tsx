@@ -12,7 +12,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   formik: ReturnType<typeof useFormik<any>>;
   onlyLetters?: boolean;
   onlyNumbers?: boolean;
-  variant?: 'default' | 'date' | 'custom';
+  variant?: 'default' | 'custom';
 }
 
 const FormInput: React.FC<InputProps> = ({
@@ -47,19 +47,19 @@ const FormInput: React.FC<InputProps> = ({
   const getVariantStyles = () => {
     if (error) return 'border-red-500';
     
+    let base = 'border-[rgb(168,182,201)] focus:border-[rgb(0,179,160)]';
+
     switch(variant) {
-      case 'date':
-        return 'border-purple-300 focus:border-purple-600 bg-purple-50';
       case 'custom':
-        return 'border-orange-300 focus:border-orange-600 bg-orange-50';
+        return `${base} w-full col-span-2`;
       case 'default':
       default:
-        return 'border-[rgb(168,182,201)] focus:border-[rgb(0,179,160)]';
+        return base;
     }
   };
 
   return (
-    <div className="flex flex-col">
+    <div className={`flex flex-col ${variant === 'custom' ? 'md:col-span-2' : ''}`}>
       <label htmlFor={id} className="text-[rgb(0,179,160)] mb-2">
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
