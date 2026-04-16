@@ -1,30 +1,13 @@
   import React, { useMemo, useEffect } from 'react';
-  import { useFormik } from 'formik';
   import FormInput from './FormInput';
-  import { getValidationSchema } from '@/schemas/formSchema';
-  import { initialValues } from '@/constants/initialValues';
+  import { initialValuesContact } from '@/constants/initialValues';
   import { useTranslation } from '@/hooks/useTranslation';
+  import { SubmitButton } from '../ui/Submitbutton';
+  import { useFormHandler } from '@/hooks/useFormHandler';
 
   export const FormContact: React.FC = () => {
-    const { t, currentLang } = useTranslation();
-    
-    const validationSchema = useMemo(() => getValidationSchema(t), [currentLang]);
-
-    const formik = useFormik({
-      initialValues,
-      validationSchema,
-      onSubmit: (values) => {
-        console.log(values);
-        return;
-      }
-    });
-
-    // Re-validar cuando cambia el idioma para actualizar los mensajes de error visibles
-    useEffect(() => {
-      if (Object.keys(formik.touched).length > 0) {
-        formik.validateForm();
-      }
-    }, [currentLang]);
+    const { t } = useTranslation();
+    const formik = useFormHandler(initialValuesContact);
 
     return (
       <div>
@@ -103,12 +86,7 @@
           </div>
 
           <div className="w-full flex justify-center mt-4 md:col-span-2">
-            <button
-              type="submit"
-              disabled={formik.isSubmitting}
-              className="text-[16px] px-6 py-2 bg-[rgb(0,179,160)] rounded-lg border text-white w-auto hover:bg-[rgb(0,160,143)] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed">
-              {formik.isSubmitting ? t('form.button.submitting') : t('form.button.submit')}
-            </button>
+            <SubmitButton formik={formik}/>
           </div>
 
         </form>
