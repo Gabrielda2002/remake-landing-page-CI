@@ -1,7 +1,7 @@
 // schemas/formSchema.ts
 import * as Yup from 'yup';
 import { differenceInYears } from 'date-fns';
-import type { FormValues } from '@/types/FormValues';
+import type { FormValuesStudy } from '@/types/FormValues';
 
 // Mensajes centralizados
 const messages = {
@@ -25,50 +25,50 @@ const fieldName = (t: ((key: string) => string) | undefined, key: string, fallba
 
 // Schema único, multilenguaje y simple
 export const getValidationSchema = (t?: (key: string) => string) =>
-  Yup.object<FormValues>({
+  Yup.object<FormValuesStudy>({
     names: Yup.string()
-      .required(messages.required(fieldName(t, 'form.fields.names', 'Nombre')))
+      .required(messages.required(fieldName(t, 'formStudy.fields.names', 'Nombre')))
       .matches(/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/, messages.onlyLetters)
       .min(2, messages.minChars(2))
       .max(40, messages.maxChars(40))
       .transform(value => value?.toUpperCase()),
 
     lastNames: Yup.string()
-      .required(messages.required(fieldName(t, 'form.fields.lastNames', 'Apellido')))
+      .required(messages.required(fieldName(t, 'formStudy.fields.lastNames', 'Apellido')))
       .matches(/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/, messages.onlyLetters)
       .min(2, messages.minChars(2))
       .max(40, messages.maxChars(40))
       .transform(value => value?.toUpperCase()),
 
     identificationType: Yup.string()
-      .required(messages.required(fieldName(t, 'form.fields.identificationType', 'Tipo de identificación'))),
+      .required(messages.required(fieldName(t, 'formStudy.fields.identificationType', 'Tipo de identificación'))),
 
     identificationNumber: Yup.string()
-      .required(messages.required(fieldName(t, 'form.fields.identificationNumber', 'Número de identificación')))
+      .required(messages.required(fieldName(t, 'formStudy.fields.identificationNumber', 'Número de identificación')))
       .matches(/^[0-9]+$/, messages.onlyNumbers)
       .min(6, messages.minChars(6))
       .max(20, messages.maxChars(20)),
 
     department: Yup.string()
-      .required(messages.required(fieldName(t, 'form.fields.department', 'Departamento'))),
+      .required(messages.required(fieldName(t, 'formStudy.fields.department', 'Departamento'))),
 
     municipality: Yup.string()
-      .required(messages.required(fieldName(t, 'form.fields.municipality', 'Municipio'))),
+      .required(messages.required(fieldName(t, 'formStudy.fields.municipality', 'Municipio'))),
 
     phone: Yup.string()
-      .required(messages.required(fieldName(t, 'form.fields.phone', 'Teléfono')))
+      .required(messages.required(fieldName(t, 'formStudy.fields.phone', 'Teléfono')))
       .matches(/^[0-9]+$/, messages.onlyNumbers)
       .length(10, messages.phoneLength(10)),
 
     email: Yup.string()
-      .required(messages.required(fieldName(t, 'form.fields.email', 'Correo')))
+      .required(messages.required(fieldName(t, 'formStudy.fields.email', 'Correo')))
       .email(messages.validEmail),
 
     eps: Yup.string()
-      .required(messages.required(fieldName(t, 'form.fields.eps', 'EPS'))),
+      .required(messages.required(fieldName(t, 'formStudy.fields.eps', 'EPS'))),
 
     age: Yup.string()
-      .required(messages.required(fieldName(t, 'form.fields.age', 'Edad')))
+      .required(messages.required(fieldName(t, 'formStudy.fields.age', 'Edad')))
       .matches(/^[0-9]+$/, messages.onlyNumbers)
       .test('edad-valida', messages.validAge(18, 125), value => {
         if (!value) return false;
@@ -77,10 +77,10 @@ export const getValidationSchema = (t?: (key: string) => string) =>
       }),
 
     nationality: Yup.string()
-      .required(messages.required(fieldName(t, 'form.fields.nationality', 'Nacionalidad'))),
+      .required(messages.required(fieldName(t, 'formStudy.fields.nationality', 'Nacionalidad'))),
 
     date: Yup.date()
-      .required(messages.required(fieldName(t, 'form.fields.date', 'Fecha')))
+      .required(messages.required(fieldName(t, 'formStudy.fields.date', 'Fecha')))
       .test('edad-valida', messages.validAge(18, 125), function(value) {
         if (!value) return false;
         const today = new Date();
@@ -88,6 +88,9 @@ export const getValidationSchema = (t?: (key: string) => string) =>
         const age = differenceInYears(today, birthDate);
         return age >= 18 && age <= 125;
       }),
+
+    subject: Yup.string()
+      .required(messages.required(fieldName(t, 'formContact.fields.subject', 'Asunto')))
   });
 
 // Para retrocompatibilidad, exporta el schema por defecto en español

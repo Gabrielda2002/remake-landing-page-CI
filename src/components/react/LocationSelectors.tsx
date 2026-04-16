@@ -61,7 +61,7 @@ export const LocationSelectors = <T extends { department: string; municipality: 
   if (loadingDepartments) {
     return (
       <div className="flex justify-center items-center p-6 col-span-2">
-        <div className="text-[rgb(0,179,160)] text-lg">{t('form.loading.form')}</div>
+        <div className="text-[rgb(0,179,160)] text-lg">{t('formStudy.loading.form')}</div>
       </div>
     );
   }
@@ -69,7 +69,7 @@ export const LocationSelectors = <T extends { department: string; municipality: 
   if (departmentsError) {
     return (
       <div className="p-6 col-span-2">
-        <div className="text-red-500 text-center">{t('form.messages.departmentsError')}</div>
+        <div className="text-red-500 text-center">{t('formStudy.messages.departmentsError')}</div>
       </div>
     );
   }
@@ -80,12 +80,12 @@ export const LocationSelectors = <T extends { department: string; municipality: 
         <SelectSearch
           id="department"
           name="department"
-          label={t('form.fields.department')}
+          label={t('formStudy.fields.department')}
           value={formik.values.department}
           options={departmentOptions}
           onChange={(value) => formik.setFieldValue('department', value)}
           onBlur={() => formik.setFieldTouched('department', true)}
-          placeholder={t('form.placeholders.department')}
+          placeholder={t('formStudy.placeholders.department')}
           required
           error={formik.touched.department && formik.errors.department ? String(formik.errors.department) : undefined}
         />
@@ -95,17 +95,17 @@ export const LocationSelectors = <T extends { department: string; municipality: 
         <SelectSearch
           id="municipality"
           name="municipality"
-          label={t('form.fields.municipality')}
+          label={t('formStudy.fields.municipality')}
           value={formik.values.municipality}
           options={municipalityOptions}
           onChange={(value) => formik.setFieldValue('municipality', value)}
           onBlur={() => formik.setFieldTouched('municipality', true)}
           placeholder={
             loadingMunicipalities
-              ? t('form.loading.municipalities')
+              ? t('formStudy.loading.municipalities')
               : !formik.values.department
-                ? t('form.messages.selectDepartmentFirst')
-                : t('form.placeholders.municipality')
+                ? t('formStudy.messages.selectDepartmentFirst')
+                : t('formStudy.placeholders.municipality')
           }
           disabled={!formik.values.department || loadingMunicipalities}
           required

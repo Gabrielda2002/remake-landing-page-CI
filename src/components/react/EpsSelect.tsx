@@ -20,7 +20,7 @@ export const EpsSelect = <T extends { eps: string }>({
   formik
 }: EpsSelectProps<T>) => {
   const { t } = useTranslation();
-  const finalLabel = label || t('form.fields.eps');
+  const finalLabel = label || t('formStudy.fields.eps');
   
   const options: SelectOption[] = EPS_LIST.map(eps => ({
     value: eps.id,
@@ -48,7 +48,7 @@ export const EpsSelect = <T extends { eps: string }>({
         options={options}
         onChange={(value) => formik.setFieldValue(String(name), value)}
         onBlur={() => formik.setFieldTouched(String(name), true)}
-        placeholder={t('form.placeholders.eps')}
+        placeholder={t('formStudy.placeholders.eps')}
         required={required}
         error={getErrorMessage()}
       />
