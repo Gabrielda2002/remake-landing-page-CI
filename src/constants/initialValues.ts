@@ -1,7 +1,7 @@
 
-import type { FormValues } from '@/types/FormValues';
+import type { FormValuesStudy, FormValuesContact } from '@/types/FormValues';
 
-export const initialValues: FormValues = {
+export const initialValuesStudy: FormValuesStudy = {
   names: '',
   lastNames: '',
   identificationType: '',
@@ -14,4 +14,13 @@ export const initialValues: FormValues = {
   age: '',
   nationality: '',
   date: null  
+};
+
+export const initialValuesContact: FormValuesContact = {
+  names: '',
+  lastNames: '',
+  phone: '',
+  email: '',
+  subject: '',
+  description: ''
 };
