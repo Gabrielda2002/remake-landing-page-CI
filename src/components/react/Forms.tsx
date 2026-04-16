@@ -3,14 +3,19 @@ import { FormContact } from "./FormContact";
 import { FormStudy } from "./FormStudy";
 import { useState } from "react";
 
-const formButtons = [
-  { key: 'contact', label: 'Contacto' },
-  { key: 'study',   label: 'Estudio Clinico' },
-];
+interface FormsItmes{
+  key: string,
+  label: string
+}
 
 export const Form: React.FC = () => {
   const [activeForm, setActiveForm] = useState('contact');
   const { t } = useTranslation();
+
+  const formButtons: Array<FormsItmes> = [
+    { key: 'contact', label: t('form.buttons.contact')},
+    { key: 'study',   label: t('form.buttons.study') },
+  ];
 
   return (
     <div className="w-full max-w-6xl mx-auto p-6 font-['Bai_Jamjuree',sans-serif]">
