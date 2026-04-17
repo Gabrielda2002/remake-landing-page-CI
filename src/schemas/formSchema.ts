@@ -1,97 +1,90 @@
-// schemas/formSchema.ts
 import * as Yup from 'yup';
 import { differenceInYears } from 'date-fns';
-import type { FormValuesStudy } from '@/types/FormValues';
 
-// Mensajes centralizados
-const messages = {
-  required: (field: string) => `${field} requerido`,
-  onlyLetters: 'Solo se permiten letras',
-  onlyNumbers: 'Solo se permiten números',
-  minChars: (min: number) => `Mínimo ${min} caracteres`,
-  maxChars: (max: number) => `Máximo ${max} caracteres`,
- 
-  phoneLength: (count: number) => 
-    `El teléfono debe tener exactamente ${count} dígitos`,
-  validEmail: 'Debe ser un correo electrónico válido',
+type TFn = (key: string) => string;
 
-  validAge: (min: number, max: number) => 
-    `La edad debe ser entre ${min} y ${max} años`,
+const LETTERS_REGEX = /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/;
+const NUMBERS_REGEX = /^[0-9]+$/;
+const AGE = { min: 18, max: 125 };
+
+const interpolate = (text: string, vars: Record<string, string | number>) =>
+  Object.entries(vars).reduce((str, [k, v]) => str.replace(`{{${k}}}`, String(v)), text);
+
+const msg = (t: TFn, key: string, vars?: Record<string, string | number>) => {
+  const text = t(key);
+  return vars ? interpolate(text, vars) : text;
 };
 
-// Función para obtener el nombre del campo traducido
-const fieldName = (t: ((key: string) => string) | undefined, key: string, fallback: string) =>
-  t ? t(key) : fallback;
+export const getValidationSchema = (t: TFn) => {
+  const required = (key: string) => msg(t, 'formStudy.validations.required', { field: t(key) });
+  const onlyLetters = msg(t, 'formStudy.validations.onlyLetters');
+  const onlyNumbers = msg(t, 'formStudy.validations.onlyNumbers');
+  const validEmail = msg(t, 'formStudy.validations.validEmail');
+  const minChars = (min: number) => msg(t, 'formStudy.validations.minChars', { min });
+  const maxChars = (max: number) => msg(t, 'formStudy.validations.maxChars', { max });
+  const phoneLength = (count: number) => msg(t, 'formStudy.validations.phoneLength', { count });
+  const validAge= msg(t, 'formStudy.validations.validAge', { min: AGE.min, max: AGE.max });
 
-// Schema único, multilenguaje y simple
-export const getValidationSchema = (t?: (key: string) => string) =>
-  Yup.object<FormValuesStudy>({
+  return Yup.object({
     names: Yup.string()
-      .required(messages.required(fieldName(t, 'formStudy.fields.names', 'Nombre')))
-      .matches(/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/, messages.onlyLetters)
-      .min(2, messages.minChars(2))
-      .max(40, messages.maxChars(40))
-      .transform(value => value?.toUpperCase()),
+      .required(required('formStudy.fields.names'))
+      .matches(LETTERS_REGEX, onlyLetters)
+      .min(2, minChars(2))
+      .max(40, maxChars(40)),
 
     lastNames: Yup.string()
-      .required(messages.required(fieldName(t, 'formStudy.fields.lastNames', 'Apellido')))
-      .matches(/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/, messages.onlyLetters)
-      .min(2, messages.minChars(2))
-      .max(40, messages.maxChars(40))
-      .transform(value => value?.toUpperCase()),
+      .required(required('formStudy.fields.lastNames'))
+      .matches(LETTERS_REGEX, onlyLetters)
+      .min(2, minChars(2))
+      .max(40, maxChars(40)),
 
     identificationType: Yup.string()
-      .required(messages.required(fieldName(t, 'formStudy.fields.identificationType', 'Tipo de identificación'))),
+      .required(required('formStudy.fields.identificationType')),
 
     identificationNumber: Yup.string()
-      .required(messages.required(fieldName(t, 'formStudy.fields.identificationNumber', 'Número de identificación')))
-      .matches(/^[0-9]+$/, messages.onlyNumbers)
-      .min(6, messages.minChars(6))
-      .max(20, messages.maxChars(20)),
+      .required(required('formStudy.fields.identificationNumber'))
+      .matches(NUMBERS_REGEX, onlyNumbers)
+      .min(6, minChars(6))
+      .max(20, maxChars(20)),
 
     department: Yup.string()
-      .required(messages.required(fieldName(t, 'formStudy.fields.department', 'Departamento'))),
+      .required(required('formStudy.fields.department')),
 
     municipality: Yup.string()
-      .required(messages.required(fieldName(t, 'formStudy.fields.municipality', 'Municipio'))),
+      .required(required('formStudy.fields.municipality')),
 
     phone: Yup.string()
-      .required(messages.required(fieldName(t, 'formStudy.fields.phone', 'Teléfono')))
-      .matches(/^[0-9]+$/, messages.onlyNumbers)
-      .length(10, messages.phoneLength(10)),
+      .required(required('formStudy.fields.phone'))
+      .matches(NUMBERS_REGEX, onlyNumbers)
+      .length(10, phoneLength(10)),
 
     email: Yup.string()
-      .required(messages.required(fieldName(t, 'formStudy.fields.email', 'Correo')))
-      .email(messages.validEmail),
+      .required(required('formStudy.fields.email'))
+      .email(validEmail),
 
     eps: Yup.string()
-      .required(messages.required(fieldName(t, 'formStudy.fields.eps', 'EPS'))),
+      .required(required('formStudy.fields.eps')),
 
     age: Yup.string()
-      .required(messages.required(fieldName(t, 'formStudy.fields.age', 'Edad')))
-      .matches(/^[0-9]+$/, messages.onlyNumbers)
-      .test('edad-valida', messages.validAge(18, 125), value => {
+      .required(required('formStudy.fields.age'))
+      .matches(NUMBERS_REGEX, onlyNumbers)
+      .test('valid-age-range', validAge, value => {
         if (!value) return false;
         const age = parseInt(value, 10);
-        return age >= 18 && age <= 125;
+        return age >= AGE.min && age <= AGE.max;
       }),
 
     nationality: Yup.string()
-      .required(messages.required(fieldName(t, 'formStudy.fields.nationality', 'Nacionalidad'))),
+      .required(required('formStudy.fields.nationality')),
 
     date: Yup.date()
-      .required(messages.required(fieldName(t, 'formStudy.fields.date', 'Fecha')))
-      .test('edad-valida', messages.validAge(18, 125), function(value) {
+      .required(required('formStudy.fields.date'))
+      .test('valid-birthdate', validAge, value => {
         if (!value) return false;
-        const today = new Date();
-        const birthDate = new Date(value);
-        const age = differenceInYears(today, birthDate);
-        return age >= 18 && age <= 125;
+        return differenceInYears(new Date(), new Date(value)) >= AGE.min;
       }),
 
     subject: Yup.string()
-      .required(messages.required(fieldName(t, 'formContact.fields.subject', 'Asunto')))
+      .required(required('formContact.fields.subject')),
   });
-
-// Para retrocompatibilidad, exporta el schema por defecto en español
-export const validationSchema = getValidationSchema();
+};
