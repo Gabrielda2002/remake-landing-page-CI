@@ -15,8 +15,11 @@ import { Image } from 'astro:assets';
       <summary aria-label="Abrir menú" title="Abrir menú">
         <Image  
           src={menuWeb} 
-          alt="Abrir menú" class="w-10 h-10 object-contain" 
-          />
+          alt="Abrir menú"
+          width={45}
+          height={45}
+          class="object-contain" 
+        />
       </summary>
       <div class="nav-mobile-dropdown">
         <Menu />
