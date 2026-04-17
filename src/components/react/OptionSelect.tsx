@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import { SelectArrow } from '../ui/SelectArrow';
 import { SelectDropdown } from '../ui/SelectDropdown';
@@ -24,6 +24,8 @@ export const SelectField: React.FC<SelectFieldProps> = ({
   formik
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const[highlightedIndex, setHighlightedIndex] = useState(-1);
+  const dropdownRef = useRef<HTMLDivElement>(null); 
   
   const error = formik.touched[name] && formik.errors[name]
     ? String(formik.errors[name])
@@ -61,15 +63,17 @@ export const SelectField: React.FC<SelectFieldProps> = ({
 
         <SelectDropdown
           isOpen={isOpen}
-          options={options}
           filteredOptions={options}
           value={formik.values[name]}
+          highlightedIndex={highlightedIndex}
+          onHighlightChange={setHighlightedIndex}
           onSelectOption={(value) => {
             formik.setFieldValue(name, value);
             setIsOpen(false);
           }}
           onClose={() => setIsOpen(false)}
           id={id}
+          dropdownRef={dropdownRef}
         />
       </div>
 
