@@ -1,65 +1,131 @@
 ---
 import Title from '../ui/Title.astro';
 
-export interface InfoInstitute{
+export interface InfoItem {
   year: string;
   description: string;
-  position: 'right' | 'left';
-  i18nKeyDescription?:  string
+  i18nKeyDescription?: string;
 }
 
-interface Props{
+interface Props {
   title?: string;
-  i18nKeyTitle: string
-  information: Array<InfoInstitute>;
+  i18nKeyTitle: string;
+  information: InfoItem[];
+  direction?: 'vertical' | 'horizontal';
 }
 
-const { title, i18nKeyTitle, information} = Astro.props as Props;
+const { title, i18nKeyTitle, information, direction = 'horizontal' } = Astro.props;
 ---
 
-<div class="container max-w-6xl mx-auto px-7 font-['Bai_Jamjuree',sans-serif] mt-20 mb-20">
-  <Title title={title} i18nKey={i18nKeyTitle}/>
-  <div class="relative mt-10">
-    <span
-      class="absolute inset-y-0 left-4 z-0 w-0.5 bg-[rgb(175,175,177)] md:left-1/2 md:-translate-x-1/2"
-      aria-hidden="true"
-    ></span>
+<div class="container max-w-6xl mx-auto font-['Bai_Jamjuree',sans-serif] my-10">
+  <Title title={title} i18nKey={i18nKeyTitle} />
 
-    <div class="space-y-4">
-      {
-        information.map((item) => {
-          const isLeft = item.position === 'left';
+  {direction === 'vertical' ? (
 
+    <div class="relative mt-10">
+      <span
+        class="absolute inset-y-0 left-4 w-0.5 bg-[rgb(175,175,177)] md:left-1/2 md:-translate-x-1/2"
+        aria-hidden="true"
+      />
+      <div class="space-y-4">
+        {information.map((item, index) => {
+          const isLeft = index % 2 === 0;
           return (
-            <article
-              class="relative pl-12 md:pl-0"
-            >
+            <article class="relative pl-12 md:pl-0">
               <span
-                class="absolute top-1 left-4 z-10 flex h-5 w-5 -translate-x-1/2 items-center justify-center rounded-full bg-[rgb(49,64,109)] text-[11px] font-bold leading-none text-white ring-4 ring-white md:left-1/2"
+                class="absolute top-1 left-4 z-10 flex h-5 w-5 -translate-x-1/2 items-center justify-center rounded-full bg-[rgb(49,64,109)] text-[11px] font-bold text-white ring-4 ring-white md:left-1/2"
                 aria-hidden="true"
-              >
-                ✓
-              </span>
-
-              <div
-                class={`wrap-break-word md:w-1/2 ${
-                  isLeft
-                    ? 'md:pr-8 md:mr-auto md:text-right'
-                    : 'md:pl-8 md:ml-auto md:text-left'
-                }`}
-              >
+              >✓</span>
+              <div class={`wrapbreak-words md:w-1/2 ${isLeft ? 'md:pr-8 md:mr-auto md:text-right' : 'md:pl-8 md:ml-auto md:text-left'}`}>
                 <p class="text-[rgb(0,179,160)] leading-none font-bold">{item.year}</p>
-                <p data-i18n={item.i18nKeyDescription}
-                  class="text-[rgb(86,86,88)] leading-relaxed">
-                    {item.description}
+                <p data-i18n={item.i18nKeyDescription} class="text-[rgb(86,86,88)] leading-relaxed">
+                  {item.description}
                 </p>
               </div>
             </article>
           );
-        })
-      }
+        })}
+      </div>
     </div>
-  </div>
 
+  ) : (
 
+    <div class="relative mt-10">
+
+      {/* Móvil: línea vertical izquierda (igual que vertical) */}
+      <span
+        class="absolute inset-y-0 left-4 w-0.5 bg-[rgb(175,175,177)] md:hidden"
+        aria-hidden="true"
+      />
+
+      {/* Desktop: línea horizontal centrada */}
+      <span
+        class="hidden md:block absolute top-1/2 left-4 right-0 h-0.5 -translate-y-1/2 bg-[rgb(175,175,177)]"
+        aria-hidden="true"
+      />
+
+      {/* Móvil: lista vertical apilada */}
+      <div class="flex flex-col gap-4 md:hidden">
+        {information.map((item) => (
+          <article class="relative pl-12">
+            <span
+              class="absolute top-1 left-4 z-10 flex h-5 w-5 -translate-x-1/2 items-center justify-center rounded-full bg-[rgb(49,64,109)] text-[11px] font-bold text-white ring-4 ring-white"
+              aria-hidden="true"
+            >✓</span>
+            <p class="text-[rgb(0,179,160)] leading-none font-bold text-sm">{item.year}</p>
+            <p data-i18n={item.i18nKeyDescription} class="text-[rgb(86,86,88)] leading-relaxed text-sm mt-0.5">
+              {item.description}
+            </p>
+          </article>
+        ))}
+      </div>
+
+      {/* Desktop: línea de tiempo horizontal */}
+      <div class="hidden md:flex relative" style="min-height: 280px;">
+
+        {/* Línea horizontal — se alinea con el centro exacto donde están los puntos */}
+        <span
+          class="absolute left-0 right-0 h-0.5 top-1/2 -translate-y-1/2 bg-[rgb(175,175,177)]"
+          aria-hidden="true"
+        />
+
+        {information.map((item, index) => {
+          const isTop = index % 2 === 0;
+          return (
+            <div class="relative z-10 flex flex-1 flex-col items-center">
+
+              {/* Área superior: muestra texto si isTop, vacía si no */}
+              <div class="flex-1 flex flex-col justify-end pb-1 w-full px-2 text-center">
+                {isTop && (
+                  <>
+                    <p class="text-[rgb(0,179,160)] font-bold text-sm leading-none">{item.year}</p>
+                    <p data-i18n={item.i18nKeyDescription} class="text-[rgb(86,86,88)] text-xs leading-relaxed mt-1">
+                      {item.description}
+                    </p>
+                  </>
+                )}
+              </div>
+
+              <span
+                class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[rgb(49,64,109)] text-[11px] font-bold text-white ring-4 ring-white"
+                aria-hidden="true"
+              >✓</span>
+
+              {/* Área inferior: muestra texto si !isTop, vacía si no */}
+              <div class="flex-1 flex flex-col justify-start pt-1 w-full px-2 text-center">
+                {!isTop && (
+                  <>
+                    <p class="text-[rgb(0,179,160)] font-bold text-sm leading-none">{item.year}</p>
+                    <p data-i18n={item.i18nKeyDescription} class="text-[rgb(86,86,88)] text-xs leading-relaxed mt-1">
+                      {item.description}
+                    </p>
+                  </>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  )}
 </div>
