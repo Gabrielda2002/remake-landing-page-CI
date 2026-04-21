@@ -1,4 +1,5 @@
 ---
+import Institute from '../institute/Institute.astro';
 import Title from '../ui/Title.astro';
 
 interface ColorParagraph {
@@ -40,6 +41,9 @@ const hasYears = Boolean(yearsValue);
       {paragraph}
     </p>
   </div>
+
+    <Institute/>
+
 
   <h5 
   data-i18n="text.subtitle"
