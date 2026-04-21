@@ -34,13 +34,13 @@ export const translations = {
       title: "SOMOS",
       nordvital: { 
         subtitle: "NORDVITAL IPS SAS", 
-        paragraph: "Transformamos la investigación clínica en avances reales. Con un equipo experto, tecnología de vanguardia y rigor científico, convertimos el conocimiento en tratamientos que mejoran vidas." },
+        paragraph: "Somos una Institución Prestadora de Servicios de Salud (IPS) que ofrece atención de baja y mediana complejidad, comprometida con la calidad e innovación. Contamos con 11 sedes distribuidas estratégicamente en los departamentos de Norte de Santander, Cundinamarca y Amazonas, lo que nos permite brindar una cobertura efectiva y oportuna en diferentes regiones del país." },
       commitment: { 
         subtitle: "NUESTRO COMPROMISO",
-        paragraph: "En NORDVITAL IPS SAS ofrecemos servicios de salud ambulatorios de baja y mediana complejidad a nivel nacional. Estamos comprometidos con la salud de nuestros usuarios, con un enfoque en la gestión del riesgo, altos estándares de calidad y seguridad en la atención. Contamos con tecnología de punta y un talento humano idóneo que nos distingue."},
+        paragraph: "En nuestra búsqueda constante por la innovación y la contribución efectiva al avance de la salud, nuestra institución ha obtenido la certificación de cumplimiento de las Buenas Prácticas Clínicas en la ciudad de Cúcuta. Este importante logro nos faculta para continuar aportando a la ciencia a través de la realización de investigaciones con medicamentos en seres humanos."},
       vision: {
         subtitle: "VISIÓN",
-        paragraph: "Posicionar a NORDVITAL IPS SAS en el 2029 como una organización líder en innovación, reconocida por su excelencia operativa, humanizada y la calidad de sus servicios."
+        paragraph: "Actualmente, desarrollamos estudios clínicos en diversas especialidades, entre ellas: fisioterapia, cardiología, dermatología, endocrinología, medicina general, medicina interna, neumología, ortopedia, psicología y reumatología."
       },
       text: "Lo hacemos porque creemos en una medicina que evoluciona con propósito. Investigamos para anticiparnos a los desafíos de la salud y ofrecer soluciones reales que mejoren la vida de las personas, <strong>hoy y mañana.</strong>"
     },
@@ -220,13 +220,13 @@ export const translations = {
       title: "WE ARE",
       nordvital: {
         subtitle: "NORDVITAL IPS SAS",
-        paragraph: "We transform clinical research into real progress. With an expert team, cutting-edge technology, and scientific rigor, we turn knowledge into treatments that improve lives."},
+        paragraph: "We are a Health Services Provider (IPS) that offers low- and medium-complexity care, committed to quality and innovation. We have 11 facilities strategically located in the departments of Norte de Santander, Cundinamarca, and Amazonas, which allows us to provide effective and timely care in different regions of the country."},
       commitment: { 
         subtitle: "OUR COMMITMENT",
-        paragraph: "At NORDVITAL IPS SAS, we offer outpatient healthcare services of low and medium complexity nationwide. We are committed to the health of our users, focusing on risk management, high standards of quality, and safe care. We are distinguished by our state-of-the-art technology and qualified human talent."},
+        paragraph: "In our ongoing pursuit of innovation and our commitment to advancing healthcare, our institution has obtained certification of compliance with Good Clinical Practice in the city of Cúcuta. This significant achievement enables us to continue contributing to science through the conduct of clinical trials involving human subjects."},
       vision: { 
         subtitle: "OUR VISION",
-        paragraph: "To position NORDVITAL IPS SAS by 2029 as a leading organization in innovation, recognized for its operational excellence, human-centered care, and the quality of its services."
+        paragraph: "We are currently conducting clinical trials in a variety of specialties, including physical therapy, cardiology, dermatology, endocrinology, general medicine, internal medicine, pulmonology, orthopedics, psychology, and rheumatology."
       },
       text: "We do it because we believe in a purpose-driven evolution of medicine. We conduct research to anticipate healthcare challenges and provide real solutions that improve people's lives, <strong>today and tomorrow.</strong>"
     },
