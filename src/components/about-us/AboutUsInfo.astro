@@ -9,13 +9,13 @@ export interface Props {
   information: Array<PropsParagraph>,
   banner: ImageMetadata,
   text: string,
-  diagram: ImageMetadata
+  diagram?: ImageMetadata
 }
 
 const {title, information, banner, text, diagram}= Astro.props;
 ---
 
-<div class="container max-w-6xl mx-auto px-7 font-['Bai_Jamjuree',sans-serif] mt-20 mb-40">
+<div class="container max-w-6xl mx-auto px-7 font-['Bai_Jamjuree',sans-serif] mt-20 mb-10">
   <Title title={title} i18nKey="aboutUs.title" />
 
   <div class="mt-8 grid grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-10">
@@ -38,11 +38,11 @@ const {title, information, banner, text, diagram}= Astro.props;
   />
 </div>
     <div class="w-full flex justify-center lg:col-span-2 pt-10">
-      <Image
+      {diagram && <Image
         src={diagram} 
         alt="diagrama" 
         class="max-w-full h-auto w-175"
-      />
+      />}
     </div>
   </div>
 </div>
