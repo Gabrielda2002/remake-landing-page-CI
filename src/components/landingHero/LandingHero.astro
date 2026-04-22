@@ -5,7 +5,6 @@ import banerFondo from '@banner/firstbannerbg.webp'
 import invimalogo from '@logo/invimalogo.webp'
 import nordvitalcolor from '@logo/logonordvitalcolor.webp'
 import ScrollDownArrow from '../ui/ScrollDownArrow.astro'
-import Stamp from '../ui/Stamp.astro'
 import { Image } from 'astro:assets'
 
 interface Props {
@@ -17,44 +16,124 @@ interface Props {
 }
 
 const {
-      backgroundImage = banerFondo,
-      logo = logoWeb,
-      title="Innovamos con ciencia,", 
-      subtitle= "Transformamos con conocimiento.",
-      subtitle2= "Aplicando rigor, estrategia y tecnología en cada desafío."
-    }:Props = Astro.props;
+  backgroundImage = banerFondo,
+  logo = logoWeb,
+  title = "Innovamos con ciencia,",
+  subtitle = "Transformamos con conocimiento.",
+  subtitle2 = "Aplicando rigor, estrategia y tecnología en cada desafío."
+}: Props = Astro.props;
 ---
 
-<div
-  class="relative overflow-hidden w-full min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center font-['Bai_Jamjuree',sans-serif]"
-  style={`background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0.75) 65%, rgba(255, 255, 255, 0.88) 100%), url(${backgroundImage.src});`}
->
-  
-  <div class="relative z-10 w-full max-w-360 px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
-    <div class="mt-20 mb-5 w-full max-w-20">
-      <Image
-        src={logo}
-        alt="logo nordvital" class="w-full h-auto object-contain"
-      />
+<section class="hero relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden font-['Bai_Jamjuree',sans-serif]">
+
+  <!-- ─── Panel izquierdo: contenido ───────────────────── -->
+  <div class="hero__content relative z-10 flex flex-col justify-center
+              w-full lg:w-[52%]
+              min-h-[55vh] lg:min-h-screen
+              px-8 sm:px-14 lg:px-16 xl:px-24
+              pt-28 pb-16 lg:pt-0 lg:pb-0
+              bg-white">
+
+    <!-- Franja accent superior -->
+    <div class="absolute top-0 inset-x-0 h-0.75 bg-linear-to-r from-[rgb(0,179,160)] via-[rgb(0,121,196)] to-transparent"></div>
+
+    <div class="relative z-10 max-w-120">
+
+      <!-- Logo -->
+      <div class="hero__item mb-8 w-18">
+        <Image src={logo} alt="Logo Nordvital" class="w-full h-auto object-contain" />
+      </div>
+
+      <!-- Titular -->
+      <div class="hero__item">
+        <h1
+          data-i18n="landing.title"
+          class="text-4xl sm:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.25rem)] font-bold text-[#31406d] leading-[1.1] tracking-tight"
+        >
+          {title}
+        </h1>
+        <h2
+          data-i18n="landing.subtitle"
+          class="mt-3 text-xl sm:text-2xl lg:text-[clamp(1.2rem,2vw,1.6rem)] font-semibold text-[rgb(0,179,160)] leading-snug"
+        >
+          {subtitle}
+        </h2>
+        <p
+          data-i18n="landing.text"
+          class="mt-3 text-base sm:text-[1.05rem] text-slate-500 leading-relaxed"
+        >
+          {subtitle2}
+        </p>
+      </div>
+
+      <!-- Divisor accent -->
+      <div class="hero__item mt-8 h-0.5 w-12 rounded-full bg-linear-to-r from-[rgb(0,179,160)] to-[rgb(0,121,196)]"></div>
+
+      <!-- Logos aliados — sin caja -->
+      <div class="hero__item mt-6 flex items-center flex-wrap gap-x-6 gap-y-4">
+        <Image src={nordvitalcolor} alt="Logo Nordvital" class="h-9 w-auto object-contain" />
+        <span class="h-6 w-px bg-slate-200" aria-hidden="true"></span>
+        <Image src={caimedlogo} alt="Logo Caimed" class="h-9 w-auto object-contain" />
+        <span class="h-6 w-px bg-slate-200" aria-hidden="true"></span>
+        <Image src={invimalogo} alt="Logo Invima" class="h-9 w-auto object-contain" />
+      </div>
+
     </div>
 
-    <div class="w-full max-w-[min(100%,70rem)] text-[rgb(255,255,255)] bg-[rgba(14,27,63,0.6)] px-[clamp(1rem,6vw,5.5rem)] py-[clamp(.85rem,1.8vw,1.25rem)] rounded-2xl wrap-break-word">
-      <h1 data-i18n="landing.title" class="text-[clamp(1.85rem,5.2vw,3rem)] leading-tight font-bold">{title}</h1>
-      <h4 data-i18n="landing.subtitle" class="text-[clamp(1.1rem,3vw,1.5rem)] leading-snug font-medium mt-1">{subtitle}</h4>
-      <h6 data-i18n="landing.text" class="text-[clamp(1rem,2.25vw,1.25rem)] leading-relaxed mt-1">{subtitle2}</h6>
-    </div>
-
-    <div class="pt-5 flex flex-wrap items-center justify-center gap-3 sm:gap-4 w-full max-w-120">
-      <Stamp image={nordvitalcolor} alt='Logo norvital'/>
-      <Stamp image={caimedlogo} alt='Logo caimed'/>
-      <Stamp image={invimalogo} alt='Logo invima'/> 
-    </div>
-
-    <div class="mt-10">
-      <ScrollDownArrow />
-    </div>
   </div>
-</div>
 
+  <!-- ─── Panel derecho: imagen ─────────────────────────── -->
+  <div class="hero__image relative w-full lg:w-[48%] h-[40vh] lg:min-h-screen overflow-hidden">
+    <Image
+      src={backgroundImage}
+      alt="Centro de Investigación Nordvital"
+      class="absolute inset-0 w-full h-full object-cover object-center"
+    />
+    <!-- Fundido inferior en móvil -->si
+    <div class="lg:hidden absolute bottom-0 inset-x-0 h-24 bg-linear-to-t from-white to-transparent"></div>
+  </div>
 
+</section>
+
+<style>
+  /* Corte diagonal en el panel de imagen — solo desktop */
+  @media (min-width: 1024px) {
+    .hero__image {
+      clip-path: polygon(7% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+  }
+
+  /* ── Animaciones de entrada ─────────────── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes imgReveal {
+    from { opacity: 0; transform: scale(1.06); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .hero__item {
+    opacity: 0;
+    animation: fadeSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .hero__item:nth-child(1) { animation-delay: 0.08s; }
+  .hero__item:nth-child(2) { animation-delay: 0.22s; }
+  .hero__item:nth-child(3) { animation-delay: 0.38s; }
+  .hero__item:nth-child(4) { animation-delay: 0.52s; }
+
+  .hero__image {
+    animation: imgReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  /* Respeta preferencia de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .hero__item,
+    .hero__image {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>
 
