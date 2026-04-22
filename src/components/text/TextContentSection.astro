@@ -52,13 +52,14 @@ const hasYears = Boolean(yearsValue);
   </h5>
 
   <div class="mt-5 space-y-3">
-    {
-      colorParagraphs.map((item) => (
-        <p class="text-[rgb(86,86,88)] leading-relaxed text-base md:text-lg">
-          <span data-i18n={item.i18nKeyAccent} class="text-[rgb(0,179,160)]">{item.accent}</span>{" "}
-          <span data-i18n={item.i18nKeyContent}>{item.content}</span>
-        </p>
-      ))
-    }
-  </div>
+    <ul class="mt-5 space-y-3 list-none">
+      {
+        colorParagraphs.map((item) => (
+          <li class="text-[rgb(86,86,88)] leading-relaxed text-base md:text-lg">
+            <span data-i18n={item.i18nKeyAccent} class="text-[rgb(0,179,160)]">{item.accent}</span>{" "}
+            <span data-i18n={item.i18nKeyContent}>{item.content}</span>
+          </li>
+        ))
+      }
+    </ul>
 </section>
