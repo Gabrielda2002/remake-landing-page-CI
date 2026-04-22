@@ -1,5 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
-import { useFormik } from 'formik';
+import React from 'react';
 import { LocationSelectors } from './LocationSelectors';
 import FormInput from './FormInput';
 import { EpsSelect } from './EpsSelect';
@@ -11,15 +10,18 @@ import { FormDateInput } from './FormDateInput';
 import { useTranslation } from '@/hooks/useTranslation';
 import { SubmitButton } from '../ui/Submitbutton';
 import { useFormHandler } from '@/hooks/useFormHandler';
+import { useTermsValidation } from '@/hooks/useTermsValidation';
+import { TermsCheckbox } from '../ui/TermsCheckbox';
 
 export const FormStudy: React.FC = () => {
   const { t } = useTranslation();
   const formik = useFormHandler(initialValuesStudy);
+  const { termsProps, accepted, handleSubmit } = useTermsValidation(formik);
 
   return (
     <div>
       <p className="text-[rgb(86,86,88)] text[18px] text-left mx-4">{t('formStudy.subtitle')}</p>
-      <form className="grid grid-cols-1 md:grid-cols-2 gap-4 shadow-lg rounded-lg p-4 md:p-6 bg-white text-[rgb(86,86,88)]" onSubmit={formik.handleSubmit}>
+      <form className="grid grid-cols-1 md:grid-cols-2 gap-4 shadow-lg rounded-lg p-4 md:p-6 bg-white text-[rgb(86,86,88)]" onSubmit={handleSubmit}>
         {/*Nombres  */}
         <FormInput
           type="text"
@@ -126,9 +128,13 @@ export const FormStudy: React.FC = () => {
           required
           formik={formik}
         />
+
+        {/*Validacion*/}
+        <TermsCheckbox {...termsProps} />
         
+        {/*Button*/}
         <div className="w-full flex justify-center mt-4 md:col-span-2">
-          <SubmitButton formik={formik}/>
+          <SubmitButton formik={formik} extraDisabled={!accepted} />
         </div>
 
       </form>
