@@ -180,6 +180,12 @@ export const translations = {
       }
     },
 
+    //Check box
+    checkbox:{
+      accept: "Acepto los ",
+      messague: "terminos y condiciones",
+    },
+
     //footer
     footer: {
       title: "Contacto",
@@ -366,6 +372,12 @@ export const translations = {
       }
     },
 
+    //Check box
+    checkbox:{
+      accept: "Agree to the ",
+      messague: "terms and conditions",
+    },
+    
     //footer
     footer: {
       title: "Contact Us",
