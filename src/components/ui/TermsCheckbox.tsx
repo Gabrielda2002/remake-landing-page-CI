@@ -1,6 +1,6 @@
 import { useTranslation } from '@/hooks/useTranslation';
 import { useFloatingModal } from '@/hooks/useFloatingModal'; 
-import { termsContent } from '@/constants/termsContent';
+import { translationsTermsContent } from '@/data/translationsTermsContent';
 
 interface TermsCheckboxProps {
   checked: boolean;
@@ -10,12 +10,12 @@ interface TermsCheckboxProps {
 
 export const TermsCheckbox: React.FC<TermsCheckboxProps> = ({ checked, onChange, error }) => {
 
-  const { t } = useTranslation();
+  const { t } = useTranslation(translationsTermsContent);
   const { open, modal } = useFloatingModal();
 
 const handleOpenTerms = (e: React.MouseEvent) => {
   e.preventDefault();
-  open(termsContent);
+  open({ title: t('title'), text: t('text') });
 };
 
   return (
