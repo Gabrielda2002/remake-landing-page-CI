@@ -7,8 +7,10 @@ import menuWeb from '@/assets/menu/menu.webp';
 import Logo from '../ui/Logo.astro';
 import '@styles/navbar.css';
 import { Image } from 'astro:assets';
+import { ModalPortal } from './react/ModalPortal';
 ---
 
+<ModalPortal client:load />
 <header class="navbar-header font-['Bai_Jamjuree',sans-serif]">
   <div class="header-actions flex items-center justify-between rounded-4xl p-3 bg-[rgb(255,255,255)] shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
     <details class="nav-mobile-menu">
