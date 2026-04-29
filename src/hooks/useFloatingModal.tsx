@@ -2,10 +2,17 @@ import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 
 export interface ModalOptions {
-  title?: string;
-  text?: string;
-  children?: ReactNode;
+  title?: string,
+  text?: string,
+  children?: ReactNode,
+  size?: "default" | "large" | "xlarge"
 }
+
+const sizeClasses: Record<NonNullable<ModalOptions["size"]>, string> = {
+  default: "w-[min(60vw,400px)] min-w-125",
+  large:   "w-[min(75vw,600px)] min-w-150",
+  xlarge:  "w-[min(90vw,900px)] min-w-175",
+};
 
 export function useFloatingModal() {
   const [content, setContent] = useState<ModalOptions | null>(null);
@@ -26,7 +33,7 @@ export function useFloatingModal() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-xl shadow-2xl w-[min(60vw,400px)] min-w-125 max-h-[80vh] flex flex-col"
+        className={`bg-white rounded-xl shadow-2xl max-h-[200vh] flex flex-col ${sizeClasses[content.size ?? "default"]}`}
       >
         <div className="flex justify-between items-center px-5 py-4 border-b border-gray-200">
           <span className="font-semibold">{content.title}</span>
