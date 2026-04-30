@@ -4,12 +4,17 @@ export const translations = {
   es: {
     //header
     nav: {
-      inicio: "Inicio",
-      quienesSomos: "Quienes Somos",
-      trayectoria: "Trayectoria",
-      instituto: "Instituto de Investigación",
-      servicios: "Servicios",
-      contactenos: "Contáctenos", 
+      home: "Inicio",
+      us: "Nosotros",
+      aboutUs: "Quienes Somos",
+      history: "Trayectoria",
+      services: "Servicios",
+      blog: "Nuestro Blog",
+      ethicsCommittee: "Comité Ético",
+      relationship : "Relacionamiento",
+      resources: "Recursos",
+      questions: "Preguntas Frecuentes", 
+      contact: "Contáctenos", 
     },
     social: {
       facebook: "Seleccione para ir a la pagina de Facebook",
@@ -196,13 +201,20 @@ export const translations = {
   en: {
     //header
     nav: {
-      inicio: "Home",
-      quienesSomos: "About Us",
-      trayectoria: "History",
-      instituto:"Research Institute",
-      servicios: "Services",
-      contactenos: "Contact Us",
+      home: "Home",
+      us: "Us",
+      aboutUs: "About Us ",
+      history: "History",
+      services: "Services",
+      blog: "Our blog",
+      ethicsCommittee: "Ethics Committee",
+      relationship: "Relationships",
+      resources: "Resources",
+      questions: "Common questions",
+      contact: "Contact Us",
     },
+
+    //Redes
     social: {
       facebook: "Select to go Facebook page",
       instagram: "Select to go Instagram page",
