@@ -33,7 +33,7 @@ export function useFloatingModal() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`bg-white rounded-xl shadow-2xl max-h-[200vh] flex flex-col ${sizeClasses[content.size ?? "default"]}`}
+        className={`bg-white rounded-xl shadow-2xl max-h-[80vh] flex flex-col ${sizeClasses[content.size ?? "default"]}`}
       >
         <div className="flex justify-between items-center px-5 py-4 border-b border-gray-200">
           <span className="font-semibold">{content.title}</span>
