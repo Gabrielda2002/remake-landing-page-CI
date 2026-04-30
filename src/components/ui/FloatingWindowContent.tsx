@@ -1,6 +1,6 @@
 interface InputProps {
   title?: string;
-  information?: Array<string>;
+  information?: Array<string> | string;
   text?: string;
   image?: string;
   titleWebsite?: string;
@@ -24,7 +24,7 @@ export function FloatingWindowContent(props: InputProps) {
           </h6>
         )}
 
-        {props.information && props.information.length > 0 && (
+        {props.information && Array.isArray(props.information) && props.information.length > 0 && (
           <ul className="list-inside space-y-1 mb-3 text-[12px]">
             {props.information.map((item, index) => (
               <li className="p-1" key={index}>{item}</li>
