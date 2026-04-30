@@ -9,13 +9,15 @@ const WEBSITE = "https://metricsmed.com/";
 
 export function Metricsmed(){
   const { t } = useTranslation(translationFloatingContent);
+  const TITLE_WEBSIDE = `${t("titleWebside")} ${TITLE}`;
+
   
   return(
     <FloatingWindowContent
       image={metricsmed.src}
       title={TITLE}
       information={t("metricsmed.info")}
-      titleWebsite={t("metricsmed.titleWebside")}
+      titleWebsite={TITLE_WEBSIDE}
       website={WEBSITE}
     />
   )
