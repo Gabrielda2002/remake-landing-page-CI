@@ -1,8 +1,17 @@
 ---
+export interface SubMenuItem {
+  href: string;
+  label: string;
+  i18nKey?: string;
+  modalId?: string;
+  isAnchor?: boolean;
+}
 export interface MenuItem {
   href: string;
   label: string;
-  i18nKey?: string
+  i18nKey?: string;
+  children?: SubMenuItem[];
+  modalId?: string;
 }
 
 interface Props {
@@ -10,34 +19,134 @@ interface Props {
 }
 
 const defaultItems: Array<MenuItem> = [
-  { href: "#inicio", label: "Inicio" },
-  { href: "#quienesSomos",label: "Quienes Somos" },
-  { href: "#trayectoria", label: "Trayectoria" },
-  { href: "#instituto", label: "Instituto de Investigación"},
-  { href: "#servicios", label: "Servicios" },
-  { href: "#contactenos", label: "Contáctenos"},
+  { href: "#inicio", i18nKey: "home", label: "Inicio" },
+
+  {
+    href: "#",
+    label: "Nosotros",
+    i18nKey: "us",
+    children: [
+      { href: "#quienesSomos", label: "Quiénes Somos", i18nKey: "aboutUs", isAnchor: true },
+      { href: "#trayectoria", label: "Trayectoria", i18nKey: "history", isAnchor: true },
+      { href: "#servicios", label: "Servicios", i18nKey:"services", isAnchor: true },
+      { href: "#", label: "Nuestro Blog", i18nKey:"blog"}
+    ]
+  },
+
+  { href: "#", label: "Comité Ético", i18nKey:"ethicsCommittee", modalId: "ethics-committee" },
+  
+  { 
+    href: "#", 
+    label: "Relacionamiento",
+    i18nKey: "relationship",
+    children: [
+      {href: "https://www.nordvitalips.com/", label: "NORDVITAL"},
+      {href: "#", label: "METRICSMED", modalId: "metricsmed"},
+      {href: "#", label: "AVANZAR", modalId: "avanzar"}
+    ] 
+  },
+  
+  {
+    href: "#",
+    label: "Recursos",
+    i18nKey: "resources",
+    children: [
+      { href: "#faq", i18nKey:"questions", label: "Preguntas Frecuentes"},
+    ],
+  },
+
+  { href: "#contactenos", i18nKey: "contact", label: "Contáctenos" },
 ];
 
 const { items = defaultItems } = Astro.props;
 ---
 
 <div class=menu-container>
-  <nav class="menu flex justify-center items-center space-x-1 lg:space-x-2 text-sm font-bold tracking-wide">
+  <nav class="menu flex justify-center items-center space-x-1 lg:space-x-1 text-[12px] font-bold tracking-wide">
     {items.map((item) => (
-      <a 
-        href={item.href}
-        data-section={item.href.replace('#', '')}
-        data-i18n={`nav.${item.href.replace('#', '')}`}
-        class="text-[rgb(0,121,196)] hover:bg-[rgb(219,218,218)] px-1.5 py-1.5 rounded transition whitespace-nowrap menu-link"
-        aria-current={item.href === "#inicio" ? "page" : undefined}
-      >
-        {item.label}
-      </a>
+      <div class={item.children ? "relative" : ""}>
+        <a 
+          href={item.href}
+          data-i18n={item.i18nKey ? `nav.${item.i18nKey}` : undefined}
+          class="text-[rgb(0,121,196)] hover:bg-[rgb(219,218,218)] px-1.5 py-1.5 rounded transition whitespace-nowrap menu-link"
+          aria-current={item.href === "#inicio" ? "page" : undefined}
+
+          data-dropdown-trigger={item.children ? "true" : undefined}
+          data-modal-id={item.modalId}
+        >
+          {item.label}
+        </a>
+        {item.children && (
+          <div class="dropdown-menu absolute top-full left-0 hidden flex-col bg-white shadow-2xs rounded min-w-40] z-50 py-2">
+            {item.children.map((child) =>
+              <a
+                href={child.href}
+                target={child.modalId || child.isAnchor ? undefined : "_blank"}
+                data-i18n={child.i18nKey ? `nav.${child.i18nKey}` : undefined}
+                data-modal-id={child.modalId}
+                class="text-[rgb(0,121,196)] hover:bg-[rgb(219,218,218)] px-4 py-2 whitespace-nowrap transition block"
+              >
+                {child.label}
+              </a>
+            )}
+          </div>
+        )}
+      </div>
     ))}
   </nav>
 </div>
 
 <script>
-import { initSmoothScroll } from "@/scripts/smoothScroll";
+  import { initSmoothScroll } from "@/scripts/smoothScroll";
   initSmoothScroll();
+
+  // Dropdown toggle on click
+  document.querySelectorAll<HTMLElement>('[data-dropdown-trigger="true"]').forEach((trigger) => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const dropdown = trigger.parentElement?.querySelector<HTMLElement>('.dropdown-menu');
+      if (!dropdown) return;
+      const isOpen = !dropdown.classList.contains('hidden');
+
+      // Cerrar todos los dropdowns abiertos
+      document.querySelectorAll<HTMLElement>('.dropdown-menu').forEach((d) => {
+        d.classList.add('hidden');
+        d.classList.remove('flex');
+      });
+
+      // Abrir el actual si estaba cerrado
+      if (!isOpen) {
+        dropdown.classList.remove('hidden');
+        dropdown.classList.add('flex');
+      }
+    });
+  });
+
+  // Disparar modal al hacer click en ítems con data-modal-id
+  document.querySelectorAll<HTMLElement>('[data-modal-id]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const modalId = el.dataset.modalId;
+      if (!modalId) return;
+      // Cerrar dropdowns abiertos antes de abrir el modal
+      document.querySelectorAll<HTMLElement>('.dropdown-menu').forEach((d) => {
+        d.classList.add('hidden');
+        d.classList.remove('flex');
+      });
+      document.dispatchEvent(
+        new CustomEvent('open-floating-modal', { detail: { modalId } })
+      );
+    });
+  });
+
+  // Cerrar dropdown al hacer click fuera
+  document.addEventListener('click', (e) => {
+    const target = e.target as Node;
+    document.querySelectorAll<HTMLElement>('.dropdown-menu').forEach((dropdown) => {
+      if (!dropdown.parentElement?.contains(target)) {
+        dropdown.classList.add('hidden');
+        dropdown.classList.remove('flex');
+      }
+    });
+  });
 </script>
