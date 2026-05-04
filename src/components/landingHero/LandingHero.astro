@@ -4,13 +4,14 @@ import caimedlogo from '@logo/caimedlogo.webp'
 import banerFondo from '@banner/firstbannerbg.webp'
 import invimalogo from '@logo/invimalogo.webp'
 import nordvitalcolor from '@logo/logonordvitalcolor.webp'
-import ScrollDownArrow from '../ui/ScrollDownArrow.astro'
 import { Image } from 'astro:assets'
 
 interface Props {
   backgroundImage?: ImageMetadata,
   logo?: ImageMetadata
   title?: string,
+  titleHighlight?: string,
+  titleRest?: string,
   subtitle?: string,
   subtitle2?: string
 }
@@ -18,21 +19,24 @@ interface Props {
 const {
   backgroundImage = banerFondo,
   logo = logoWeb,
-  title = "Innovamos con ciencia,",
+  title = "",
+  titleHighlight = "Innovamos",
+  titleRest  = "con ciencia",
   subtitle = "Transformamos con conocimiento.",
   subtitle2 = "Aplicando rigor, estrategia y tecnología en cada desafío."
 }: Props = Astro.props;
 ---
 
-<section class="hero relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden font-['Bai_Jamjuree',sans-serif]">
+<section class="hero relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden font-['Bai_Jamjuree',sans-serif] items-center justify-center">
 
   <!-- ─── Panel izquierdo: contenido ───────────────────── -->
-  <div class="hero__content relative z-10 flex flex-col justify-center
+  <div class="hero__content relative z-10 flex flex-col justify-center items-center
+              mx-auto
               w-full lg:w-[52%]
               min-h-[55vh] lg:min-h-screen
               px-8 sm:px-14 lg:px-16 xl:px-24
               pt-28 pb-16 lg:pt-0 lg:pb-0
-              bg-white">
+            bg-white">
 
     <!-- Franja accent superior -->
     <div class="absolute top-0 inset-x-0 h-0.75 bg-linear-to-r from-[rgb(0,179,160)] via-[rgb(0,121,196)] to-transparent"></div>
@@ -40,18 +44,34 @@ const {
     <div class="relative z-10 max-w-120">
 
       <!-- Logo -->
-      <div class="hero__item mb-8 w-18">
-        <Image src={logo} alt="Logo Nordvital" class="w-full h-auto object-contain" />
+      <div class="hero__item mb-8 flex justify-center w-full">
+        <Image src={logo} alt="Logo Nordvital" class="w-18 h-auto object-contain" />
       </div>
-
+      
       <!-- Titular -->
       <div class="hero__item">
-        <h1
+      <h1
+        class="text-4xl sm:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.25rem)] font-bold text-[#31406d] leading-[1.1] tracking-tight"
+      >
+        <span
+          data-i18n="landing.titleHighlight"
+          class="block text-5xl sm:text-6xl lg:text-[clamp(3.5rem,5vw,5rem)]"
+        >
+          {titleHighlight}
+        </span>
+        <span data-i18n="landing.titleRest">
+          {titleRest}
+        </span>
+      </h1>
+
+      {title &&<h1
           data-i18n="landing.title"
           class="text-4xl sm:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.25rem)] font-bold text-[#31406d] leading-[1.1] tracking-tight"
         >
           {title}
         </h1>
+      }
+      
         <h2
           data-i18n="landing.subtitle"
           class="mt-3 text-xl sm:text-2xl lg:text-[clamp(1.2rem,2vw,1.6rem)] font-semibold text-[rgb(0,179,160)] leading-snug"
@@ -82,16 +102,18 @@ const {
 
   </div>
 
-  <!-- ─── Panel derecho: imagen ─────────────────────────── -->
-  <div class="hero__image relative w-full lg:w-[48%] h-[40vh] lg:min-h-screen overflow-hidden">
-    <Image
-      src={backgroundImage}
-      alt="Centro de Investigación Nordvital"
-      class="absolute inset-0 w-full h-full object-cover object-center"
-    />
-    <!-- Fundido inferior en móvil -->si
-    <div class="lg:hidden absolute bottom-0 inset-x-0 h-24 bg-linear-to-t from-white to-transparent"></div>
-  </div>
+<!-- ─── Panel derecho: imagen ─────────────────────────── -->
+<div class="hero__image relative w-full lg:w-[60%] h-[50vh] sm:h-[85vh] lg:min-h-screen overflow-hidden">
+  <Image
+    src={backgroundImage}
+    alt="Centro de Investigación Nordvital"
+    class="absolute inset-0 w-full h-full object-cover object-top"
+  />
+  <!-- Fundido inferior en móvil -->
+  <div class="lg:hidden absolute bottom-0 inset-x-0 h-10
+    bg-linear-to-t from-white via-white/40 to-transparent">
+  </div> 
+</div>
 
 </section>
 
@@ -135,5 +157,27 @@ const {
       opacity: 1;
     }
   }
+
+  @media (min-width: 1024px) {
+  .hero__image {
+    clip-path: polygon(7% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  /* Degradado blanco → transparente sobre el borde izquierdo del clip */
+  .hero__image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(255, 255, 255, 0.55) 18%,
+      rgba(255, 255, 255, 0.10) 40%,
+      transparent 62%
+    );
+  }
+}
 </style>
 
