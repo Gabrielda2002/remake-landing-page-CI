@@ -1,23 +1,4 @@
-export interface FormValuesStudy {
-  names: string;
-  lastNames: string;
-  identificationType: string;
-  identificationNumber: string;
-  department: string;
-  municipality: string;
-  phone: string;
-  email: string;
-  eps: string;
-  age: string;
-  nationality: string;
-  date: Date | null;
-}
-
-export interface FormValuesContact {
-  names: string,
-  lastNames: string,
-  phone: string,
-  email: string,
-  subject: string,
-  description: string | null
-}
+// Los tipos se infieren directamente de los schemas Zod.
+// Este archivo reexporta para mantener compatibilidad con cualquier importación existente.
+export type { FormValuesStudy } from '@/schemas/formStudySchema';
+export type { FormValuesContact } from '@/schemas/formContactSchema';

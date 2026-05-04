@@ -1,32 +1,37 @@
-// components/LocationSelectors.tsx
 import React, { useState, useEffect } from 'react';
+import { Controller } from 'react-hook-form';
+import type { Control, UseFormSetValue, FieldValues, Path } from 'react-hook-form';
 import { SelectSearch } from '@/components/ui/SelectSearch';
 import type { SelectOption } from '@/types/SelectOption';
 import { getDepartments } from '@/services/colombiaApi';
 import { useMunicipalities } from './useMunicipalities';
 import { sortByName } from '@/utils/sorter';
 import type { Department } from '@/types/Location';
-import { useFormik } from 'formik';
 import { useTranslation } from '@/hooks/useTranslation';
 
-interface LocationSelectorsProps<T extends { department: string; municipality: string }> {
-  formik: ReturnType<typeof useFormik<T>>;
+interface LocationSelectorsProps<T extends FieldValues & { department: string; municipality: string }> {
+  control: Control<T>;
+  setValue: UseFormSetValue<T>;
 }
 
-export const LocationSelectors = <T extends { department: string; municipality: string }>({
-  formik
+export const LocationSelectors = <T extends FieldValues & { department: string; municipality: string }>({
+  control,
+  setValue,
 }: LocationSelectorsProps<T>) => {
   const { t } = useTranslation();
   const [departments, setDepartments] = useState<Department[]>([]);
   const [loadingDepartments, setLoadingDepartments] = useState(true);
   const [departmentsError, setDepartmentsError] = useState<string | null>(null);
 
+  // Estado local solo para el fetch de municipios: guarda el id numérico del departamento.
+  // El valor que se registra en RHF es el nombre del departamento (lo que se enviará al backend).
+  const [departmentId, setDepartmentId] = useState<number | null>(null);
+
   useEffect(() => {
     const fetchDepartments = async () => {
       try {
         const data = await getDepartments();
-        const sortedDepartments = sortByName(data);
-        setDepartments(sortedDepartments);
+        setDepartments(sortByName(data));
         setDepartmentsError(null);
       } catch (error) {
         setDepartmentsError('Error al cargar los departamentos');
@@ -40,22 +45,28 @@ export const LocationSelectors = <T extends { department: string; municipality: 
   }, []);
 
   const { municipalities, loading: loadingMunicipalities, error: municipalitiesError } =
-    useMunicipalities(formik.values.department);
+    useMunicipalities(departmentId ?? '');
 
-  const municipalityOptions: SelectOption[] = municipalities.map((mun) => ({
-    value: mun.id,
-    label: mun.name,
-  }));
-
-  React.useEffect(() => {
-    if (formik.values.department && formik.values.municipality) {
-      formik.setFieldValue('municipality', '');
+  // Cuando cambia el departamento, resetea el municipio en RHF
+  useEffect(() => {
+    if (departmentId !== null) {
+      setValue('municipality' as Path<T>, '' as Parameters<UseFormSetValue<T>>[1], { shouldValidate: false });
     }
-  }, [formik.values.department]);
+  }, [departmentId, setValue]);
+
+  // Mapa de nombre → id para sincronizar el estado local del fetch sin exponer el id en RHF
+  const departmentIdByName = new Map<string, number>(
+    departments.map((dept) => [dept.name, dept.id]),
+  );
 
   const departmentOptions: SelectOption[] = departments.map((dept) => ({
-    value: dept.id,
+    value: dept.name,
     label: dept.name,
+  }));
+
+  const municipalityOptions: SelectOption[] = municipalities.map((mun) => ({
+    value: mun.name,
+    label: mun.name,
   }));
 
   if (loadingDepartments) {
@@ -77,45 +88,56 @@ export const LocationSelectors = <T extends { department: string; municipality: 
   return (
     <>
       <div className="flex flex-col">
-        <SelectSearch
-          id="department"
-          name="department"
-          label={t('formStudy.fields.department')}
-          value={formik.values.department}
-          options={departmentOptions}
-          onChange={(value) => formik.setFieldValue('department', value)}
-          onBlur={() => formik.setFieldTouched('department', true)}
-          placeholder={t('formStudy.placeholders.department')}
-          required
-          error={formik.touched.department && formik.errors.department ? String(formik.errors.department) : undefined}
+        <Controller
+          name={'department' as Path<T>}
+          control={control}
+          render={({ field, fieldState }) => (
+            <SelectSearch
+              id="department"
+              name="department"
+              label={t('formStudy.fields.department')}
+              value={field.value as string}
+              options={departmentOptions}
+              onChange={(name) => {
+                field.onChange(name);
+                // Sincroniza el id local para disparar el fetch de municipios
+                const id = departmentIdByName.get(name as string);
+                setDepartmentId(id ?? null);
+              }}
+              onBlur={field.onBlur}
+              placeholder={t('formStudy.placeholders.department')}
+              required
+              error={fieldState.error?.message}
+            />
+          )}
         />
       </div>
 
       <div className="flex flex-col">
-        <SelectSearch
-          id="municipality"
-          name="municipality"
-          label={t('formStudy.fields.municipality')}
-          value={formik.values.municipality}
-          options={municipalityOptions}
-          onChange={(value) => formik.setFieldValue('municipality', value)}
-          onBlur={() => formik.setFieldTouched('municipality', true)}
-          placeholder={
-            loadingMunicipalities
-              ? t('formStudy.loading.municipalities')
-              : !formik.values.department
-                ? t('formStudy.messages.selectDepartmentFirst')
-                : t('formStudy.placeholders.municipality')
-          }
-          disabled={!formik.values.department || loadingMunicipalities}
-          required
-          error={
-            municipalitiesError
-              ? municipalitiesError
-              : formik.touched.municipality && formik.errors.municipality
-                ? String(formik.errors.municipality)
-                : undefined
-          }
+        <Controller
+          name={'municipality' as Path<T>}
+          control={control}
+          render={({ field, fieldState }) => (
+            <SelectSearch
+              id="municipality"
+              name="municipality"
+              label={t('formStudy.fields.municipality')}
+              value={field.value as string}
+              options={municipalityOptions}
+              onChange={(value) => field.onChange(value)}
+              onBlur={field.onBlur}
+              placeholder={
+                loadingMunicipalities
+                  ? t('formStudy.loading.municipalities')
+                  : departmentId === null
+                    ? t('formStudy.messages.selectDepartmentFirst')
+                    : t('formStudy.placeholders.municipality')
+              }
+              disabled={departmentId === null || loadingMunicipalities}
+              required
+              error={municipalitiesError ?? fieldState.error?.message}
+            />
+          )}
         />
       </div>
     </>

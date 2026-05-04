@@ -1,85 +1,90 @@
 import React, { useRef, useState } from 'react';
-import { useFormik } from 'formik';
+import { Controller } from 'react-hook-form';
+import type { Control, FieldPath, FieldValues } from 'react-hook-form';
 import { SelectArrow } from '../ui/SelectArrow';
 import { SelectDropdown } from '../ui/SelectDropdown';
-import type { OptionData } from '@/types/OptionData'; 
+import type { OptionData } from '@/types/OptionData';
 
-interface SelectFieldProps {
+interface SelectFieldProps<T extends FieldValues> {
   id: string;
-  name: string;
+  name: FieldPath<T>;
   label: string;
   placeholder: string;
   data: OptionData[];
   required?: boolean;
-  formik: ReturnType<typeof useFormik<any>>;
+  control: Control<T>;
 }
 
-export const SelectField: React.FC<SelectFieldProps> = ({
+export const SelectField = <T extends FieldValues>({
   id,
   name,
   label,
   placeholder,
   data,
   required = true,
-  formik
-}) => {
+  control,
+}: SelectFieldProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
-  const[highlightedIndex, setHighlightedIndex] = useState(-1);
-  const dropdownRef = useRef<HTMLDivElement>(null); 
-  
-  const error = formik.touched[name] && formik.errors[name]
-    ? String(formik.errors[name])
-    : undefined;
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const selectedOption = data.find(item => item.id === formik.values[name]);
-
-  const options = data.map(item => ({
-    value: item.id,
-    label: item.name
+  const options = data.map((item) => ({
+    value: item.name,
+    label: item.name,
   }));
 
   return (
-    <div className="flex flex-col w-full font-['Bai_Jamjuree',sans-serif]">
-      <label htmlFor={id} className="text-[rgb(0,179,160)] mb-2">
-        {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
-      </label>
+    <Controller
+      name={name}
+      control={control}
+      render={({ field, fieldState }) => {
+        const selectedOption = data.find((item) => item.id === field.value);
 
-      <div className="relative">
-        <div
-          onClick={() => setIsOpen(!isOpen)}
-          onBlur={() => formik.setFieldTouched(name, true)}
-          className={`
-            w-full border p-2 rounded h-10.5 cursor-pointer flex items-center justify-between
-            ${error ? 'border-red-500' : 'border-[rgb(168,182,201)]'}
-            text-[rgb(86,86,88)]
-            hover:border-[rgb(0,179,160)] focus:border-[rgb(0,179,160)] outline-none
-          `}
-          tabIndex={0}
-        >
-          <span>{selectedOption ? selectedOption.name : placeholder}</span>
-          <SelectArrow isOpen={isOpen} />
-        </div>
+        return (
+          <div className="flex flex-col w-full font-['Bai_Jamjuree',sans-serif]">
+            <label htmlFor={id} className="text-[rgb(0,179,160)] mb-2">
+              {label}
+              {required && <span className="text-red-500 ml-1">*</span>}
+            </label>
 
-        <SelectDropdown
-          isOpen={isOpen}
-          filteredOptions={options}
-          value={formik.values[name]}
-          highlightedIndex={highlightedIndex}
-          onHighlightChange={setHighlightedIndex}
-          onSelectOption={(value) => {
-            formik.setFieldValue(name, value);
-            setIsOpen(false);
-          }}
-          onClose={() => setIsOpen(false)}
-          id={id}
-          dropdownRef={dropdownRef}
-        />
-      </div>
+            <div className="relative">
+              <div
+                onClick={() => setIsOpen(!isOpen)}
+                onBlur={field.onBlur}
+                className={`
+                  w-full border p-2 rounded h-10.5 cursor-pointer flex items-center justify-between
+                  ${fieldState.error ? 'border-red-500' : 'border-[rgb(168,182,201)]'}
+                  text-[rgb(86,86,88)]
+                  hover:border-[rgb(0,179,160)] focus:border-[rgb(0,179,160)] outline-none
+                `}
+                tabIndex={0}
+              >
+                <span>{selectedOption ? selectedOption.name : placeholder}</span>
+                <SelectArrow isOpen={isOpen} />
+              </div>
 
-      {error && (
-        <span className="text-red-500 text-sm mt-1 font-medium">{error}</span>
-      )}
-    </div>
+              <SelectDropdown
+                isOpen={isOpen}
+                filteredOptions={options}
+                value={field.value as string}
+                highlightedIndex={highlightedIndex}
+                onHighlightChange={setHighlightedIndex}
+                onSelectOption={(value) => {
+                  field.onChange(value);
+                  setIsOpen(false);
+                }}
+                onClose={() => setIsOpen(false)}
+                id={id}
+                dropdownRef={dropdownRef}
+              />
+            </div>
+
+            {fieldState.error && (
+              <span className="text-red-500 text-sm mt-1 font-medium">{fieldState.error.message}</span>
+            )}
+          </div>
+        );
+      }}
+    />
   );
 };

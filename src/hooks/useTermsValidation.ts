@@ -1,21 +1,28 @@
 import { useState } from 'react';
-import type { FormikProps } from 'formik';
+import type { UseFormHandleSubmit, FieldValues } from 'react-hook-form';
 
-export const useTermsValidation = (formik: FormikProps<any>) => {
+interface UseTermsValidationReturn {
+  termsProps: {
+    checked: boolean;
+    onChange: (val: boolean) => void;
+  };
+  accepted: boolean;
+}
+
+export const useTermsValidation = <T extends FieldValues>(
+  handleSubmit: UseFormHandleSubmit<T>,
+  onSubmit: (data: T) => void,
+): UseTermsValidationReturn & { handleSubmit: (e?: React.BaseSyntheticEvent) => Promise<void> } => {
   const [accepted, setAccepted] = useState(false);
-
-  const onAcceptedChange = (val: boolean) => {
-    setAccepted(val);
-  };
-
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
-    formik.handleSubmit(e as any);
-  };
 
   const termsProps = {
     checked: accepted,
-    onChange: onAcceptedChange,
+    onChange: (val: boolean) => setAccepted(val),
   };
 
-  return { termsProps, accepted, handleSubmit };
+  return {
+    termsProps,
+    accepted,
+    handleSubmit: handleSubmit(onSubmit),
+  };
 };

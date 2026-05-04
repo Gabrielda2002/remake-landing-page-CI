@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { Controller } from 'react-hook-form';
+import type { Control, FieldPath, FieldValues } from 'react-hook-form';
 import { Calendar } from 'primereact/calendar';
-import { useFormik } from 'formik';
 import { addLocale, locale } from 'primereact/api';
 import 'primereact/resources/themes/lara-light-green/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -9,65 +10,67 @@ import 'primeicons/primeicons.css';
 addLocale('es', {
   firstDayOfWeek: 1,
   dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
-  monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+  monthNames: [
+    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
+  ],
 });
 
 locale('es');
 
-interface DateInputProps {
+interface FormDateInputProps<T extends FieldValues> {
   id: string;
-  name: string;
+  name: FieldPath<T>;
   label: string;
+  control: Control<T>;
   required?: boolean;
   minAge?: number;
-  maxAge?:number
-  formik: ReturnType<typeof useFormik<any>>;
 }
 
-export const FormDateInput: React.FC<DateInputProps> = ({
+export const FormDateInput = <T extends FieldValues>({
   id,
   name,
   label,
+  control,
   required,
   minAge = 18,
-  formik
-}) => {
-  const [initialDate] = useState(new Date(new Date().setFullYear(new Date().getFullYear() - minAge)));
-  const error = formik.touched[name] && formik.errors[name]
-    ? String(formik.errors[name])
-    : undefined;
+}: FormDateInputProps<T>) => {
+  const [maxDate] = useState<Date>(
+    new Date(new Date().setFullYear(new Date().getFullYear() - minAge)),
+  );
 
-  useEffect(() => {
-    if (!formik.values[name]) {
-      formik.setFieldValue(name, initialDate);
-    }
-  }, []);
   return (
-    <div className="flex flex-col w-full">
-      <label htmlFor={id} className="text-[rgb(0,179,160)] mb-2">
-        {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
-      </label>
+    <Controller
+      name={name}
+      control={control}
+      defaultValue={maxDate as Parameters<typeof control.register>[1] extends infer O ? O : never}
+      render={({ field, fieldState }) => (
+        <div className="flex flex-col w-full">
+          <label htmlFor={id} className="text-[rgb(0,179,160)] mb-2">
+            {label}
+            {required && <span className="text-red-500 ml-1">*</span>}
+          </label>
 
-      <Calendar
-        id={id}
-        name={name}
-        value={formik.values[name]}
-        onChange={(e) => formik.setFieldValue(name, e.value)}
-        onBlur={() => formik.setFieldTouched(name, true)}
-        dateFormat="dd/mm/yy"
-        className="w-full [&_.p-inputtext]:px-2 [&_.p-inputtext]:py-1 [&_.p-inputtext]:text-sm [&_.p-inputtext]:h-10.75 [&_.p-inputtext:read-only]:cursor-pointer [&_.p-inputtext:read-only]:bg-white"
-        inputClassName="w-full border border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)]"
-        panelClassName="w-full [&_.p-datepicker]:w-full"
-        locale="es"
-        readOnlyInput
-        maxDate={initialDate}
-        
-      />
+          <Calendar
+            id={id}
+            name={field.name}
+            value={field.value as Date | null}
+            onChange={(e) => field.onChange(e.value)}
+            onBlur={field.onBlur}
+            dateFormat="dd/mm/yy"
+            className="w-full [&_.p-inputtext]:px-2 [&_.p-inputtext]:py-1 [&_.p-inputtext]:text-sm [&_.p-inputtext]:h-10.75 [&_.p-inputtext:read-only]:cursor-pointer [&_.p-inputtext:read-only]:bg-white"
+            inputClassName="w-full border border-[rgb(168,182,201)] rounded focus:outline-none focus:border-[rgb(0,179,160)]"
+            panelClassName="w-full [&_.p-datepicker]:w-full"
+            locale="es"
+            readOnlyInput
+            maxDate={maxDate}
+          />
 
-      {error && (
-        <span className="text-red-500 text-sm mt-1 font-medium">{error}</span>
+          {fieldState.error && (
+            <span className="text-red-500 text-sm mt-1 font-medium">{fieldState.error.message}</span>
+          )}
+        </div>
       )}
-    </div>
+    />
   );
 };
