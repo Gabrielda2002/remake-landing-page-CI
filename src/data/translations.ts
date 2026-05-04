@@ -29,7 +29,8 @@ export const translations = {
 
     //Landing
     landing:{
-      title: "Innovamos con ciencia,",
+      titleHighlight: "Innovamos",
+      titleRest: "con ciencia",
       subtitle: "Transformamos con conocimiento.",
       text: "Aplicando rigor, estrategia y tecnología en cada desafío."
     },
@@ -228,7 +229,8 @@ export const translations = {
 
     //Landing
     landing:{
-      title: "We innovate with science,",
+      titleHighlight: "We innovate",
+      titleRest: "with science,",
       subtitle: "We transform with knowledge.",
       text: "Applying rigor, strategy, and technology to every challenge."
     },
