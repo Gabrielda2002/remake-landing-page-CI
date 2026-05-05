@@ -1,0 +1,50 @@
+jest.mock('react-hook-form', () => ({
+  ...jest.requireActual('react-hook-form'),
+  Controller: ({ render }: any) => render({
+    field: {
+      name: 'test',
+      value: '',
+      onChange: jest.fn(),
+      onBlur: jest.fn(),
+      ref: { current: null },
+    },
+    fieldState: {
+      error: null,
+      isTouched: false,
+      isDirty: false,
+    },
+    formState: {
+      errors: {},
+      isSubmitted: false,
+    },
+  }),
+  useForm: (options?: any) => ({
+    control: {
+      register: jest.fn(),
+      unregister: jest.fn(),
+      setError: jest.fn(),
+      clearErrors: jest.fn(),
+      setValue: jest.fn(),
+      getValues: jest.fn(),
+      watch: jest.fn(),
+      trigger: jest.fn(),
+    },
+    handleSubmit: jest.fn((fn) => fn),
+    register: jest.fn(),
+    unregister: jest.fn(),
+    setError: jest.fn(),
+    clearErrors: jest.fn(),
+    setValue: jest.fn(),
+    getValues: jest.fn(),
+    watch: jest.fn(),
+    trigger: jest.fn(),
+    formState: {
+      errors: {},
+      isSubmitted: false,
+      isSubmitting: false,
+      isValid: true,
+    },
+    reset: jest.fn(),
+    ...options,
+  }),
+}));
