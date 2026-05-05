@@ -20,17 +20,58 @@ const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Pro
 
 ---
 
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href={menuWeb.src}>
   <meta name="generator" content={Astro.generator} />
   <meta name="description" content={description} />
+  <link rel="canonical" href="https://investigation.nordvitalips.com/" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://investigation.nordvitalips.com" />
+  <meta property="og:url" content="https://investigation.nordvitalips.com/" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="https://investigation.nordvitalips.com/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <title>{title}</title>
-  <title>Document</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Nordvital IPS - Centro de Investigación",
+    "url": "https://investigation.nordvitalips.com",
+    "description": "Centro de investigación en Cúcuta, Colombia.",
+    "email": "institutodeinvestigacion@nordvitalips.com",
+    "telephone": "+573242800091",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "AV 3A E #13A - 82 CAOBOS",
+      "addressLocality": "Cúcuta",
+      "addressRegion": "Norte de Santander",
+      "addressCountry": "CO"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Colombia"
+    },
+    "serviceType": "Investigación clínica",
+    "priceRange": "$$"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Nordvital IPS - Centro de Investigación",
+    "url": "https://investigation.nordvitalips.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://investigation.nordvitalips.com/{search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
   <script is:inline>
     (function () {
       var lang = localStorage.getItem('lang');
