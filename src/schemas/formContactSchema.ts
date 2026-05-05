@@ -23,13 +23,13 @@ export const getContactSchema = (t: TFn) => {
   const phoneLength = (count: number) => msg(t, 'formStudy.validations.phoneLength', { count });
 
   return z.object({
-    names: z
+    name: z
       .string({ message: required('formStudy.fields.names') })
       .min(2, minChars(2))
       .max(40, maxChars(40))
       .regex(LETTERS_REGEX, onlyLetters),
 
-    lastNames: z
+    lastname: z
       .string({ message: required('formStudy.fields.lastNames') })
       .min(2, minChars(2))
       .max(40, maxChars(40))

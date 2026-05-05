@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
 import { LocationSelectors } from './LocationSelectors';
 import FormInput from './FormInput';
 import { EpsSelect } from './EpsSelect';
@@ -12,11 +13,13 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { SubmitButton } from '../ui/Submitbutton';
 import { useTermsValidation } from '@/hooks/useTermsValidation';
 import { TermsCheckbox } from '../ui/TermsCheckbox';
+import { useStudyStore } from '@/stores/useStudyStore';
 import { getStudySchema } from '@/schemas/formStudySchema';
 import type { FormValuesStudy } from '@/schemas/formStudySchema';
 
 export const FormStudy: React.FC = () => {
   const { t, currentLang } = useTranslation();
+  const { submitStudy, loading } = useStudyStore();
 
   const schema = useMemo(() => getStudySchema(t), [currentLang]);
 
@@ -25,11 +28,12 @@ export const FormStudy: React.FC = () => {
     handleSubmit,
     setValue,
     formState: { isSubmitting },
+    reset
   } = useForm<FormValuesStudy>({
     resolver: zodResolver(schema),
     defaultValues: {
-      names: '',
-      lastNames: '',
+      name: '',
+      lastname: '',
       identificationType: '',
       identificationNumber: '',
       department: '',
@@ -43,10 +47,11 @@ export const FormStudy: React.FC = () => {
     },
   });
 
-  console.log('valores del formulario:', control._formValues); // Agrega este console.log para depurar los valores del formulario
-
-  const onSubmit = (data: FormValuesStudy) => {
-    console.log(data);
+  const onSubmit = async (data: FormValuesStudy) => {
+    await submitStudy(data, () => {
+      toast.success(t('formStudy.success'));
+      reset();
+    });
   };
 
   const { termsProps, accepted, handleSubmit: handleSubmitWithTerms } = useTermsValidation(
@@ -66,8 +71,8 @@ export const FormStudy: React.FC = () => {
         <FormInput<FormValuesStudy>
           type="text"
           id="names"
-          name="names"
-          label={t('formStudy.fields.names')}
+          name="name"
+          label={t('formStudy.fields.name')}
           required
           pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ ]+"
           control={control}
@@ -78,8 +83,8 @@ export const FormStudy: React.FC = () => {
         <FormInput<FormValuesStudy>
           type="text"
           id="lastNames"
-          name="lastNames"
-          label={t('formStudy.fields.lastNames')}
+          name="lastname"
+          label={t('formStudy.fields.lastname')}
           required
           pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ ]+"
           control={control}
@@ -174,7 +179,7 @@ export const FormStudy: React.FC = () => {
 
         {/* Botón */}
         <div className="w-full flex justify-center mt-4 md:col-span-2">
-          <SubmitButton isSubmitting={isSubmitting} extraDisabled={!accepted} />
+          <SubmitButton isSubmitting={isSubmitting || loading} extraDisabled={!accepted} />
         </div>
       </form>
     </div>

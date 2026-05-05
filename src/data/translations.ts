@@ -130,8 +130,8 @@ export const translations = {
     formStudy: {
       subtitle: "¿Quieres participar en un estudio clínico?",
       fields: {
-        names: "Nombres",
-        lastNames: "Apellidos",
+        name: "Nombre",
+        lastname: "Apellido",
         identificationType: "Tipo de identificación",
         identificationNumber: "Número de identificación",
         department: "Departamento",
@@ -167,22 +167,26 @@ export const translations = {
         phoneLength: "El teléfono debe tener exactamente {{count}} dígitos"
       },
       loading: {
-        form: "Cargando formulario...",
+        form: "Cargando...",
         municipalities: "Cargando municipios..."
       },
       messages: {
         selectDepartmentFirst: "Primero seleccione un departamento",
         departmentsError: "Error al cargar los departamentos"
-      }
+      },
+      success: "Formulario enviado con éxito"
     },
+
+
     
     //Form contact
     formContact: {
       subtitle: "Nos pondremos en contacto contigo",
       fields:{
         subject: "Asunto",
-        descipcion: "Descripción"
-      }
+        description: "Descripción"
+      },
+      success: "Mensaje enviado con éxito",
     },
 
     //Check box
@@ -197,7 +201,9 @@ export const translations = {
       address: "Dirección: AV 3A E #13A - 82 CAOBOS"
     }
   },
-  
+
+  // Traducción al inglés
+
   en: {
     //header
     nav: {
@@ -329,8 +335,8 @@ export const translations = {
     formStudy: {
       subtitle: "Would you like to participate in a clinical study?",
       fields: {
-        names: "First Names",
-        lastNames: "Last Names",
+        name: "First Name",
+        lastname: "Last Name",
         identificationType: "Identification Type",
         identificationNumber: "Identification Number",
         department: "Department",
@@ -366,21 +372,27 @@ export const translations = {
         phoneLength: "Phone number must have exactly {{count}} digits"
       },
       loading: {
-        form: "Loading form...",
+        form: "Loading...",
         municipalities: "Loading municipalities..."
       },
       messages: {
         selectDepartmentFirst: "First select a department",
         departmentsError: "Error loading departments"
-      }
+      },
+      success: "Form submitted successfully"
     },
     
     //Form contact
     formContact: {
       subtitle: "We will get in touch with you",
+      success: "Message sent successfully",
       fields:{
         subject: "Subject",
-        descipcion: "Descipcion"
+        description: "Description"
+      },
+      button: {
+        submit: "Submit",
+        submitting: "Submitting..."
       }
     },
 

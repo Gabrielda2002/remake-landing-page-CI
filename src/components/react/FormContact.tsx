@@ -6,9 +6,12 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { SubmitButton } from '../ui/Submitbutton';
 import { getContactSchema } from '@/schemas/formContactSchema';
 import type { FormValuesContact } from '@/schemas/formContactSchema';
+import { useContactStore } from '@/stores/useContactStore';
+import { toast } from 'sonner';
 
 export const FormContact: React.FC = () => {
   const { t, currentLang } = useTranslation();
+  const { submitContact, loading, data } = useContactStore();
 
   const schema = useMemo(() => getContactSchema(t), [currentLang]);
 
@@ -16,11 +19,12 @@ export const FormContact: React.FC = () => {
     control,
     handleSubmit,
     formState: { isSubmitting },
+    reset
   } = useForm<FormValuesContact>({
     resolver: zodResolver(schema),
     defaultValues: {
-      names: '',
-      lastNames: '',
+      name: '',
+      lastname: '',
       phone: '',
       email: '',
       subject: '',
@@ -28,8 +32,11 @@ export const FormContact: React.FC = () => {
     },
   });
 
-  const onSubmit = (data: FormValuesContact) => {
-    console.log(data);
+  const onSubmit = async (data: FormValuesContact) => {
+    await submitContact(data, () => {
+      toast.success(t('formContact.success'));
+      reset();
+    });
   };
 
   return (
@@ -43,9 +50,9 @@ export const FormContact: React.FC = () => {
         {/* Nombres */}
         <FormInput<FormValuesContact>
           type="text"
-          id="contact-names"
-          name="names"
-          label={t('formStudy.fields.names')}
+          id="contact-name"
+          name="name"
+          label={t('formStudy.fields.name')}
           required
           pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ ]+"
           control={control}
@@ -55,9 +62,9 @@ export const FormContact: React.FC = () => {
         {/* Apellidos */}
         <FormInput<FormValuesContact>
           type="text"
-          id="contact-lastNames"
-          name="lastNames"
-          label={t('formStudy.fields.lastNames')}
+          id="contact-lastname"
+          name="lastname"
+          label={t('formStudy.fields.lastname')}
           required
           pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ ]+"
           control={control}
@@ -103,7 +110,7 @@ export const FormContact: React.FC = () => {
           render={({ field }) => (
             <div className="flex flex-col md:col-span-2">
               <label htmlFor="contact-description" className="text-[rgb(0,179,160)] mb-2">
-                {t('formContact.fields.descipcion')}
+                {t('formContact.fields.description')}
               </label>
               <textarea
                 id="contact-description"
@@ -117,7 +124,7 @@ export const FormContact: React.FC = () => {
         />
 
         <div className="w-full flex justify-center mt-4 md:col-span-2">
-          <SubmitButton isSubmitting={isSubmitting} />
+          <SubmitButton isSubmitting={isSubmitting || loading} />
         </div>
       </form>
     </div>

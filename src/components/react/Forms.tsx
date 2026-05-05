@@ -1,6 +1,7 @@
 import { useTranslation } from "@/hooks/useTranslation"
 import { FormContact } from "./FormContact";
 import { FormStudy } from "./FormStudy";
+import { Toaster } from "../ui/Toaster";
 import { useState } from "react";
 
 interface FormsItems {
@@ -43,6 +44,7 @@ export const Form: React.FC = () => {
       </div>
 
       {activeForm === 'contact' ? <FormContact /> : <FormStudy />}
+      <Toaster />
     </div>
   );
 };

@@ -26,14 +26,14 @@ export const getStudySchema = (t: TFn) => {
   const validAge = msg(t, 'formStudy.validations.validAge', { min: AGE.min, max: AGE.max });
 
   return z.object({
-    names: z
-      .string({ message: required('formStudy.fields.names') })
+    name: z
+      .string({ message: required('formStudy.fields.name') })
       .min(2, minChars(2))
       .max(40, maxChars(40))
       .regex(LETTERS_REGEX, onlyLetters),
 
-    lastNames: z
-      .string({ message: required('formStudy.fields.lastNames') })
+    lastname: z
+      .string({ message: required('formStudy.fields.lastname') })
       .min(2, minChars(2))
       .max(40, maxChars(40))
       .regex(LETTERS_REGEX, onlyLetters),
