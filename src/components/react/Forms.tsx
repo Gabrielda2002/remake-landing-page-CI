@@ -10,7 +10,6 @@ interface FormsItems {
 
 export const Form: React.FC = () => {
   const [activeForm, setActiveForm] = useState('contact');
-  const [hasVisitedStudy, setHasVisitedStudy] = useState(false);
 
   const { t } = useTranslation();
 
@@ -18,11 +17,6 @@ export const Form: React.FC = () => {
     { key: 'contact', label: t('form.buttons.contact') },
     { key: 'study',   label: t('form.buttons.study') },
   ];
-
-  const handleFormChange = (key: string) => {
-    setActiveForm(key);
-    if (key === 'study') setHasVisitedStudy(true);
-  };
 
   return (
     <div className="w-full max-w-6xl mx-auto p-6 font-['Bai_Jamjuree',sans-serif]">
@@ -36,7 +30,7 @@ export const Form: React.FC = () => {
           return (
             <button
               key={key}
-              onClick={() => handleFormChange(key)}
+              onClick={() => setActiveForm(key)}
               className={`px-4 py-2 rounded transition-colors duration-200 ${
                 isActive
                   ? 'bg-[rgb(0,179,160)] text-white'
@@ -53,11 +47,9 @@ export const Form: React.FC = () => {
         <FormContact />
       </div>
 
-      {hasVisitedStudy && (
-        <div className={activeForm === 'study' ? 'block' : 'invisible h-0 overflow-hidden'}>
-          <FormStudy />
-        </div>
-      )}
+      <div className={activeForm === 'study' ? 'block' : 'invisible h-0 overflow-hidden'}>
+        <FormStudy />
+      </div>
     </div>
   );
 };
