@@ -2,11 +2,13 @@ import { create } from 'zustand';
 import { api } from '@/lib/api';
 import type { FormValuesStudy } from '@/schemas/formStudySchema';
 
+type StudyApiData = Omit<FormValuesStudy, 'terms'>;
+
 interface StudyState {
   data: FormValuesStudy | null;
   loading: boolean;
   error: string | null;
-  submitStudy: (data: FormValuesStudy, onSuccess?: () => void) => Promise<void>;
+  submitStudy: (data: StudyApiData, onSuccess?: () => void) => Promise<void>;
   reset: () => void;
 }
 

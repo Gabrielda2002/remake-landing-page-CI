@@ -24,6 +24,7 @@ export const getStudySchema = (t: TFn) => {
   const maxChars = (max: number) => msg(t, 'formStudy.validations.maxChars', { max });
   const phoneLength = (count: number) => msg(t, 'formStudy.validations.phoneLength', { count });
   const validAge = msg(t, 'formStudy.validations.validAge', { min: AGE.min, max: AGE.max });
+  const termsRequired = msg(t, 'formStudy.validations.termsRequired');
 
   return z.object({
     name: z
@@ -90,6 +91,10 @@ export const getStudySchema = (t: TFn) => {
         (val) => differenceInYears(new Date(), val) >= AGE.min,
         validAge,
       ),
+
+    terms: z
+      .boolean()
+      .refine((val) => val === true, termsRequired),
   });
 };
 

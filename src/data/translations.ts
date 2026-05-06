@@ -164,7 +164,8 @@ export const translations = {
         exactChars: "Debe tener exactamente {{count}} caracteres",
         validEmail: "Debe ser un correo electrónico válido",
         validAge: "La edad debe ser entre {{min}} y {{max}} años",
-        phoneLength: "El teléfono debe tener exactamente {{count}} dígitos"
+        phoneLength: "El teléfono debe tener exactamente {{count}} dígitos",
+        termsRequired: "Debe aceptar los términos y condiciones"
       },
       loading: {
         form: "Cargando...",
@@ -369,7 +370,8 @@ export const translations = {
         exactChars: "Must have exactly {{count}} characters",
         validEmail: "Must be a valid email address",
         validAge: "Age must be between {{min}} and {{max}} years",
-        phoneLength: "Phone number must have exactly {{count}} digits"
+        phoneLength: "Phone number must have exactly {{count}} digits",
+        termsRequired: "You must accept the terms and conditions"
       },
       loading: {
         form: "Loading...",

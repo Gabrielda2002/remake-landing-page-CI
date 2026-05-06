@@ -11,7 +11,6 @@ import { SelectField } from './OptionSelect';
 import { FormDateInput } from './FormDateInput';
 import { useTranslation } from '@/hooks/useTranslation';
 import { SubmitButton } from '../ui/Submitbutton';
-import { useTermsValidation } from '@/hooks/useTermsValidation';
 import { TermsCheckbox } from '../ui/TermsCheckbox';
 import { useStudyStore } from '@/stores/useStudyStore';
 import { getStudySchema } from '@/schemas/formStudySchema';
@@ -27,10 +26,11 @@ export const FormStudy: React.FC = () => {
     control,
     handleSubmit,
     setValue,
-    formState: { isSubmitting },
+    formState: { isSubmitting, isValid },
     reset
   } = useForm<FormValuesStudy>({
     resolver: zodResolver(schema),
+    mode: 'onChange',
     defaultValues: {
       name: '',
       lastname: '',
@@ -44,20 +44,18 @@ export const FormStudy: React.FC = () => {
       age: '',
       nationality: '',
       date: new Date(new Date().setFullYear(new Date().getFullYear() - 18)),
+      terms: false,
     },
   });
 
   const onSubmit = async (data: FormValuesStudy) => {
-    await submitStudy(data, () => {
+    // Excluir el campo 'terms' antes de enviar al API
+    const { terms, ...submitData } = data;
+    await submitStudy(submitData, () => {
       toast.success(t('formStudy.success'));
       reset();
     });
   };
-
-  const { termsProps, accepted, handleSubmit: handleSubmitWithTerms } = useTermsValidation(
-    handleSubmit,
-    onSubmit,
-  );
 
   return (
     <div>
@@ -65,7 +63,7 @@ export const FormStudy: React.FC = () => {
 
       <form
         className="grid grid-cols-1 md:grid-cols-2 gap-4 shadow-lg rounded-lg p-4 md:p-6 bg-white text-[rgb(86,86,88)]"
-        onSubmit={handleSubmitWithTerms}
+        onSubmit={handleSubmit(onSubmit)}
       >
         {/* Nombres */}
         <FormInput<FormValuesStudy>
@@ -175,11 +173,11 @@ export const FormStudy: React.FC = () => {
         />
 
         {/* Términos y condiciones */}
-        <TermsCheckbox {...termsProps} />
+        <TermsCheckbox<FormValuesStudy> name="terms" control={control} />
 
         {/* Botón */}
         <div className="w-full flex justify-center mt-4 md:col-span-2">
-          <SubmitButton isSubmitting={isSubmitting || loading} extraDisabled={!accepted} />
+          <SubmitButton isSubmitting={isSubmitting || loading} extraDisabled={!isValid} />
         </div>
       </form>
     </div>
