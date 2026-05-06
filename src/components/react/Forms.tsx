@@ -43,11 +43,11 @@ export const Form: React.FC = () => {
         })}
       </div>
 
-      <div className={activeForm === 'contact' ? 'block' : 'invisible h-0 overflow-hidden'}>
+      <div className={activeForm === 'contact' ? 'block' : 'hidden'}>
         <FormContact />
       </div>
 
-      <div className={activeForm === 'study' ? 'block' : 'invisible h-0 overflow-hidden'}>
+      <div className={activeForm === 'study' ? 'block' : 'hidden'}>
         <FormStudy />
       </div>
     </div>
