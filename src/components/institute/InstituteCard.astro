@@ -50,7 +50,7 @@ const { title, i18nKeyTitle, information, direction = 'horizontal' } = Astro.pro
 
   ) : (
 
-    <div class="relative mt-10">
+    <div class="relative mt-10 isolate">
 
       {/* Móvil: línea vertical izquierda (igual que vertical) */}
       <span
@@ -65,7 +65,7 @@ const { title, i18nKeyTitle, information, direction = 'horizontal' } = Astro.pro
       />
 
       {/* Móvil: lista vertical apilada */}
-      <div class="flex flex-col gap-4 md:hidden">
+      <div class="flex flex-col gap-4 md:hidden isolate">
         {information.map((item) => (
           <article class="relative pl-12">
             <span
@@ -81,7 +81,7 @@ const { title, i18nKeyTitle, information, direction = 'horizontal' } = Astro.pro
       </div>
 
       {/* Desktop: línea de tiempo horizontal */}
-      <div class="hidden md:flex relative" style="min-height: 280px;">
+      <div class="hidden md:flex relative isolate" style="min-height: 280px;">
 
         {/* Línea horizontal — se alinea con el centro exacto donde están los puntos */}
         <span
@@ -92,7 +92,7 @@ const { title, i18nKeyTitle, information, direction = 'horizontal' } = Astro.pro
         {information.map((item, index) => {
           const isTop = index % 2 === 0;
           return (
-            <div class="relative z-10 flex flex-1 flex-col items-center">
+            <div class="relative flex flex-1 flex-col items-center">
 
               {/* Área superior: muestra texto si isTop, vacía si no */}
               <div class="flex-1 flex flex-col justify-end pb-1 w-full px-2 text-center">

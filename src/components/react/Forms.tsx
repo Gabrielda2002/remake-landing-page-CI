@@ -11,6 +11,7 @@ interface FormsItems {
 
 export const Form: React.FC = () => {
   const [activeForm, setActiveForm] = useState('contact');
+
   const { t } = useTranslation();
 
   const formButtons: Array<FormsItems> = [
@@ -43,8 +44,13 @@ export const Form: React.FC = () => {
         })}
       </div>
 
-      {activeForm === 'contact' ? <FormContact /> : <FormStudy />}
-      <Toaster />
+      <div className={activeForm === 'contact' ? 'block' : 'hidden'}>
+        <FormContact />
+      </div>
+
+      <div className={activeForm === 'study' ? 'block' : 'hidden'}>
+        <FormStudy />
+      </div>
     </div>
   );
 };
