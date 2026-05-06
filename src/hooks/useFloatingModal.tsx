@@ -9,9 +9,9 @@ export interface ModalOptions {
 }
 
 const sizeClasses: Record<NonNullable<ModalOptions["size"]>, string> = {
-  default: "w-[min(60vw,400px)] min-w-125",
-  large:   "w-[min(75vw,600px)] min-w-150",
-  xlarge:  "w-[min(90vw,900px)] min-w-175",
+  default: "w-[min(60vw,400px)]",
+  large: "w-[min(75vw,600px)]",
+  xlarge: "w-[min(90vw,900px)]",
 };
 
 export function useFloatingModal() {
@@ -33,14 +33,14 @@ export function useFloatingModal() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`bg-white rounded-xl shadow-2xl max-h-[80vh] flex flex-col ${sizeClasses[content.size ?? "default"]}`}
+        className={`bg-white rounded-xl shadow-2xl max-h-[80vh] flex flex-col max-w-[calc(100vw-2rem)] ${sizeClasses[content.size ?? "default"]}`}
       >
         <div className="flex justify-between items-center px-5 py-4 border-b border-gray-200">
           <span className="font-semibold">{content.title}</span>
           <button onClick={close} className="text-lg cursor-pointer bg-transparent border-none">✕</button>
         </div>
 
-        <div className="p-5 overflow-y-auto text-[10px]">
+        <div className="p-5 overflow-y-auto text-[10px] min-h-0 ">
           {content.text && <p className="whitespace-pre-wrap">{content.text}</p>}
           {content.children}
         </div>
