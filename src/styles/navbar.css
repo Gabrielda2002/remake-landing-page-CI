@@ -84,7 +84,7 @@ body {
   text-align: left;
 }
 
-@media (max-width: 1149px) {
+@media (max-width: 1000px) {
   .header-actions {
     justify-content: flex-start;
   }
@@ -128,7 +128,7 @@ body {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 800px) {
   .navbar-header {
     width: 100%;
     max-width: 100%;
@@ -168,7 +168,7 @@ body {
   }
 }
 
-@media (min-width: 1150px) {
+@media (min-width: 1000px) {
   .nav-mobile-menu {
     display: none;
   }
