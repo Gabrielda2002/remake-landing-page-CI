@@ -1,11 +1,12 @@
 import { create } from 'zustand';
 import { api } from '@/lib/api';
 import type { FormValuesStudy } from '@/schemas/formStudySchema';
+import emailJs from '@emailjs/browser';
 
 type StudyApiData = Omit<FormValuesStudy, 'terms'>;
 
 interface StudyState {
-  data: FormValuesStudy | null;
+  data: StudyApiData | null;
   loading: boolean;
   error: string | null;
   submitStudy: (data: StudyApiData, onSuccess?: () => void) => Promise<void>;
@@ -24,6 +25,14 @@ export const useStudyStore = create<StudyState>((set) => ({
       if (response.status === 200 || response.status === 201) {
         set({ data });
         onSuccess?.();
+
+        await emailJs.send(
+          import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
+          import.meta.env.PUBLIC_EMAILJS_TEMPLATE_VOLUNTEER_ID,
+          { t_email: import.meta.env.PUBLIC_EMAILJS_EMAIL,...data },
+          import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY
+        )
+
       }
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Error submitting study form';

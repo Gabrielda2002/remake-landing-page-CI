@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nueva Aplicación de Estudio - Nordvital IPS</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f4f4f4;
+      }
+
+      .email-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        background: linear-gradient(135deg, #31406d 0%, #00B3A0 100%);
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+      }
+
+      .header h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .header p {
+        font-size: 16px;
+        opacity: 0.9;
+      }
+
+      .content {
+        padding: 30px 25px;
+      }
+
+      .section {
+        margin-bottom: 25px;
+      }
+
+      .section-title {
+        color: #31406d;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        border-left: 4px solid #00B3A0;
+        padding-left: 12px;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .info-item {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 3px solid #31406d;
+      }
+
+      .info-item label {
+        font-weight: 600;
+        color: #555;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .info-item span {
+        color: #333;
+        font-size: 16px;
+      }
+
+      .full-width {
+        grid-column: 1 / -1;
+      }
+
+      .footer {
+        background-color: #2c3e50;
+        color: white;
+        padding: 25px;
+        text-align: center;
+      }
+
+      .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 15px 0;
+        flex-wrap: wrap;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      @media (max-width: 600px) {
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-info {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .header h1 {
+          font-size: 24px;
+        }
+        .content {
+          padding: 20px 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <div class="header">
+        <div>
+          <h2>Nueva Aplicación de </h2>
+        </div>
+        <h1>Centro de Investigación</h1>
+      </div>
+
+      <div class="content">
+        <div class="section">
+          <h2 class="section-title">👤 Información Personal</h2>
+          <div class="info-grid">
+            <div class="info-item">
+              <label>Nombres:</label>
+              <span>{{name}}</span>
+            </div>
+            <div class="info-item">
+              <label>Apellidos:</label>
+              <span>{{lastname}}</span>
+            </div>
+            <div class="info-item">
+              <label>Tipo de Documento:</label>
+              <span>{{identificationType}}</span>
+            </div>
+            <div class="info-item">
+              <label>Número de Documento:</label>
+              <span>{{identificationNumber}}</span>
+            </div>
+            <div class="info-item">
+              <label>Fecha de Nacimiento:</label>
+              <span>{{date}}</span>
+            </div>
+            <div class="info-item">
+              <label>Edad:</label>
+              <span>{{age}}</span>
+            </div>
+            <div class="info-item">
+              <label>Nacionalidad:</label>
+              <span>{{nationality}}</span>
+            </div>
+            <div class="info-item">
+              <label>EPS:</label>
+              <span>{{eps}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">📍 Información de Contacto</h2>
+          <div class="info-grid">
+            <div class="info-item">
+              <label>Departamento:</label>
+              <span>{{department}}</span>
+            </div>
+            <div class="info-item">
+              <label>Municipio:</label>
+              <span>{{municipality}}</span>
+            </div>
+            <div class="info-item">
+              <label>Teléfono:</label>
+              <span>{{phone}}</span>
+            </div>
+            <div class="info-item">
+              <label>Correo Electrónico:</label>
+              <span>{{email}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>
+          <h3>📞 Información de Contacto</h3>
+          <div class="contact-info">
+            <div class="contact-item">
+              <span>📱</span>
+              <span>(+57) 317-4309873</span>
+            </div>
+            <div class="contact-item">
+              <span>✉️</span>
+              <span>institutodeinvestigacion@nordvitalips.com</span>
+            </div>
+            <div class="contact-item">
+              <span>🌐</span>
+              <span>www.investigation.nordvitalips.com</span>
+            </div>
+          </div>
+          <p style="margin-top: 15px; font-size: 14px; opacity: 0.8">
+            Este correo fue generado automáticamente desde el formulario de Estudio de nuestro sitio web. Por favor, no responda a este mensaje.
+          </p>
+          <p style="font-size: 12px; opacity: 0.6; margin-top: 10px">
+            © 2026 Nordvital IPS - Todos los derechos reservados
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

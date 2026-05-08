@@ -8,6 +8,7 @@ import { getContactSchema } from '@/schemas/formContactSchema';
 import type { FormValuesContact } from '@/schemas/formContactSchema';
 import { useContactStore } from '@/stores/useContactStore';
 import { toast } from 'sonner';
+import emailJs from '@emailjs/browser';
 
 export const FormContact: React.FC = () => {
   const { t, currentLang } = useTranslation();

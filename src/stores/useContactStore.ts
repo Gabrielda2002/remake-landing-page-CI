@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { api } from '@/lib/api';
 import type { FormValuesContact } from '@/schemas/formContactSchema';
+import emailJs from '@emailjs/browser';
 
 interface ContactState {
   data: FormValuesContact | null;
@@ -22,12 +23,20 @@ export const useContactStore = create<ContactState>((set) => ({
       if (response.status === 200 || response.status === 201) {
         set({ data });
         onSuccess?.();
+
+        await emailJs.send(
+          import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
+          import.meta.env.PUBLIC_EMAILJS_TEMPLATE_CONTACT_ID,
+          { t_email: import.meta.env.PUBLIC_EMAILJS_EMAIL,...data },
+          import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY
+        )
+
       }
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Error submitting contact form';
       set({ error: message });
       throw err;
-    }finally {
+    } finally {
       set({ loading: false });
     }
   },
