@@ -1,0 +1,45 @@
+name: Deploy to Cpanel
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-end-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+          
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Configure Environment Variables
+        run: |
+          echo "PUBLIC_EMAILJS_SERVICE_ID=${{secrets.PUBLIC_EMAILJS_SERVICE_ID}}" >> .env
+          echo "PUBLIC_EMAILJS_TEMPLATE_CONTACT_ID=${{secrets.PUBLIC_EMAILJS_TEMPLATE_CONTACT_ID}}" >> .env
+          echo "PUBLIC_EMAILJS_TEMPLATE_VOLUNTEER_ID=${{secrets.PUBLIC_EMAILJS_TEMPLATE_VOLUNTEER_ID}}" >> .env
+          echo "PUBLIC_EMAILJS_EMAIL=${{secrets.PUBLIC_EMAILJS_EMAIL}}" >> .env
+          echo "PUBLIC_EMAILJS_PUBLIC_KEY=${{secrets.PUBLIC_EMAILJS_PUBLIC_KEY}}" >> .env
+          echo "PUBLIC_API_URL=${{secrets.PUBLIC_API_URL}}" >> .env
+      
+      - name: Build Project
+        run: pnpm build
+
+      - name: Deploy to Cpanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{secrets.FTP_SERVER}}
+          username: ${{ secrets.FTP_USERNAME}}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: /investigation.nordvitalips.com/
