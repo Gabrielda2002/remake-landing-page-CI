@@ -1,0 +1,31 @@
+---
+import FeaturedCard from "./FeaturedCard.astro";
+import endimet from '@blog/endimet.webp';
+
+const TITLE = "Participación destacada en el Curso Internacional ENDIMET";
+
+const DATE = "26 Abril 2026";
+
+const SPAN = "Curso Internacional";
+
+const TEXT = `La IPS y el Centro de investigación; participaron en el Curso Internacional ENDIMET de la Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, un importante escenario académico que reunió investigaciones relevantes en el área
+- Tamizaje racional de la vitamina D
+- ¿A quién tamizar para hipotiroidismo clínico? Evidencia epidemiológica desde atención primaria
+De manera especial, el E-poster Tamizaje racional de la vitamina D fue seleccionado para defensa oral, logrando posicionarse dentro de los 29 mejores trabajos del evento.
+
+Este reconocimiento resalta el compromiso institucional con la investigación científica y la generación de evidencia para la práctica clínica en atención primaria.
+`
+const AUTORES = ["Dr. Armando Dias Vergel", "Dr. Alberto Brito", "Dra. Norida Torrado"]
+
+---
+
+
+<FeaturedCard
+  image={endimet}
+  date={DATE}
+  span= {SPAN}
+  title={TITLE}
+  text={TEXT}
+  autores={AUTORES}
+/>
+

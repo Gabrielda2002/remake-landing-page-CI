@@ -1,0 +1,65 @@
+---
+import type { ImageMetadata } from 'astro';
+
+export interface Props {
+  image: ImageMetadata;
+  date: string;
+  span?: string;
+  title: string;
+  text: string;
+  autores?: string[]; 
+}
+
+const { autores = [], image, date, span, title, text } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 border border-[#e8e8e8] rounded-2xl overflow-hidden mb-14 bg-white font-['Bai_Jamjuree',sans-serif]">
+  
+  <!-- IMAGEN -->
+  <div 
+    class="relative min-h-[320px] bg-center bg-cover overflow-hidden"
+    style={`background-image: url(${image.src})`}
+  >
+    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+    <span class="absolute top-4 left-4 bg-white text-[#1d4e62] text-[10px] font-bold tracking-[0.1em] uppercase px-4 py-1.5 rounded-full z-10">
+      ✦ Destacado
+    </span>
+  </div>
+
+  <!-- CONTENIDO -->
+  <div class="flex flex-col justify-between p-9">
+    <div>
+      <!-- Meta -->
+      <div class="flex items-center gap-3 text-xs text-[#999] mb-4">
+        <span>{date}</span>
+        {span && (
+          <>
+            <span class="w-1 h-1 rounded-full bg-[#ddd]"></span>
+            <span class="text-[#1d4e62] font-medium">{span}</span>
+          </>
+        )}
+      </div>
+
+      <!-- Título -->
+      <h2 class="font-['Bai_Jamjuree',sans-serif] text-[1.65rem] font-bold leading-tight text-[#1a1a1a] mb-3">
+        {title}
+      </h2>
+
+      <!-- Texto -->
+      <p class="text-sm text-[#666] font-light leading-relaxed mb-8">
+        {text}
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-5">
+      {autores.length > 0 && (
+        <div class="flex justify-end">
+          <p class="text-xs text-[#bbb] text-right">
+            <span class="mr-1.5">—</span>
+            {autores.join(', ')}
+          </p>
+        </div>
+      )}
+    </div>
+  </div>
+</div>
