@@ -1,0 +1,69 @@
+---
+import service11 from '@services/service11.webp';
+import { Image } from "astro:assets";
+import InfoFeaturedCard from './InfoFeaturedCard.astro';
+
+interface Props {
+  span?: string,
+  title?: string,
+  subTitle?: string,
+}
+
+const BLOG_SPAN = "Centro de Investigación";
+const TITLE = "Blog Nordvital";
+const SUB_TITLE = "Conocimiento clínico, hallazgos de investigación y noticias del equipo científico."
+
+const {
+  span = BLOG_SPAN,
+  title = TITLE, 
+  subTitle = SUB_TITLE
+}:Props = Astro.props;
+---
+
+<div class="relative flex items-center min-h-[340px] w-full overflow-hidden font-['Bai_Jamjuree',sans-serif]">
+
+  <Image 
+    src={service11} 
+    alt="Background" 
+    class="absolute inset-0 w-full h-full object-cover"
+    loading="eager"
+  />    
+
+  <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-white"></div>
+
+  <!-- Elementos decorativos -->
+  <div class="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_60px,rgba(255,255,255,0.02)_61px),repeating-linear-gradient(90deg,transparent,transparent_60px,rgba(255,255,255,0.02)_61px)]"></div>
+  <div class="absolute -top-16 -right-16 w-80 h-80 rounded-full border border-white/[0.06]"></div>
+  <div class="absolute top-5 right-10 w-44 h-44 rounded-full border border-white/[0.08]"></div>
+
+  <div class="relative px-10 pb-10 pt-14 max-w-3xl z-10">
+    <span class="inline-block mb-4 px-4 py-1 rounded-full text-[11px] font-medium tracking-wider uppercase text-white/85 bg-white/10 border border-white/25">
+      {span}
+    </span>
+    <h1 class="text-[clamp(2.2rem,5vw,3.8rem)] font-bold text-white leading-tight mb-3">
+      {title}
+    </h1>
+    <p class="text-white/60 text-[15px] font-light leading-relaxed max-w-lg">
+      {subTitle}
+    </p>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="max-w-5xl mx-auto px-6 py-12 font-['Bai_Jamjuree',sans-serif]">
+
+  <!-- DESTACADA -->
+  <div class="flex items-center gap-2.5 mb-5">
+    <p class="text-[11px] font-semibold tracking-[0.14em] uppercase text-[#888]">Publicación destacada</p>
+    <div class="flex-1 h-px bg-[#e5e5e5]"></div>
+  </div>
+
+  <InfoFeaturedCard/>
+
+  <!-- RECIENTES -->
+  <div class="flex items-center gap-2.5 mb-5">
+    <p class="text-[11px] font-semibold tracking-[0.14em] uppercase text-[#888]">Publicaciones recientes</p>
+    <div class="flex-1 h-px bg-[#e5e5e5]"></div>
+  </div>
+
+</div>
