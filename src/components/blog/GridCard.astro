@@ -1,33 +1,40 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
+  image: ImageMetadata
   area: string,
   title: string,
   text: string
   date: string
 }
 
-const {area, title, text, date} = Astro.props;
+const {image, area, title, text, date} = Astro.props;
 ---
 
-<div class="grid grid-cols-1 gap-6 max-w-[550px]">
-  
-  <div>
-    <div class="md:w-64 h-48 md:h-auto bg-gradient-to-br from-[#3b1f63] to-[#6a4aaa] flex-shrink-0"></div>
-    
-    <!-- Contenido a la derecha -->
+<div class="inline-block align-top w-full max-w-[450px] border border-gray-200 rounded-xl m-5 bg-white font-['Bai_Jamjuree',sans-serif]">
+  <div class="font-['Bai_Jamjuree',sans-serif]">
     <div class="flex-1 p-5 flex flex-col">
       <p class="text-[10px] font-semibold tracking-[0.12em] uppercase text-[#999] mb-1.5">
         {area}
       </p>
-      <h3 class="font-['Playfair_Display',Georgia,serif] text-lg font-bold leading-snug text-[#1a1a1a] mb-2">
+      <h3 class="text-lg leading-snug text-[#1a1a1a] mb-2">
         {title}
       </h3>
       <p class="text-[13px] text-[#777] font-light leading-relaxed mb-3">
         {text}
       </p>
-      <div class="flex justify-between items-center text-[11px] text-[#bbb] pt-2 mt-auto">
+
+      <div>
+        <Image
+          src={image}
+          alt="Imagen del artículo"
+          class="w-full h-50 object-cover rounded-lg mb-4 md:mb-0 md:w-100 md:h-auto align-center"
+        />
+      </div>
+      <div class="items-center text-[11px] text-[#bbb] pt-2 mt-auto text-right">
         <span>{date}</span>
       </div>
     </div>
   </div>
-  </div>
+</div>
