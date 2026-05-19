@@ -1,4 +1,5 @@
 export const defaultLang = "es";
+import { translations as blogTranslations } from "./translationBlog";
 
 export const translations = {
   es: {
@@ -179,8 +180,6 @@ export const translations = {
       success: "Formulario enviado con éxito"
     },
 
-
-    
     //Form contact
     formContact: {
       subtitle: "Nos pondremos en contacto contigo",
@@ -201,11 +200,13 @@ export const translations = {
     footer: {
       title: "Contacto",
       address: "Dirección: AV 3A E #13A - 82 CAOBOS"
-    }
+    },
+    
+    //blog
+    blog: blogTranslations.es
   },
 
   // Traducción al inglés
-
   en: {
     //header
     nav: {
@@ -410,6 +411,10 @@ export const translations = {
     footer: {
       title: "Contact Us",
       address: "Address: AV 3A E #13A - 82 CAOBOS"
-    }
+    },
+
+    //blog
+    blog: blogTranslations.en,
+
   }
 };
