@@ -19,7 +19,7 @@ interface Props {
 }
 
 const defaultItems: Array<MenuItem> = [
-  { href: "#inicio", i18nKey: "home", label: "Inicio" },
+  { href: "/#inicio", i18nKey: "home", label: "Inicio" },
 
   {
     href: "#",
@@ -27,19 +27,19 @@ const defaultItems: Array<MenuItem> = [
     i18nKey: "us",
     children: [
       {
-        href: "#quienesSomos",
+        href: "/#quienesSomos",
         label: "Quiénes Somos",
         i18nKey: "aboutUs",
         isAnchor: true,
       },
       {
-        href: "#trayectoria",
+        href: "/#trayectoria",
         label: "Trayectoria",
         i18nKey: "history",
         isAnchor: true,
       },
       {
-        href: "#servicios",
+        href: "/#servicios",
         label: "Servicios",
         i18nKey: "services",
         isAnchor: true,
@@ -71,11 +71,11 @@ const defaultItems: Array<MenuItem> = [
     label: "Recursos",
     i18nKey: "resources",
     children: [
-      { href: "#faq", i18nKey: "questions", label: "Preguntas Frecuentes" },
+      { href: "/#faq", i18nKey: "questions", label: "Preguntas Frecuentes" },
     ],
   },
 
-  { href: "#contactenos", i18nKey: "contact", label: "Contáctenos" },
+  { href: "/#contactenos", i18nKey: "contact", label: "Contáctenos" },
 ];
 
 const { items = defaultItems } = Astro.props;
