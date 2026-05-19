@@ -2,34 +2,46 @@
 import type { ImageMetadata } from 'astro';
 
 export interface Props {
-  image: ImageMetadata;
+  images: ImageMetadata[];
   date: string;
   span?: string;
   title: string;
   text: string;
-  autores?: string[]; 
+  authors?: string[];
 }
 
-const { autores = [], image, date, span, title, text } = Astro.props;
+const { authors = [], images, date, span, title, text } = Astro.props;
+const id = `gallery-${Math.random().toString(36).slice(2, 7)}`;
+const srcs = images.map(i => i.src);
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-2 border border-[#e8e8e8] rounded-2xl overflow-hidden mb-14 bg-white font-['Bai_Jamjuree',sans-serif]">
-  
-  <!-- IMAGEN -->
-  <div 
-    class="relative min-h-[320px] bg-center bg-cover overflow-hidden"
-    style={`background-image: url(${image.src})`}
+
+  <!-- GALERÍA -->
+  <div
+    id={`${id}-main`}
+    class="group relative min-h-[320px] bg-center bg-cover cursor-pointer order-last md:order-first"
+    style={`background-image: url(${images[0].src})`}
   >
-    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+    <!-- Overlay base -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none transition-all duration-300 group-hover:from-black/50 group-hover:to-black/10"></div>
+
+    <!-- Hover: ícono centrado -->
+
+
+    <!-- Badge -->
     <span class="absolute top-4 left-4 bg-white text-[#1d4e62] text-[10px] font-bold tracking-[0.1em] uppercase px-4 py-1.5 rounded-full z-10">
       ✦ Destacado
     </span>
+
+    <!-- Flechas -->
+    <button id={`${id}-prev`} class="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-[#1d4e62] rounded-full w-8 h-8 flex items-center justify-center shadow text-lg">‹</button>
+    <button id={`${id}-next`} class="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-[#1d4e62] rounded-full w-8 h-8 flex items-center justify-center shadow text-lg">›</button>
   </div>
 
   <!-- CONTENIDO -->
   <div class="flex flex-col justify-between p-9">
     <div>
-      <!-- Meta -->
       <div class="flex items-center gap-3 text-xs text-[#999] mb-4">
         <span>{date}</span>
         {span && (
@@ -40,26 +52,86 @@ const { autores = [], image, date, span, title, text } = Astro.props;
         )}
       </div>
 
-      <!-- Título -->
       <h2 class="font-['Bai_Jamjuree',sans-serif] text-[1.65rem] font-bold leading-tight text-[#1a1a1a] mb-3">
         {title}
       </h2>
 
-      <!-- Texto -->
-      <p class="text-sm text-[#666] font-light leading-relaxed mb-8">
-        {text}
-      </p>
+        <div class="text-sm text-[#666] font-light leading-relaxed mb-8 space-y-2">
+          {text.split('\n').map(line => (
+            line.trim() === '' ? <div class="h-2"></div> : <p>{line}</p>
+          ))}
+        </div>    
+        {authors.length > 0 && (
+          <div class="flex justify-end">
+            <p class="text-xs text-[#bbb] text-right"><span class="mr-1.5">—</span>{authors.join(', ')}</p>
+          </div>
+        )}
+      </div>
     </div>
-
-    <div class="flex flex-col gap-5">
-      {autores.length > 0 && (
-        <div class="flex justify-end">
-          <p class="text-xs text-[#bbb] text-right">
-            <span class="mr-1.5">—</span>
-            {autores.join(', ')}
-          </p>
-        </div>
-      )}
-    </div>
-  </div>
 </div>
+
+<!-- LIGHTBOX -->
+<div id={`${id}-lightbox`} class="fixed inset-0 z-[9999] bg-black/90 items-center justify-center hidden">
+  <button id={`${id}-close`} class="absolute top-5 right-6 text-white text-3xl hover:text-gray-300 transition" aria-label="Cerrar galería">✕</button>
+  <button id={`${id}-lb-prev`} class="absolute left-5 top-1/2 -translate-y-1/2 text-white text-5xl hover:text-gray-300 transition" aria-label="Imagen anterior">‹</button>
+  <img id={`${id}-lb-img`} src={images[0].src} alt="Vista ampliada" class="max-w-[90vw] max-h-[85vh] object-contain rounded-xl shadow-2xl" />
+  <button id={`${id}-lb-next`} class="absolute right-5 top-1/2 -translate-y-1/2 text-white text-5xl hover:text-gray-300 transition" aria-label="Imagen siguiente">›</button>
+  <span id={`${id}-lb-counter`} class="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/50 text-xs tracking-widest">1 / {images.length}</span>
+</div>
+
+<script define:vars={{ id, srcs }}>
+  let current = 0;
+
+  const main = document.getElementById(`${id}-main`);
+  const lightbox = document.getElementById(`${id}-lightbox`);
+  const lbImg = document.getElementById(`${id}-lb-img`);
+  const lbCounter = document.getElementById(`${id}-lb-counter`);
+
+  function goTo(i) {
+    current = (i + srcs.length) % srcs.length;
+    main.style.backgroundImage = `url(${srcs[current]})`;
+  }
+
+  function lbGoTo(i) {
+    goTo(i);
+    lbImg.src = srcs[current];
+    lbCounter.textContent = `${current + 1} / ${srcs.length}`;
+  }
+
+  document.getElementById(`${id}-prev`).addEventListener('click', e => { e.stopPropagation(); goTo(current - 1); });
+  document.getElementById(`${id}-next`).addEventListener('click', e => { e.stopPropagation(); goTo(current + 1); });
+
+  main.addEventListener('click', () => {
+    lbImg.src = srcs[current];
+    lbCounter.textContent = `${current + 1} / ${srcs.length}`;
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Cerrar menús dropdown abiertos
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+    });
+    document.querySelectorAll('[data-arrow]').forEach(arrow => {
+      arrow.style.transform = 'rotate(0deg)';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById(`${id}-close`).addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+  document.getElementById(`${id}-lb-prev`).addEventListener('click', () => lbGoTo(current - 1));
+  document.getElementById(`${id}-lb-next`).addEventListener('click', () => lbGoTo(current + 1));
+
+  document.addEventListener('keydown', e => {
+    if (lightbox.style.display !== 'flex') return;
+    if (e.key === 'ArrowLeft')  lbGoTo(current - 1);
+    if (e.key === 'ArrowRight') lbGoTo(current + 1);
+    if (e.key === 'Escape')     closeLightbox();
+  });
+</script>
