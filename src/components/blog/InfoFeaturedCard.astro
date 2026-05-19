@@ -1,6 +1,7 @@
 ---
 import FeaturedCard from "./FeaturedCard.astro";
-import endimet from '@blog/endimet.webp';
+import hipotiroidismo from '@blog/hipotiroidismo.webp';
+import vitamina from '@blog/vitamina.webp';
 
 const TITLE = "Participación destacada en el Curso Internacional ENDIMET";
 
@@ -8,24 +9,24 @@ const DATE = "26 Abril 2026";
 
 const SPAN = "Curso Internacional";
 
-const TEXT = `La IPS y el Centro de investigación; participaron en el Curso Internacional ENDIMET de la Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, un importante escenario académico que reunió investigaciones relevantes en el área
-- Tamizaje racional de la vitamina D
-- ¿A quién tamizar para hipotiroidismo clínico? Evidencia epidemiológica desde atención primaria
+const TEXT =`
+La IPS y el Centro de investigación; participaron en el Curso Internacional ENDIMET de la Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, un importante escenario académico que reunió investigaciones relevantes en el área.
+En esta edición se postularon un total de 226 E-poster, entre los cuales nuestra institución presentó los trabajos:
+ - Tamizaje racional de la vitamina D
+ - ¿A quién tamizar para hipotiroidismo clínico? Evidencia epidemiológica desde atención primaria
+Ambos estudios fueron aceptados para presentación, destacándose por su rigor metodológico y pertinencia clínica.
 De manera especial, el E-poster Tamizaje racional de la vitamina D fue seleccionado para defensa oral, logrando posicionarse dentro de los 29 mejores trabajos del evento.
-
 Este reconocimiento resalta el compromiso institucional con la investigación científica y la generación de evidencia para la práctica clínica en atención primaria.
 `
-const AUTORES = ["Dr. Armando Dias Vergel", "Dr. Alberto Brito", "Dra. Norida Torrado"]
-
+const AUTHORS = ["Dr. Armando Dias Vergel", "Dr. Alberto Brito", "Dra. Norida Torrado"];
 ---
 
-
 <FeaturedCard
-  image={endimet}
+  images={[hipotiroidismo, vitamina]}
   date={DATE}
   span= {SPAN}
   title={TITLE}
   text={TEXT}
-  autores={AUTORES}
+  authors={AUTHORS}
 />
 
