@@ -3,25 +3,28 @@ import { Image } from 'astro:assets';
 
 interface Props {
   image: ImageMetadata
-  area: string,
+  span: string,
   title: string,
   text: string
   date: string
 }
 
-const {image, area, title, text, date} = Astro.props;
+const {image, span, title, text, date} = Astro.props;
 ---
 
 <div class="inline-block align-top w-full max-w-[450px] border border-gray-200 rounded-xl m-5 bg-white font-['Bai_Jamjuree',sans-serif]">
   <div class="font-['Bai_Jamjuree',sans-serif]">
     <div class="flex-1 p-5 flex flex-col">
-      <p class="text-[10px] font-semibold tracking-[0.12em] uppercase text-[#999] mb-1.5">
-        {area}
+      <p data-i18n="blog.endimet.span"
+      class="text-[10px] font-semibold tracking-[0.12em] uppercase text-[#999] mb-1.5">
+        {span}
       </p>
-      <h3 class="text-lg leading-snug text-[#1a1a1a] mb-2">
+      <h3 data-i18n="blog.endimet.title"
+      class="text-lg leading-snug text-[#1a1a1a] mb-2">
         {title}
       </h3>
-      <p class="text-[13px] text-[#777] font-light leading-relaxed mb-3">
+      <p data-i18n="blog.endimet.text"
+      class="text-[13px] text-[#777] font-light leading-relaxed mb-3">
         {text}
       </p>
 
@@ -33,7 +36,9 @@ const {image, area, title, text, date} = Astro.props;
         />
       </div>
       <div class="items-center text-[11px] text-[#bbb] pt-2 mt-auto text-right">
-        <span>{date}</span>
+        <span data-i18n="blog.endimet.date">
+          {date}
+        </span>
       </div>
     </div>
   </div>

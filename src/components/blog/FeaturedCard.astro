@@ -17,7 +17,6 @@ const srcs = images.map(i => i.src);
 
 <div class="grid grid-cols-1 md:grid-cols-2 border border-[#e8e8e8] rounded-2xl overflow-hidden mb-14 bg-white font-['Bai_Jamjuree',sans-serif]">
 
-  <!-- GALERÍA -->
   <div
     id={`${id}-main`}
     class="group relative min-h-[320px] bg-center bg-cover cursor-pointer order-last md:order-first"
@@ -26,11 +25,9 @@ const srcs = images.map(i => i.src);
     <!-- Overlay base -->
     <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none transition-all duration-300 group-hover:from-black/50 group-hover:to-black/10"></div>
 
-    <!-- Hover: ícono centrado -->
-
-
     <!-- Badge -->
-    <span class="absolute top-4 left-4 bg-white text-[#1d4e62] text-[10px] font-bold tracking-[0.1em] uppercase px-4 py-1.5 rounded-full z-10">
+    <span data-i18n="blog.featuredCard.featured"
+    class="absolute top-4 left-4 bg-white text-[#1d4e62] text-[10px] font-bold tracking-[0.1em] uppercase px-4 py-1.5 rounded-full z-10">
       ✦ Destacado
     </span>
 
@@ -43,24 +40,26 @@ const srcs = images.map(i => i.src);
   <div class="flex flex-col justify-between p-9">
     <div>
       <div class="flex items-center gap-3 text-xs text-[#999] mb-4">
-        <span>{date}</span>
+        <span data-i18n="blog.featuredCard.date">
+          {date}
+        </span>
         {span && (
           <>
-            <span class="w-1 h-1 rounded-full bg-[#ddd]"></span>
-            <span class="text-[#1d4e62] font-medium">{span}</span>
+            <span data-i18n="blog.featuredCard.span"
+              class="text-[#1d4e62] font-medium">{span}
+            </span>
           </>
         )}
       </div>
 
-      <h2 class="font-['Bai_Jamjuree',sans-serif] text-[1.65rem] font-bold leading-tight text-[#1a1a1a] mb-3">
+      <h2 data-i18n="blog.featuredCard.title"
+        class="font-['Bai_Jamjuree',sans-serif] text-[1.65rem] font-bold leading-tight text-[#1a1a1a] mb-3">
         {title}
       </h2>
-
-        <div class="text-sm text-[#666] font-light leading-relaxed mb-8 space-y-2">
-          {text.split('\n').map(line => (
-            line.trim() === '' ? <div class="h-2"></div> : <p>{line}</p>
-          ))}
-        </div>    
+        <div data-i18n="blog.featuredCard.text"
+          class="text-sm text-[#666] font-light leading-relaxed mb-8 whitespace-pre-line">
+          {text}
+        </div>  
         {authors.length > 0 && (
           <div class="flex justify-end">
             <p class="text-xs text-[#bbb] text-right"><span class="mr-1.5">—</span>{authors.join(', ')}</p>

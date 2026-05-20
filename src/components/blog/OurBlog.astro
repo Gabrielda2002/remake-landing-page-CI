@@ -39,7 +39,8 @@ const {
     <h1 class="text-[clamp(2.2rem,5vw,3.8rem)] font-bold text-white leading-tight mb-3">
       {title}
     </h1>
-    <p class="text-white/60 text-[15px] font-light leading-relaxed max-w-lg">
+    <p data-i18n="blog.subtitle"
+    class="text-white/60 text-[15px] font-light leading-relaxed max-w-lg">
       {subTitle}
     </p>
   </div>
@@ -53,7 +54,8 @@ const {
   <div>
     <InfoFeaturedCard/>
     <div class="flex items-center gap-2.5 mb-5">
-      <p class="text-[11px] font-semibold tracking-[0.14em] uppercase text-[#888]">Publicaciones recientes</p>
+      <p data-i18n="blog.lineText"
+      class="text-[11px] font-semibold tracking-[0.14em] uppercase text-[#888]">Publicaciones recientes</p>
       <div class="flex-1 h-px bg-[#e5e5e5]"></div>
     </div>
     <InfoGridCard/>
