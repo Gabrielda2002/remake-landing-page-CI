@@ -5,11 +5,13 @@ interface Props {
   image: ImageMetadata
   span: string,
   title: string,
-  text: string
+  text: string,
+  titleWebside?: string
+  website?: string,
   date: string
 }
 
-const {image, span, title, text, date} = Astro.props;
+const {image, span, title, text, titleWebside, website, date} = Astro.props;
 ---
 
 <div class="inline-block align-top w-full max-w-[450px] border border-gray-200 rounded-xl m-5 bg-white font-['Bai_Jamjuree',sans-serif]">
@@ -35,6 +37,19 @@ const {image, span, title, text, date} = Astro.props;
           class="w-full h-50 object-cover rounded-lg mb-4 md:mb-0 md:w-100 md:h-auto align-center"
         />
       </div>
+
+      <div class="text-[11px] pt-2 mt-auto text-left">
+        <a
+          href={website}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 hover:gap-2 transition-all duration-200 text-[#bbb]"
+        >
+          <span data-i18n="blog.endimet.webside">Conoce más sobre</span>
+          &nbsp;{titleWebside} <span>→</span>
+        </a>
+      </div>
+
       <div class="items-center text-[11px] text-[#bbb] pt-2 mt-auto text-right">
         <span data-i18n="blog.endimet.date">
           {date}

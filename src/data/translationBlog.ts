@@ -24,6 +24,7 @@ export const translations = {
       span: "Curso",
       title: "Curso Internacional ENDIMET",
       text: "La La IPS y el Centro de investigación hicieron parte del Curso Internacional ENDIMET de la Asociación Colombiana de Endocrinología, Diabetes y Metabolismo, un reconocido encuentro académico que reunió importantes investigaciones del sector.",
+      webside: "Conoce más sobre",      
       date: "26 Abril 2026",
     }
   },
@@ -54,6 +55,7 @@ export const translations = {
       span: "Course",
       title: "ENDIMET International Course",
       text: "IPS and the Research Center participated in the ENDIMET International Course organized by the Colombian Association of Endocrinology, Diabetes, and Metabolism, a renowned academic conference that brought together leading research in the field.",
+      webside: "Learn more about",
       date: "April 26, 2026",
     }
   }
