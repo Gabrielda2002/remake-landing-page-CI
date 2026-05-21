@@ -27,6 +27,10 @@ export const translationFloatingContent={
         "Que  el centro de investigación  y el comité de ética tengan un funcionamiento eficaz y activo para revisión, y seguimiento de proyectos.",
         "Reducción de los tiempos de respuesta entre la radicación de solicitudes y la emisión de conceptos por parte del comité, promoviendo una interacción más eficiente entre los centros de investigación y el comité de ética"
       ],
+    },
+    acic: {
+      title: "Asociación Colombiana de Centros de Investigación Clínica",
+      text: "Agrupa centros de investigación clínica colombianos, debidamente certificados por el INVIMA, que aceptan y acogen los principios éticos y de calidad exigidos por las normas internacionales y los estándares de la Asociación, para consolidarse como centros de excelencia de talla mundial."
     }
   },
 
@@ -56,6 +60,10 @@ export const translationFloatingContent={
         "The research center and the ethics committee should operate effectively and proactively to review and monitor projects.",
         "Reducing the turnaround time between the submission of applications and the committee’s issuance of opinions, thereby promoting more efficient interaction between research centers and the ethics committee"
       ],
+    },
+    acic: {
+      title: "Colombian Association of Clinical Research Centers",
+      text: "It brings together Colombian clinical research centers, duly certified by INVIMA, that embrace and adhere to the ethical and quality principles required by international standards and the Association’s guidelines, thereby establishing themselves as world-class centers of excellence."
     }
   }
 }

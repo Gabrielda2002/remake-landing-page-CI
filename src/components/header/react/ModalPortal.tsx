@@ -4,6 +4,7 @@ import { useFloatingModal, type ModalOptions } from "@/hooks/useFloatingModal";
 import { EthicsCommittee } from "./EthicsCommittee";
 import { Metricsmed } from "./Metricsmed";
 import { Avanzar } from "./Avanzar";
+import { Acic } from "./Acic";
 import { useTranslation } from "@/hooks/useTranslation";
 import { translationFloatingContent } from "@/data/translationFloatingContent";
 
@@ -33,6 +34,11 @@ export function ModalPortal() {
     avanzar: {
       title: "AVANZAR",
       component: <Avanzar/>,
+      size: "large"
+    },
+    acic: {
+      title: "ACIC",
+      component: <Acic/>,
       size: "large"
     },
   };
