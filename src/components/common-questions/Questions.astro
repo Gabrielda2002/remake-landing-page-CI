@@ -1,0 +1,17 @@
+---
+import HeaderStyle from "../ui/HeaderStyle.astro";
+import service10 from '@services/service10.webp';
+import InfoQuestions from "./InfoQuestions.astro";
+
+const TITLE = "Preguntas Frecuentes";
+const SUBTITLE = "Preguntas e inquietudes sobre multiples ambitos relacionados con el centro de investigacion";
+
+---
+<HeaderStyle
+  image={service10}
+  title={TITLE}
+  subtitle={SUBTITLE}
+/>
+<div class="max-w-5xl mx-auto px-6 py-12 font-['Bai_Jamjuree',sans-serif]">
+  <InfoQuestions/>
+</div>

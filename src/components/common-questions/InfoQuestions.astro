@@ -1,0 +1,71 @@
+---
+import AccordionItem from "../ui/AccordionItem.astro"
+
+  const QUESTIONS = [
+    {
+      question: "¿Qué es una investigación en salud?",
+      answer: "Es un proceso científico que busca generar conocimiento para mejorar la prevención, diagnóstico, tratamiento o rehabilitación de enfermedades. Puede incluir estudios con pacientes, análisis de datos o evaluaciones de servicios de salud."
+    },
+    {
+      question: "¿Participar en una investigación es obligatorio?",
+      answer: "No. La participación es completamente voluntaria. Nadie puede obligarte a participar, y puedes retirarte en cualquier momento sin consecuencias."
+    },
+    {
+      question: "¿Qué es el consentimiento informado?",
+      answer: "Es un documento que explica el estudio (objetivo, riesgos, beneficios, procedimientos) y que debes firmar únicamente si estás de acuerdo en participar. Garantiza que tomas la decisión de forma libre y consciente."
+    },
+    {
+      question: "¿Qué riesgos existen al participar en un estudio?",
+      answer: "Los riesgos varían según el tipo de investigación. Algunos estudios no tienen riesgo, mientras que otros pueden implicar efectos secundarios leves o moderados. Todos los riesgos deben ser explicados antes de participar."
+    },
+    {
+      question: "¿Recibiré algún beneficio al participar?",
+      answer: "No siempre hay beneficios directos. En algunos casos puedes recibir atención médica especial o acceso a nuevos tratamientos, pero el principal beneficio es contribuir al avance científico y la salud pública."
+    },
+    {
+      question: "¿Mi información personal será confidencial?",
+      answer: "Sí. Los investigadores están obligados a proteger tus datos personales y de salud. La información se maneja de forma confidencial y solo se usa con fines científicos."
+    },
+    {
+      question: "¿Quién regula las investigaciones en salud?",
+      answer: "Las investigaciones son revisadas por comités de ética y autoridades sanitarias, que verifican que se cumplan normas de seguridad, calidad y respeto por los participantes."
+    },
+    {
+      question: "¿Qué pasa si algo sale mal durante el estudio?",
+      answer: "El equipo investigador debe brindarte atención médica y responder ante cualquier evento adverso relacionado con el estudio. Esto también debe explicarse en el consentimiento informado."
+    },
+    {
+      question: "¿Puedo retirarme después de haber aceptado?",
+      answer: "Sí. Puedes retirarte en cualquier momento sin necesidad de justificar tu decisión y sin afectar tu atención en salud."
+    },
+    {
+      question: "¿Qué tipo de estudios existen?",
+      answer: "Ensayos clínicos (prueban medicamentos o tratamientos), Estudios observacionales (analizan datos sin intervenir), Investigaciones epidemiológicas, Estudios de servicios de salud"
+    },
+    {
+      question: "¿Las investigaciones solo se hacen en hospitales grandes?",
+      answer: "No. También se realizan en clínicas, centros de salud, universidades e incluso en comunidades."
+    },
+    {
+      question: "¿Participar tiene algún costo?",
+      answer: "Generalmente no. En muchos estudios, los procedimientos relacionados con la investigación son cubiertos por los organizadores."
+    },
+    {
+      question: "¿Cómo sé si una investigación es confiable?",
+      answer: "Puedes verificar: Que tenga aprobación ética, Que te expliquen claramente el estudio, Que exista un investigador responsable identificado, Que te entreguen el consentimiento informado"
+    },
+    {
+      question: "¿Qué derechos tengo como participante?",
+      answer: "Recibir información clara, Decidir libremente participar o no, Retirarte en cualquier momento, que se respete tu confidencialidad,Recibir atención en caso de eventos adversos"
+    },
+    {
+      question: "¿Cómo puedo participar en una investigación?",
+      answer: "Contactarse mediante el formulario, via email o numero de atención del centro de investigacion"
+    },
+  ]
+
+---
+
+<AccordionItem
+  questions={QUESTIONS}
+/>
