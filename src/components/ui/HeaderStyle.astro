@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props{
+  image: ImageMetadata,
+  title: string,
+  tileI18n?: string,
+  subtitle: string
+  subtitleI18n?: string
+}
+
+const {image, title, tileI18n, subtitle, subtitleI18n} = Astro.props;
+---
+
+<div class="relative flex items-center min-h-[340px] w-full overflow-hidden font-['Bai_Jamjuree',sans-serif]">
+
+  <Image
+    src={image} 
+    alt="Background" 
+    class="absolute inset-0 w-full h-full object-cover"
+    loading="eager"
+  /> 
+
+  <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/10"></div>
+
+  <!-- Elementos decorativos -->
+  <div class="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_60px,rgba(255,255,255,0.02)_61px),repeating-linear-gradient(90deg,transparent,transparent_60px,rgba(255,255,255,0.02)_61px)]"></div>
+  <div class="absolute -top-16 -right-16 w-80 h-80 rounded-full border border-white/[0.06]"></div>
+  <div class="absolute top-5 right-10 w-44 h-44 rounded-full border border-white/[0.08]"></div>
+
+  <div class="relative px-10 pb-10 pt-14 max-w-3xl z-10">
+    <h1 data-i18n={tileI18n}
+    class="text-[clamp(2.2rem,5vw,3.8rem)] font-bold text-white leading-tight mb-3">
+      {title}
+    </h1>
+    <p data-i18n={subtitleI18n}
+    class="text-white/60 text-[15px] font-light leading-relaxed max-w-lg">
+      {subtitle}
+    </p>
+  </div>
+</div>
+ 
+<div class="w-full h-8 bg-gradient-to-b from-black/5 to-transparent -mt-1"></div>
