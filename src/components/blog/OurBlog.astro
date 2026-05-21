@@ -1,8 +1,8 @@
 ---
 import service11 from '@services/service11.webp';
-import { Image } from "astro:assets";
 import InfoFeaturedCard from './InfoFeaturedCard.astro';
 import InfoGridCard from './InfoGridCard.astro';
+import HeaderStyle from "../ui/HeaderStyle.astro";
 
 interface Props {
   span?: string,
@@ -11,43 +11,16 @@ interface Props {
 }
 
 const TITLE = "Blog Nordvital";
-const SUB_TITLE = "Conocimiento clínico, hallazgos de investigación y noticias del equipo científico."
-
-const {
-  title = TITLE, 
-  subTitle = SUB_TITLE
-}:Props = Astro.props;
+const SUBTITLE = "Conocimiento clínico, hallazgos de investigación y noticias del equipo científico."
+const SUBTITLE_KEY = "blog.subtitle"
 ---
 
-<div class="relative flex items-center min-h-[340px] w-full overflow-hidden font-['Bai_Jamjuree',sans-serif]">
-
-  <Image 
-    src={service11} 
-    alt="Background" 
-    class="absolute inset-0 w-full h-full object-cover"
-    loading="eager"
-  /> 
-
-  <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/10"></div>
-
-  <!-- Elementos decorativos -->
-  <div class="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_60px,rgba(255,255,255,0.02)_61px),repeating-linear-gradient(90deg,transparent,transparent_60px,rgba(255,255,255,0.02)_61px)]"></div>
-  <div class="absolute -top-16 -right-16 w-80 h-80 rounded-full border border-white/[0.06]"></div>
-  <div class="absolute top-5 right-10 w-44 h-44 rounded-full border border-white/[0.08]"></div>
-
-  <div class="relative px-10 pb-10 pt-14 max-w-3xl z-10">
-    <h1 class="text-[clamp(2.2rem,5vw,3.8rem)] font-bold text-white leading-tight mb-3">
-      {title}
-    </h1>
-    <p data-i18n="blog.subtitle"
-    class="text-white/60 text-[15px] font-light leading-relaxed max-w-lg">
-      {subTitle}
-    </p>
-  </div>
-</div>
- 
-<div class="w-full h-8 bg-gradient-to-b from-black/5 to-transparent -mt-1"></div>
-
+<HeaderStyle
+  image={service11}
+  title={TITLE}
+  subtitle={SUBTITLE}
+  subtitleI18n={SUBTITLE_KEY}
+/>
 
 <div class="max-w-5xl mx-auto px-6 py-12 font-['Bai_Jamjuree',sans-serif]">
 
