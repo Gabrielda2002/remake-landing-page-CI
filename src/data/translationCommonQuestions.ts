@@ -61,7 +61,9 @@ export const translations = {
       },
       {
         question: "¿Cómo puedo participar en una investigación?",
-        answer: "Contactarse mediante el formulario, via email o numero de atención del centro de investigacion"
+        answer: "Puede contactarse mediante email, numero de atención o diligenciar el formulario del centro de investigacion.",
+        text: "¿Desea participar en un esudio? ",
+        textHref: "Si"
       },
     ]
   },
@@ -70,10 +72,12 @@ export const translations = {
     subtitle: "Questions and concerns regarding various aspects related to the research center",
     question:[
       {
+      id: 1,
       question: "What is health research?",
       answer: "It is a scientific process aimed at generating knowledge to improve the prevention, diagnosis, treatment, or rehabilitation of diseases. It may include studies involving patients, data analysis, or evaluations of health services."
       },
       {
+        id:2,
         question: "Is participating in a research study mandatory?",
         answer: "No. Participation is entirely voluntary. No one can force you to participate, and you can withdraw at any time without any consequences."
       },
@@ -127,7 +131,9 @@ export const translations = {
       },
       {
         question: "How can I participate in a research study?",
-        answer: "Contact us using the form, via email, or by calling the research center's customer service number"
+        answer: "You can contact us by email, by calling our customer service number, or by filling out the form on the research center’s website.",
+        text: "Would you like to participate in a study?",
+        textHref: "Yes"
       },
     ]
   }
