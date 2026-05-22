@@ -6,14 +6,18 @@ interface Question {
 
 interface Props {
   questions: Array<Question>;
+  i18nKeyTransation?: string;
 }
 
-const { questions } = Astro.props;
+const { questions, i18nKeyTransation} = Astro.props;
 ---
 
 <div class="divide-y divide-gray-200">
   {questions.map((item, index) => {
     const id = `faq-${index}`;
+    const questionKey = i18nKeyTransation ? `${i18nKeyTransation}.${index}.question` : undefined;
+    const answerKey = i18nKeyTransation ? `${i18nKeyTransation}.${index}.answer` : undefined;
+    
     return (
       <div class="accordion-item rounded-lg transition-all duration-200 hover:shadow-md hover:shadow-gray-200/80 hover:-translate-y-0.5 hover:bg-gray-50/60 px-2 m-4">
         <button
@@ -21,6 +25,8 @@ const { questions } = Astro.props;
           aria-expanded="false"
           aria-controls={`answer-${id}`}
           id={`trigger-${id}`}
+          data-i18n={questionKey}
+
         >
           {item.question}
           <svg
@@ -38,7 +44,12 @@ const { questions } = Astro.props;
           aria-labelledby={`trigger-${id}`}
         >
           <div class="overflow-hidden">
-            <p class="pb-5 text-gray-500 text-sm leading-relaxed">{item.answer}</p>
+            <p 
+              class="pb-5 text-gray-500 text-sm leading-relaxed"
+              data-i18n={answerKey}
+            >
+              {item.answer}
+            </p>
           </div>
         </div>
       </div>
