@@ -2,6 +2,7 @@
 import type { ImageMetadata } from 'astro';
 
 export interface Props {
+  id: string;
   images: ImageMetadata[];
   date: string;
   span?: string;
@@ -10,18 +11,17 @@ export interface Props {
   authors?: string[];
 }
 
-const { authors = [], images, date, span, title, text } = Astro.props;
-const id = `gallery-${Math.random().toString(36).slice(2, 7)}`;
+const { id, authors = [], images, date, span, title, text } = Astro.props;
 const srcs = images.map(i => i.src);
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-2 border border-[#e8e8e8] rounded-2xl overflow-hidden mb-14 bg-white font-['Bai_Jamjuree',sans-serif]">
 
-  <div
-    id={`${id}-main`}
-    class="group relative min-h-[320px] bg-center bg-contain cursor-pointer order-last md:order-first"
-    style={`background-image: url(${images[0].src})`}
-  >
+    <div
+      id={`${id}-main`}
+      class="group relative min-h-[320px] bg-center bg-contain bg-no-repeat cursor-pointer order-last md:order-first"
+      style={`background-image: url(${images[0].src})`}
+    >
     <!-- Overlay base -->
     <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none transition-all duration-300 group-hover:from-black/50 group-hover:to-black/10"></div>
 
