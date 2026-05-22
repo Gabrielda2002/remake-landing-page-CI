@@ -2,6 +2,9 @@
 interface Question {
   question: string;
   answer: string;
+  text?: string;
+  href?: string;
+  textHref?: string;
 }
 
 interface Props {
@@ -9,15 +12,12 @@ interface Props {
   i18nKeyTransation?: string;
 }
 
-const { questions, i18nKeyTransation} = Astro.props;
+const { questions, i18nKeyTransation } = Astro.props;
 ---
 
 <div class="divide-y divide-gray-200">
   {questions.map((item, index) => {
     const id = `faq-${index}`;
-    const questionKey = i18nKeyTransation ? `${i18nKeyTransation}.${index}.question` : undefined;
-    const answerKey = i18nKeyTransation ? `${i18nKeyTransation}.${index}.answer` : undefined;
-    
     return (
       <div class="accordion-item rounded-lg transition-all duration-200 hover:shadow-md hover:shadow-gray-200/80 hover:-translate-y-0.5 hover:bg-gray-50/60 px-2 m-4">
         <button
@@ -25,8 +25,7 @@ const { questions, i18nKeyTransation} = Astro.props;
           aria-expanded="false"
           aria-controls={`answer-${id}`}
           id={`trigger-${id}`}
-          data-i18n={questionKey}
-
+          data-i18n={i18nKeyTransation && `${i18nKeyTransation}.${index}.question`}
         >
           {item.question}
           <svg
@@ -38,18 +37,35 @@ const { questions, i18nKeyTransation} = Astro.props;
         </button>
 
         <div
-          class="accordion-content grid grid-rows-[0fr] overflow-hidden transition-all duration-300 "
+          class="accordion-content grid grid-rows-[0fr] overflow-hidden transition-all duration-300"
           id={`answer-${id}`}
           role="region"
           aria-labelledby={`trigger-${id}`}
         >
-          <div class="overflow-hidden">
-            <p 
-              class="pb-5 text-gray-500 text-sm leading-relaxed"
-              data-i18n={answerKey}
+          <div class="overflow-hidden flex flex-col">
+            <p
+              class="pb-2 text-gray-500 text-sm leading-relaxed"
+              data-i18n={i18nKeyTransation && `${i18nKeyTransation}.${index}.answer`}
             >
               {item.answer}
             </p>
+
+            {item.text && (
+              <p class="pb-5 text-gray-500 text-sm leading-relaxed">
+                <span data-i18n={i18nKeyTransation && `${i18nKeyTransation}.${index}.text`}>
+                  {item.text}
+                </span>
+                {item.href && (
+                  <a 
+                    href={item.href}
+                    class="inline-block mt-2 text-blue-600 hover:text-blue-800 hover:underline font-medium transition-colors duration-200"
+                    data-i18n={i18nKeyTransation && `${i18nKeyTransation}.${index}.textHref`}
+                  >
+                    {item.textHref}
+                  </a>
+                )}
+              </p>
+            )}
           </div>
         </div>
       </div>
