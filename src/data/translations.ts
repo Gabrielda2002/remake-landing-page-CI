@@ -1,5 +1,6 @@
 export const defaultLang = "es";
 import { translations as blogTranslations } from "./translationBlog";
+import { translations as translationCommonQuestions } from "./translationCommonQuestions";
 
 export const translations = {
   es: {
@@ -200,10 +201,13 @@ export const translations = {
     footer: {
       title: "Contacto",
       address: "Dirección: AV 3A E #13A - 82 CAOBOS"
-    },
+    }, 
     
     //blog
-    blog: blogTranslations.es
+    blog: blogTranslations.es,
+
+    //common questions
+    questions: translationCommonQuestions.es
   },
 
   // Traducción al inglés
@@ -416,5 +420,7 @@ export const translations = {
     //blog
     blog: blogTranslations.en,
 
+    //common questions
+    questions: translationCommonQuestions.en
   }
 };
