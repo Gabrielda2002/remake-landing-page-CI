@@ -4,13 +4,17 @@ import service10 from '@services/service10.webp';
 import InfoQuestions from "./InfoQuestions.astro";
 
 const TITLE = "Preguntas Frecuentes";
+const TILLE_KEY = "questions.title";
 const SUBTITLE = "Preguntas e inquietudes sobre multiples ambitos relacionados con el centro de investigacion";
+const SUBTITLE_KEY = "questions.subtitle"
 
 ---
 <HeaderStyle
   image={service10}
   title={TITLE}
+  tileI18n={TILLE_KEY}
   subtitle={SUBTITLE}
+  subtitleI18n={SUBTITLE_KEY}
 />
 <div class="max-w-5xl mx-auto px-6 py-12 font-['Bai_Jamjuree',sans-serif]">
   <InfoQuestions/>

@@ -64,8 +64,10 @@ import AccordionItem from "../ui/AccordionItem.astro"
     },
   ]
 
+const QUESTIONS_KEY = "questions.question";
 ---
 
 <AccordionItem
   questions={QUESTIONS}
+  i18nKeyTransation={QUESTIONS_KEY}
 />
