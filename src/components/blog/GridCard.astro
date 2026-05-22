@@ -14,7 +14,7 @@ interface Props {
 const {image, span, title, text, titleWebside, website, date} = Astro.props;
 ---
 
-<div class="inline-block align-top w-full max-w-[450px] border border-gray-200 rounded-xl m-5 bg-white font-['Bai_Jamjuree',sans-serif]">
+<div class="block mx-auto md:mx-0 w-full max-w-[450px] border border-gray-200 rounded-xl my-5 bg-white font-['Bai_Jamjuree',sans-serif]">
   <div class="font-['Bai_Jamjuree',sans-serif]">
     <div class="flex-1 p-5 flex flex-col">
       <p data-i18n="blog.endimet.span"
@@ -34,7 +34,7 @@ const {image, span, title, text, titleWebside, website, date} = Astro.props;
         <Image
           src={image}
           alt="Imagen del artículo"
-          class="w-full h-50 object-cover rounded-lg mb-4 md:mb-0 md:w-100 md:h-auto align-center"
+          class="w-full h-48 object-contain rounded-lg mb-4"
         />
       </div>
 
