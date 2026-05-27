@@ -10,13 +10,13 @@ interface FormsItems {
 }
 
 export const Form: React.FC = () => {
-  const [activeForm, setActiveForm] = useState('contact');
+  const [activeForm, setActiveForm] = useState('study');
 
   const { t } = useTranslation();
 
   const formButtons: Array<FormsItems> = [
-    { key: 'contact', label: t('form.buttons.contact') },
     { key: 'study',   label: t('form.buttons.study') },
+    { key: 'contact', label: t('form.buttons.contact') },
   ];
 
   return (
@@ -43,13 +43,12 @@ export const Form: React.FC = () => {
           );
         })}
       </div>
+      <div className={activeForm === 'study' ? 'block' : 'hidden'}>
+        <FormStudy />
+      </div>
 
       <div className={activeForm === 'contact' ? 'block' : 'hidden'}>
         <FormContact />
-      </div>
-
-      <div className={activeForm === 'study' ? 'block' : 'hidden'}>
-        <FormStudy />
       </div>
     </div>
   );
