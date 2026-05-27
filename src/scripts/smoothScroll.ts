@@ -10,6 +10,7 @@ export function initSmoothScroll() {
       if (linkUrl.pathname === location.pathname) {
         e.preventDefault();
         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+        history.pushState(null, '', `#${sectionId}`);
       }
     });
   });
