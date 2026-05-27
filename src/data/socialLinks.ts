@@ -10,7 +10,7 @@ export const socialLinks = [
   },
   {
     nombre: 'Instagram',
-    url: 'https://www.instagram.com/nordvital_ips/?hl=en',
+    url: 'https://www.instagram.com/inst.itutodeinvestigacion',
     tooltip: 'Seleccione para ir a la página de Instagram',
     i18nKey:"social.instagram",
     svg: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#00b3a0">
