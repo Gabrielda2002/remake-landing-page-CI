@@ -3,13 +3,13 @@ export const translations = {
     title: "Preguntas Frecuentes",
     subtitle: "Preguntas e inquietudes sobre multiples ambitos relacionados con el centro de investigacion",
     question:[
-      {
+          {
       question: "¿Qué es una investigación en salud?",
       answer: "Es un proceso científico que busca generar conocimiento para mejorar la prevención, diagnóstico, tratamiento o rehabilitación de enfermedades. Puede incluir estudios con pacientes, análisis de datos o evaluaciones de servicios de salud."
-      },
+    },
       {
         question: "¿Participar en una investigación es obligatorio?",
-        answer: "No. La participación es completamente voluntaria. Nadie puede obligarte a participar, y puedes retirarte en cualquier momento sin consecuencias."
+        answer: "No. La participación es completamente voluntaria, nadie puede obligarte a participar, y puedes retirarte en cualquier momento sin consecuencias."
       },
       {
         question: "¿Qué es el consentimiento informado?",
@@ -17,7 +17,7 @@ export const translations = {
       },
       {
         question: "¿Qué riesgos existen al participar en un estudio?",
-        answer: "Los riesgos varían según el tipo de investigación. Algunos estudios no tienen riesgo, mientras que otros pueden implicar efectos secundarios leves o moderados. Todos los riesgos deben ser explicados antes de participar."
+        answer: "Los riesgos varían según el tipo de investigación. algunos estudios no tienen riesgo, mientras que otros pueden implicar efectos secundarios leves o moderados, todos los riesgos deben ser explicados antes de participar."
       },
       {
         question: "¿Recibiré algún beneficio al participar?",
@@ -41,7 +41,7 @@ export const translations = {
       },
       {
         question: "¿Qué tipo de estudios existen?",
-        answer: "Ensayos clínicos (prueban medicamentos o tratamientos), Estudios observacionales (analizan datos sin intervenir), Investigaciones epidemiológicas, Estudios de servicios de salud"
+        answer: "Ensayos clínicos (prueban medicamentos o tratamientos), estudios observacionales (analizan datos sin intervenir), investigaciones epidemiológicas, estudios de servicios de salud."
       },
       {
         question: "¿Las investigaciones solo se hacen en hospitales grandes?",
@@ -49,21 +49,22 @@ export const translations = {
       },
       {
         question: "¿Participar tiene algún costo?",
-        answer: "Generalmente no. En muchos estudios, los procedimientos relacionados con la investigación son cubiertos por los organizadores."
+        answer: "No, en muchos estudios, los procedimientos relacionados con la investigación son cubiertos por los organizadores."
       },
       {
         question: "¿Cómo sé si una investigación es confiable?",
-        answer: "Puedes verificar: Que tenga aprobación ética, Que te expliquen claramente el estudio, Que exista un investigador responsable identificado, Que te entreguen el consentimiento informado"
+        answer: "Puedes verificar que tenga aprobación ética, que te expliquen claramente el estudio, que exista un investigador responsable identificado, que te entreguen el consentimiento informado."
       },
       {
         question: "¿Qué derechos tengo como participante?",
-        answer: "Recibir información clara, Decidir libremente participar o no, Retirarte en cualquier momento, que se respete tu confidencialidad,Recibir atención en caso de eventos adversos"
+        answer: "Recibir información clara, decidir libremente participar o no, retirarte en cualquier momento, que se respete tu confidencialidad, recibir atención en caso de eventos adversos."
       },
       {
         question: "¿Cómo puedo participar en una investigación?",
         answer: "Puede contactarse mediante email, numero de atención o diligenciar el formulario del centro de investigacion.",
-        text: "¿Desea participar en un esudio? ",
-        textHref: "Si"
+        text:"¿Desea participar en un esudio?",
+        href: "/#contactenos",
+        textHref:"Si"
       },
     ]
   },
@@ -119,11 +120,11 @@ export const translations = {
       },
       {
         question: "Is there a cost to participate?",
-        answer: "Generally not. In many studies, research-related expenses are covered by the organizers."
+        answer: "No. In many studies, research-related expenses are covered by the organizers."
       },
       {
         question: "How do I know if a study is reliable?",
-        answer: "You can check: Whether the study has received ethical approval, whether the study is clearly explained to you, whether a principal investigator has been identified, and whether you are provided with an informed consent form"
+        answer: "You can check whether the study has received ethical approval, whether the study is clearly explained to you, whether a principal investigator has been identified, and whether you are provided with an informed consent form"
       },
       {
         question: "What rights do I have as a participant?",
