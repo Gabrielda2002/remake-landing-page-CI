@@ -107,11 +107,11 @@ export const translations = {
       },
       pharmacy:{
         subtitle: "Farmacia",
-        paragraph: "Nuestro Servicio Farmacéutico está enfocado en brindar atención integral para ensayos clínicos. Nos especializamos en la dispensación, seguimiento farmacoterapéutico y farmacovigilancia, garantizando el uso seguro y efectivo de los medicamentos. Cumplimos con las Buenas Prácticas Clínicas, priorizando la seguridad del paciente y el cumplimiento normativo."
+        paragraph: "Nuestro Servicio Farmacéutico está enfocado en brindar atención integral y especializada para ensayos clínicos, asegurando el manejo adecuado de los medicamentos y productos en investigación durante todas las etapas del estudio. Nos especializamos en la dispensación, el seguimiento farmacoterapéutico y la farmacovigilancia, garantizando el uso seguro, efectivo y oportuno de los tratamientos administrados a los participantes. Además, contamos con procesos estandarizados para el almacenamiento, control y trazabilidad de los medicamentos, manteniendo altos estándares de calidad y seguridad. Cumplimos estrictamente con las Buenas Prácticas Clínicas y la normatividad vigente, priorizando en todo momento la seguridad del paciente, la confidencialidad de la información y el cumplimiento regulatorio requerido para el desarrollo exitoso de los estudios clínicos."
       },
       sample: {
         subtitle: "Toma de muestras de Laboratorio Clínico",
-        paragraph: "En Nordvital I.P.S., la toma de muestras es segura, cómoda y precisa. Nuestro personal calificado asegura un trato profesional y humano, siguiendo protocolos estrictos y utilizando insumos de alta calidad. Nos esforzamos para que te sientas tranquilo y bien atendido desde el primer momento. ¡Tu salud está en las mejores manos!"
+        paragraph: "En Nordvital I.P.S., la toma de muestras es segura, cómoda y precisa. Nuestro personal altamente calificado asegura un trato profesional, cálido y humano, siguiendo protocolos estrictos de bioseguridad y utilizando insumos de alta calidad para garantizar resultados confiables. Además, contamos con procesos organizados y eficientes que permiten brindar una atención ágil y oportuna, minimizando tiempos de espera y ofreciendo mayor comodidad a nuestros pacientes. Nos esforzamos para que te sientas tranquilo, acompañado y bien atendido desde el primer momento, generando confianza en cada etapa del servicio. ¡Tu salud está en las mejores manos!"
       },
       lines: {
         subtitle: "Lineas de investigación",
@@ -317,11 +317,11 @@ export const translations = {
       },
       pharmacy:{
         subtitle: "Pharmacy",
-        paragraph: "Our Pharmaceutical Service focuses on providing comprehensive care for clinical trials. We specialize in dispensing, pharmacotherapeutic follow-up, and pharmacovigilance, ensuring the safe and effective use of medications. We comply with Good Clinical Practices, prioritizing patient safety and regulatory compliance."
+        paragraph: "Our Pharmaceutical Services team is dedicated to providing comprehensive and specialized support for clinical trials, ensuring the proper handling of investigational drugs and products throughout all phases of the study. We specialize in medication dispensing, pharmacotherapy monitoring, and pharmacovigilance, guaranteeing the safe, effective, and timely administration of treatments to participants. In addition, we have standardized processes for the storage, control, and traceability of medications, maintaining high standards of quality and safety. We strictly comply with Good Clinical Practices and current regulations, prioritizing patient safety, confidentiality of information, and the regulatory compliance required for the successful conduct of clinical studies at all times."
       },
       sample: {
         subtitle: "Clinical Laboratory Sample Collection",
-        paragraph: "At Nordvital I.P.S., sample collection is safe, comfortable, and accurate. Our qualified staff ensures professional and compassionate care, following strict protocols and using high-quality materials. We strive to make you feel calm and well cared for from the very first moment. Your health is in the best hands!"
+        paragraph: "At Nordvital I.P.S., sample collection is safe, comfortable, and accurate. Our highly qualified staff ensures professional, warm, and compassionate care, following strict biosafety protocols and using high-quality supplies to guarantee reliable results. In addition, we have organized and efficient processes that allow us to provide prompt and timely care, minimizing wait times and offering greater comfort to our patients. We strive to make you feel at ease, supported, and well cared for from the very first moment, building trust at every stage of the service. Your health is in the best hands!"
       },
       lines: {
         subtitle: "Research Lines",
