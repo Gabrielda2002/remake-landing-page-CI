@@ -3,20 +3,17 @@
 import Navbar from "@/components/header/Navbar.astro";
 import "../styles/global.css";
 import Footer from "@/components/footer/Footer.astro";
-import {Form} from "@/components/react/Forms"
-import Research from "@/components/research/Research.astro";
-import Professional from "@/components/professional/Professional.astro";
-import TextContent from "@/components/text/TextContent.astro";
-import AboutUs from "@/components/about-us/AboutUs.astro";
-import LandingHero from "@/components/landingHero/LandingHero.astro";
 import menuWeb from '@/assets/logos/logo.webp'
 
 interface Props {
   title: string;
   description: string;
+  canonical?: string;
 }
 
-const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Props = Astro.props;
+const { title, description = 'Centro de investigacion de Nordvital IPS', canonical }: Props = Astro.props;
+const siteUrl = 'https://investigation.nordvitalips.com';
+const pageUrl = canonical ? `${siteUrl}${canonical}` : siteUrl + Astro.url.pathname;
 
 ---
 
@@ -27,9 +24,13 @@ const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Pro
   <link rel="icon" type="image/svg+xml" href={menuWeb.src}>
   <meta name="generator" content={Astro.generator} />
   <meta name="description" content={description} />
-  <link rel="canonical" href="https://investigation.nordvitalips.com/" />
+  <meta name="robots" content="index, follow, max-snippet:150, max-image-preview:large" />
+  <link rel="canonical" href={pageUrl} />
+  <link rel="alternate" hreflang="es" href={`${siteUrl}${Astro.url.pathname}`} />
+  <link rel="alternate" hreflang="en" href={`${siteUrl}/en${Astro.url.pathname}`} />
+  <link rel="alternate" hreflang="x-default" href={pageUrl} />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://investigation.nordvitalips.com/" />
+  <meta property="og:url" content={pageUrl} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content="https://investigation.nordvitalips.com/og-image.jpg" />
@@ -82,26 +83,8 @@ const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Pro
   </script>
 </head>
   <body>
+    <Navbar/>
     <main>
-      <section id="inicio" class="hero-wrapper">
-        <LandingHero/>
-        <div class="hero-navbar">
-          <Navbar/>
-        </div>
-      </section>
-      <section id="quienesSomos">
-        <AboutUs />
-      </section>
-      <section id="trayectoria">
-        <TextContent />
-      </section>
-      <Professional/>
-      <section id="servicios">
-        <Research/>
-      </section>
-      <section id="contactenos">
-        <Form  client:load/>
-      </section>
       <slot />
     </main>
     <Footer/>
@@ -116,19 +99,6 @@ const  { title, description = 'Centreo de investigacion de Nordvital IPS' }: Pro
         width: 100%;
         min-height: 100vh;
     }
-
-  .hero-wrapper {
-    position: relative;
-    width: 100%;
-  }
-
-  .hero-navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-  }
 </style>
 
 <script>

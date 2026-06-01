@@ -1,8 +1,23 @@
 ---
 import OurBlog from "@/components/blog/OurBlog.astro";
-import BaseLayout from "@/layout/BaseLayout.astro";
+import Layout from "@/layout/Layout.astro";
 ---
 
-<BaseLayout title="Blog" description="Artículos de investigación clínica">
+<Layout title="Blog | Investigación Clínica Nordvital IPS" description="Últimas noticias y artículos sobre investigación clínica en el centro de investigación de Nordvital IPS" canonical="/about-us/blog">
   <OurBlog/>
-</BaseLayout>
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Blog - Centro de Investigación Nordvital IPS",
+  "description": "Últimas noticias y artículos sobre investigación clínica",
+  "url": "https://investigation.nordvitalips.com/about-us/blog",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nordvital IPS - Centro de Investigación",
+    "url": "https://investigation.nordvitalips.com"
+  }
+}
+</script>

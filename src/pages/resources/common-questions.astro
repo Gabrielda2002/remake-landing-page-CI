@@ -1,7 +1,80 @@
 ---
 import Questions from "@/components/common-questions/Questions.astro";
-import BaseLayout from "@/layout/BaseLayout.astro";
+import Layout from "@/layout/Layout.astro";
 ---
-<BaseLayout title="common-questions" description="Preguntas frecuentes">
+<Layout title="Preguntas Frecuentes | Centro de Investigación Nordvital IPS" description="Respuestas a las preguntas más frecuentes sobre investigación clínica, participación en estudios y derechos de los participantes." canonical="/resources/common-questions">
   <Questions></Questions>
-</BaseLayout>
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es una investigación en salud?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es un proceso científico que busca generar conocimiento para mejorar la prevención, diagnóstico, tratamiento o rehabilitación de enfermedades."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Participar en una investigación es obligatorio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. La participación es completamente voluntaria, nadie puede obligarte a participar, y puedes retirarte en cualquier momento sin consecuencias."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es el consentimiento informado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es un documento que explica el estudio (objetivo, riesgos, beneficios, procedimientos) y que debes firmar únicamente si estás de acuerdo en participar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué riesgos existen al participar en un estudio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los riesgos varían según el tipo de investigación. Algunos estudios no tienen riesgo, mientras que otros pueden implicar efectos secundarios leves o moderados."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Mi información personal será confidencial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Los investigadores están obligados a proteger tus datos personales y de salud. La información se maneja de forma confidencial y solo se usa con fines científicos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Quién regula las investigaciones en salud?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Las investigaciones son revisadas por comités de ética y autoridades sanitarias, que verifican que se cumplan normas de seguridad, calidad y respeto por los participantes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo retirarme después de haber aceptado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Puedes retirarte en cualquier momento sin necesidad de justificar tu decisión y sin afectar tu atención en salud."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué derechos tengo como participante?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Recibir información clara, decidir libremente participar o no, retirarte en cualquier momento, que se respete tu confidencialidad, recibir atención en caso de eventos adversos."
+      }
+    }
+  ]
+}
+</script>

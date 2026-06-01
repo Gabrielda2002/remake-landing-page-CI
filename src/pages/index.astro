@@ -1,5 +1,35 @@
 ---
 import "../styles/global.css";
 import Layout from "@/layout/Layout.astro";
+import {Form} from "@/components/react/Forms"
+import Research from "@/components/research/Research.astro";
+import Professional from "@/components/professional/Professional.astro";
+import TextContent from "@/components/text/TextContent.astro";
+import AboutUs from "@/components/about-us/AboutUs.astro";
+import LandingHero from "@/components/landingHero/LandingHero.astro";
 ---
-<Layout title="centro investigacion" description="Centro de investigacion de Nordvital IPS" />
+<Layout title="Centro de Investigación Clínica | Nordvital IPS" description="Centro de investigación clínica en Cúcuta, Colombia. Ensayos clínicos, investigación médica y desarrollo de estudios con altos estándares de calidad.">
+  <section id="inicio" class="hero-wrapper">
+    <LandingHero/>
+  </section>
+  <section id="quienesSomos">
+    <AboutUs />
+  </section>
+  <section id="trayectoria">
+    <TextContent />
+  </section>
+  <Professional/>
+  <section id="servicios">
+    <Research/>
+  </section>
+  <section id="contactenos">
+    <Form client:load/>
+  </section>
+</Layout>
+
+<style>
+  .hero-wrapper {
+    position: relative;
+    width: 100%;
+  }
+</style>
