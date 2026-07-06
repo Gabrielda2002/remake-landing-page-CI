@@ -1,18 +1,19 @@
 ---
-import service11 from '@services/service11.webp';
-import InfoFeaturedCard from './InfoFeaturedCard.astro';
-import InfoGridCard from './InfoGridCard.astro';
+import service11 from "@services/service11.webp";
+import InfoFeaturedCard from "./InfoFeaturedCard.astro";
+import InfoGridCard from "./InfoGridCard.astro";
 import HeaderStyle from "../ui/HeaderStyle.astro";
 
 interface Props {
-  span?: string,
-  title?: string,
-  subTitle?: string,
+  span?: string;
+  title?: string;
+  subTitle?: string;
 }
 
 const TITLE = "Blog Nordvital";
-const SUBTITLE = "Conocimiento clínico, hallazgos de investigación y noticias del equipo científico."
-const SUBTITLE_KEY = "blog.subtitle"
+const SUBTITLE =
+  "Conocimiento clínico, hallazgos de investigación y noticias del equipo científico.";
+const SUBTITLE_KEY = "blog.subtitle";
 ---
 
 <HeaderStyle
@@ -23,15 +24,24 @@ const SUBTITLE_KEY = "blog.subtitle"
 />
 
 <div class="max-w-5xl mx-auto px-6 py-12 font-['Bai_Jamjuree',sans-serif]">
-
   <div>
-    <InfoFeaturedCard/>
+    <InfoFeaturedCard />
     <div class="flex items-center gap-2.5 mb-5">
-      <p data-i18n="blog.lineText"
-      class="text-[11px] font-semibold tracking-[0.14em] uppercase text-[#888]">Publicaciones recientes</p>
+      <p
+        data-i18n="blog.lineText"
+        class="text-[11px] font-semibold tracking-[0.14em] uppercase text-[#888]"
+      >
+        Publicaciones recientes
+      </p>
       <div class="flex-1 h-px bg-[#e5e5e5]"></div>
     </div>
-    <InfoGridCard/>
-  </div>
+    <InfoGridCard />
 
+    <script src="https://elfsightcdn.com/platform.js" async></script>
+    <div
+      class="elfsight-app-2387c16c-dd4a-42c1-9a76-01adc64bfb1b"
+      data-elfsight-app-lazy
+    >
+    </div>
+  </div>
 </div>
